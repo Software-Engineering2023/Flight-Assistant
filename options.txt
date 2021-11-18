@@ -1,0 +1,16 @@
+Login is not a user or admin.
+    User: 
+        Needs from database:
+            * Gets list of flights (source,dest) , history , login.
+            * Books a ticket,modify a ticket.Add signup.
+    Admin: 
+        Needs from database:
+            *Get list of planes, a plane, incomes. //Database operation.
+            *Add or modify a plane.
+We have 3 modules.
+
+Users: ID, name
+Flights: ID, Plane, source, dest, VIP, Business, Airport source, Airport dest, date
+Tickets: Passenger ID, Plane ID , extras..., totalCost,tel3t?
+Plane: ID, SizeInBusiness, SizeInVIP
+Airports: ID,Name,Country,City, X,Y
