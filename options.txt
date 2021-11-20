@@ -9,7 +9,7 @@ Login is not a user or admin.
             *Add or modify a plane.
 We have 3 modules.
 
-Users: ID, name
+Users: ID, name, admin, passport ,gender
 Flights: ID, Plane, VIP, Business, Airport source, Airport dest, date
 Tickets: Passenger ID, Plane ID , extras..., totalCost,tel3t?
 Plane: ID, SizeInBusiness, SizeInVIP
