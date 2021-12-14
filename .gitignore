@@ -1,4 +1,3 @@
 *.iml
 */.idea
-Implementation/src/main/java/module-info.java
-Implementation/src/main/resources
+*/target/
