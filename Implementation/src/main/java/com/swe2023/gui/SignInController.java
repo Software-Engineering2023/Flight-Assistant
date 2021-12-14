@@ -15,14 +15,6 @@ public class SignInController {
 
 
     public void signIn() throws IOException {
-        Stage st= (Stage)signInButton.getScene().getWindow();
-        st.close();
-
-        Stage stage= new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/admin-home.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 640);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
+        HelloApplication.showWindow(signInButton, "/admin-home.fxml", "Administrator", 800,640);
     }
 }
