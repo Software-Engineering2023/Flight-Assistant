@@ -15,8 +15,7 @@ public class User {
 	
 	
 	
-	public User(int id,String email, String password, Date birthDate,String gender) {
-		this.ID=id;
+	public User(String email, String password, Date birthDate,String gender) {
 		this.Email = email;
 		this.password = password;
 		this.birthDate = birthDate;
