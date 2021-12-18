@@ -3,6 +3,19 @@ package com.swe2023.model.signUpAndLogin;
 import java.util.Date;
 
 public class User {
+	public static final String DB_TABLE_NAME= "User";
+	public static final String DB_ID="Id";
+	public static final String DB_NAME="Name";
+	public static final String DB_GENDER="Gender";
+	public static final String DB_EMAIL="Email";
+	public static final String DB_PASSWORD="Password";
+
+
+
+
+
+
+
 	private int ID;
 	private String Email;
 	private String password;

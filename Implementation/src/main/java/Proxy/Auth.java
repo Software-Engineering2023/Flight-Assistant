@@ -1,5 +1,7 @@
 package Proxy;
 
+import com.swe2023.model.signUpAndLogin.User;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,11 +17,12 @@ public class Auth {
 	private static Statement statement=null;
 	private static PreparedStatement preparedStatement=null;
 	private static ResultSet resultSet=null;
-	private static String dataBaseName="airline";
-	private static String  url="jdbc:mysql://127.0.0.1:3306/airline";
-	private static String userName="root";
-	private static String password="1111";
-	private static final String QUERY = "SELECT Email FROM user where Email=";
+	private static final String DATABASE_NAME="Airline";
+	private static final String url="jdbc:mysql://127.0.0.1:3306/"+DATABASE_NAME;
+	private static final String userName="airSystem";
+	private static final String password="11A2b33c44d55?";
+	private static final String QUERY = "SELECT "+ User.DB_EMAIL+" FROM "+User.DB_TABLE_NAME+" WHERE "+
+			User.DB_EMAIL+" = ";
 
 	
 	@SuppressWarnings("deprecation")
@@ -30,7 +33,7 @@ public class Auth {
 	
 	public static boolean checkVaildEmail(String Email) throws SQLException {
 		resultSet= statement.executeQuery(QUERY+"'"+Email+"'");
-		if(resultSet.next()==false) {
+		if(!resultSet.next()) {
 			return true;
 		}
 		 while(resultSet.next()){
@@ -59,14 +62,12 @@ public class Auth {
 				System.out.println(" connection");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException("Failed to connect");
+//			e.printStackTrace();
 		} 
 		
 	}
 	public static void main(String[] args) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
-		// TODO Auto-generated method stub
-		
 		connect();
 		checkVaildEmail("sakr@gmail.com");
 	}
