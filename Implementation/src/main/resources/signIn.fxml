@@ -29,7 +29,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField />
+                  <TextField fx:id="usernameField" />
                </children>
             </HBox>
             <HBox prefHeight="65.0" prefWidth="542.0" style="-fx-background-color: #a055be; -fx-border-color: black; -fx-border-width: 5px; -fx-border-insets: 3px; -fx-spacing: 3em; -fx-padding: 1em;">
@@ -39,7 +39,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <PasswordField prefHeight="24.0" prefWidth="180.0" />
+                  <PasswordField fx:id="passwordField" prefHeight="24.0" prefWidth="180.0" />
                </children>
             </HBox>
             <GridPane accessibleRole="BUTTON" alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
