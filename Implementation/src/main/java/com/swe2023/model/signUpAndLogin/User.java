@@ -9,6 +9,7 @@ public class User {
 	public static final String DB_GENDER="Gender";
 	public static final String DB_EMAIL="Email";
 	public static final String DB_PASSWORD="Password";
+	public static final String DB_isAdmin="isAdmin";
 
 
 
@@ -28,11 +29,11 @@ public class User {
 	
 	
 	
-	public User(String email, String password, Date birthDate,String gender) {
+	public User(String email, String password,String gender,boolean isAdmin) {
 		this.Email = email;
 		this.password = password;
-		this.birthDate = birthDate;
 		this.gender=gender;
+		this.admin=isAdmin;
 		
 	}
 	
@@ -151,6 +152,10 @@ public class User {
 
 	public double getBalance() {
 		return balance;
+	}
+	
+	public boolean getAdmin() {
+		return admin;
 	}
 
 

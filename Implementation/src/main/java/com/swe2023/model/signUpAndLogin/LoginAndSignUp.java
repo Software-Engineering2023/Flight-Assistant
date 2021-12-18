@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.swe2023.Admin.AdminAuthorization;
 import com.swe2023.model.Passenger.PassengerAuthorization;
-
+import Proxy.Auth;
 public class LoginAndSignUp {
 
 	
@@ -34,30 +34,20 @@ public class LoginAndSignUp {
 	}
 
 	// return user.
-	public boolean signIn(String Email,String password,Date BitrhDate) {
-		boolean auth=false; // isAdmin.
-		boolean checkAdmin=checkAdmin(Email);//here we will call the check admin from database 
-		return false;
-//		if(checkAdmin) {
-//			AdminAuthorization Aauth=new AdminAuthorization();
-//			auth=Aauth.signIn(Email, password);
-//		}else {
-//			PassengerAuthorization Pauth=new PassengerAuthorization();
-//			auth=Pauth.signIn(Email, password);
-//		}
-//		if(auth) {
-//			return true;
-//		}else
-//			return false;
-
+	public User signIn(String Email,String password) throws Exception {
+		Auth auth=new Auth();
+		String[] checkAdmin=auth.checkAdmin(Email);//here we will call the check admin from database 
+		if(checkAdmin[0]=="-1") {
+			return null;
+		}else if (checkAdmin[0]=="true") {
+			AdminAuthorization Aauth=new AdminAuthorization();
+			return Aauth.signIn(Email, password,checkAdmin[1]);
+		}
+		return null;
 	}
-
 	
 
-	private boolean checkAdmin(String email) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

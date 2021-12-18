@@ -1,17 +1,20 @@
 package com.swe2023.Admin;
-
+import Proxy.Auth;
 import java.util.Date;
 
+import com.swe2023.model.signUpAndLogin.User;
+
 public class AdminAuthorization {
+	
 	boolean authorized;
-	public boolean signIn(String Email,String password) {
-		boolean checkVaildEmailAndPassword=checkFaildEmailAndPassword(Email,password); ///dlogin 
-		if(checkVaildEmailAndPassword) {
+	public User signIn(String Email,String password,String truePassword) throws Exception {
+		if(password.equals(truePassword)) {
+			Auth auth=new Auth();
 			authorized=true;
-			return true;
+			return auth.getUser(Email);
 			
 		}else
-			return false;
+			return null;
 		
 	}
 	private boolean checkFaildEmailAndPassword(String email, String password) {

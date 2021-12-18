@@ -1,5 +1,6 @@
 package Proxy;
 
+import com.swe2023.Proxy.DB_Utils;
 import com.swe2023.model.signUpAndLogin.User;
 
 import java.sql.Connection;
@@ -8,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.Scanner;
 
 
@@ -18,7 +20,11 @@ public class Auth {
 	private static PreparedStatement preparedStatement=null;
 	private static ResultSet resultSet = null;
 
-	private static final String QUERY = "SELECT "+ User.DB_EMAIL+" FROM "+User.DB_TABLE_NAME+" WHERE "+
+	private static final String QUERYOfCheckAdmin = "SELECT "+ User.DB_isAdmin+" FROM "+User.DB_TABLE_NAME+" WHERE "+
+			User.DB_EMAIL+" = ";
+	private static final String QUERYOfgetPassword = "SELECT "+ User.DB_PASSWORD+" FROM "+User.DB_TABLE_NAME+" WHERE "+
+			User.DB_EMAIL+" = ";
+	private static final String QUERYOfgetVaildEmail = "SELECT "+ User.DB_EMAIL+" FROM "+User.DB_TABLE_NAME+" WHERE "+
 			User.DB_EMAIL+" = ";
 
 	
@@ -27,30 +33,85 @@ public class Auth {
 		
 	}
 	
+	public static String[] checkAdmin(String Email) throws SQLException {
+		String[] checker = new String[2];
+		Connection connection = DB_Utils.getDataSource().getConnection();
+        PreparedStatement pStatement = connection.prepareStatement(QUERYOfCheckAdmin+"'"+Email+"'");
+        resultSet=pStatement.executeQuery();
+        if(!resultSet.next()) {
+        	checker[0]="-1";
+			return checker;
+		}
+        while(resultSet.next()){
+            //Display values
+        	if(resultSet.getBoolean("isAdmin")==true) {
+        		checker[0]="true";
+        	}else {
+        		checker[0]="false";
+        	}
+        	
+        }
+        pStatement= connection.prepareStatement(QUERYOfgetPassword+"'"+Email+"'");
+        resultSet=pStatement.executeQuery();
+        while(resultSet.next()){
+            //Display values
+        	checker[1]=resultSet.getString("Password");
+        }
+        pStatement.close();
+        connection.close();
+        return checker;
+	}
+	public static boolean checkValidEmail(String Email) throws SQLException {
+		resultSet = statement.executeQuery(QUERYOfgetVaildEmail+"'"+Email+"'");
+		if(!resultSet.next()) {
+			return true;
+		}
+		 while(resultSet.next()){
+	            //Display values
+	            System.out.print("ID: " + resultSet.getString("Email"));
+	     }
+
+		return false;
+	}
+
+	public static boolean addNewUser(User user) throws SQLException {
+		 String query = "insert into User values(?, ?, ?, ?, ?)";
+	        try {
+	            Connection connection = DB_Utils.getDataSource().getConnection();
+	            PreparedStatement pStatement = connection.prepareStatement(query);
+	            pStatement.setString(1, user.getEmail());
+	            pStatement.setString(2, user.getGender());
+	            pStatement.setBoolean(3, user.getAdmin());
+	            pStatement.setString(4, user.getEmail());
+	            pStatement.setString(5, user.getPassword());
+	            pStatement.execute();
+	            pStatement.close();
+	            connection.close();
+	        }catch(Exception e) {
+	        	
+	        }
+		return true;
+	}
 	
-//	public static boolean checkValidEmail(String Email) throws SQLException {
-//		resultSet = statement.executeQuery(QUERY+"'"+Email+"'");
-//		if(!resultSet.next()) {
-//			return true;
-//		}
-//		 while(resultSet.next()){
-//	            //Display values
-//	            System.out.print("ID: " + resultSet.getString("Email"));
-//	         }
-//
-//		return false;
-//	}
-//
-//	public static boolean addNewUser() throws SQLException {
-//		connect.prepareStatement("INSERT INTO User (Name, Gender, isAdmin,Email,Password)"
-//				+ "VALUES  ('abdelrahman mohamed', 'm', 1,'sakr@gmail.com','123456789');").executeUpdate();
-//		System.out.println("sakr");
-//		return false;
-//	}
-//
-//
+	public static User getUser(String Email) throws SQLException {
+		User user = null;
+		Connection connection = DB_Utils.getDataSource().getConnection();
+        PreparedStatement pStatement = connection.prepareStatement(QUERYOfCheckAdmin+"'"+Email+"'");
+        resultSet=pStatement.executeQuery();
+        
+        while(resultSet.next()){
+            //Display values
+        	user = new User(resultSet.getString("Email"), resultSet.getString("Password"), resultSet.getString("Gender"),resultSet.getBoolean("isAdmin"));
+        	
+        }
+		return user;
+		
+	}
+
+
 //	public static void connect() throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 //		  // Setup the connection with the DB
+//		
 //		try {
 //
 //			// connection  = DB_Utils.getDataSource().getConnection();
@@ -67,10 +128,10 @@ public class Auth {
 //		}
 //
 //	}
-//	public static void main(String[] args) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
-//		connect();
-//		checkValidEmail("sakr@gmail.com");
-//	}
+	public static void main(String[] args) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
+		//connect();
+		checkAdmin("sakr@gmail.com");
+	}
 
 
 }
