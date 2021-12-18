@@ -9,8 +9,8 @@ public class LoginAndSignUp {
 
 	
 	public boolean signUp(String Email,String password,Date BitrhDate,String passportNumber,String gender) {
-		boolean checkVaildEmail=checkVaildEmail(Email);//check if the use already exist 
-		if(checkVaildEmail) {
+		boolean checkValidEmail=checkVaildEmail(Email);//check if the use already exist
+		if(checkValidEmail) {
 			passenger pass=new passenger(Email,password, BitrhDate,passportNumber,gender);
 			addUserToDatabase(pass); //class passenger to add it 
 			return true;
@@ -33,8 +33,9 @@ public class LoginAndSignUp {
 		return false;
 	}
 
+	// return user.
 	public boolean signIn(String Email,String password,Date BitrhDate) {
-		boolean auth=false;
+		boolean auth=false; // isAdmin.
 		boolean checkAdmin=checkAdmin(Email);//here we will call the check admin from database 
 		return false;
 //		if(checkAdmin) {

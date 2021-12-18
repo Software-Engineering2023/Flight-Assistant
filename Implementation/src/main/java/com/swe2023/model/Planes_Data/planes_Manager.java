@@ -11,47 +11,59 @@ public class planes_Manager {
          return planesShown;
     }
 
-    public void updatePlaneStatus(Plane plane ,String status ){
-         plane.status=status;
+    public void updatePlaneStatus(Plane plane ,String status){
+         plane.setStatus(status);
          //send changed status to data base here
     }
     public void stopPlaneFlights(Plane plane){
          // what should do here xd
-        plane.flights=null;
+        // ToDo.
+        // fe3lan what should we do here.
+//        plane.flights=null;
         //call database to update here
     }
 
     public void changePlaneFlight(Plane plane , Flight oldFlight, Flight newFlight){
-         for (int i=0 ; i<plane.flights.length;i++){
-             if(plane.flights[i].flightID.equals(oldFlight.flightID)){
-                 plane.flights[i]=newFlight;
-                 //update in dataBase
-                 break;
-             }
-         }
+         // ToDo.
+//         for (int i=0 ; i<plane.flights.length;i++){
+//             if(plane.flights[i].flightID.equals(oldFlight.flightID)){
+//                 plane.flights[i]=newFlight;
+//                 //update in dataBase
+//                 break;
+//             }
+//         }
     }
 
     public int getPlaneIncome(Plane plane){
-         return plane.income;
+         return plane.getIncome();
     }
 
     public Flight addNewFlight(String source , String destination , String date){
-         Flight flight = new Flight();
-         flight.source=source;
-         flight.destination=destination;
-         flight.date= date;
-         //update the dataBase
-        return flight;
+         // ToDo.
+        // Should source and destination be ports.
+        // should specify the plane.
+        // should specify departure and arrival dates.
+
+//         Flight flight = new Flight();
+//         flight.source=source;
+//         flight.destination=destination;
+//         flight.date= date;
+//         //update the dataBase
+//        return flight;
+        return null;
     }
 
-    public Port addNewPort(String name , String ID,int X, int Y){
-         Port port = new Port();
-         port.name=name;
-         port.ID=ID;
-         port.xLocation=X;
-         port.yLocation=Y;
+    // edited because : what is this? and why does it return Port?
+    public Port addNewPort(String code, String country, String city, String name, int longitude, int latitude) {
+//         Port port = new Port();
+//         port.name=name;
+//         port.ID=ID;
+//         port.longitude =X;
+//         port.latitude =Y;
+        Port airport = new Port(code, country, city, name, longitude, latitude);
+
          // call database here
-         return port;
+         return airport;
     }
 
     public Port[]  loadPortsFromDataBase(){

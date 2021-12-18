@@ -36,7 +36,7 @@ public class AdminAirportController {
         String airportName= nameField.getText();
         double x= xSpinner.getValue();
         double y= ySpinner.getValue();
-        Port port= new Port(airportName, (int)x,(int)y);
+        Port port= new Port(null, null, null, airportName, (int)x, (int)y);
         ports.add(port);
         updateListView();
         xSpinner.getValueFactory().setValue(0.0);
@@ -57,7 +57,7 @@ public class AdminAirportController {
     }
     public void updateDetailedView(Port port){
         nameField.setText(port.getName());
-        xSpinner.getValueFactory().setValue((double)port.getXLocation());
-        ySpinner.getValueFactory().setValue((double)port.getYLocation());
+        xSpinner.getValueFactory().setValue((double)port.getLongitude());
+        ySpinner.getValueFactory().setValue((double)port.getLatitude());
     }
 }

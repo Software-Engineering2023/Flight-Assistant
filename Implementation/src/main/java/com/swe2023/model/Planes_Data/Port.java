@@ -1,35 +1,44 @@
 package com.swe2023.model.Planes_Data;
 
 public class Port {
-
-    public static final String DB_TABLE_NAME= "Airport";
-    public static final String DB_ID= "Airport_code";
-    public static final String DB_CITY= "City";
-    public static final String DB_NAME= "Name";
-    public static final String DB_X_LOCATION= "Longitude";
-    public static final String DB_Y_LOCATION= "Latitude";
-
-    String name;
-    String ID;
-    int xLocation;
-    int yLocation;
+    // edit to match database.
+    String code, country, city, name;
+    int longitude;
+    int latitude;
 
     public Port(){}
-    public Port(String name, int xLocation, int yLocation) {
+
+    // edit.
+    public Port(String code, String country, String city, String name, int longitude, int latitude) {
+        this.code = code;
+        this.country = country;
+        this.city = city;
         this.name = name;
-        this.xLocation = xLocation;
-        this.yLocation = yLocation;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getXLocation() {
-        return xLocation;
+    public int getLongitude() {
+        return longitude;
     }
 
-    public int getYLocation() {
-        return yLocation;
+    public int getLatitude() {
+        return latitude;
     }
 }
