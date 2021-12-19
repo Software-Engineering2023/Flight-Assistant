@@ -1,6 +1,8 @@
 package com.swe2023.gui;
 
 import com.swe2023.HelloApplication;
+import com.swe2023.model.signUpAndLogin.LoginAndSignUp;
+import com.swe2023.model.signUpAndLogin.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,10 +21,12 @@ public class SignInController {
     @FXML
     public TextField usernameField;
 
-    public void signIn() throws IOException {
+    public void signIn() throws Exception {
         String username= usernameField.getText();
         String password= passwordField.getText();
-        System.out.println("Username is "+username+"\tPassword is "+password);
+        try {
+            User user = new LoginAndSignUp().signIn(username, password);
+        }catch (Exception e){e.printStackTrace();}
         HelloApplication.showWindow(signInButton, "/admin-home.fxml", "Administrator", 800,640);
     }
 }

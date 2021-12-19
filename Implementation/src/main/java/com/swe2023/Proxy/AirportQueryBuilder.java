@@ -43,8 +43,8 @@ public class AirportQueryBuilder {
     public static void main(String[] args) {
         AirportQueryBuilder aqb = new AirportQueryBuilder();
         Port airport = new Port("22233", "Qatar", "GGG", "Airport_22233", 112, 71);
-//        Port airport = new Port("55555", "USA", "XXX", "Airport_55555", 17, 81);
-//        Port airport = new Port("11111", "Egypt", "ZZZ", "Airport_11111", 53, 13);
+         airport = new Port("55555", "USA", "XXX", "Airport_55555", 17, 81);
+         airport = new Port("11111", "Egypt", "ZZZ", "Airport_11111", 53, 13);
         aqb.addAirport(airport);
 
 //        aqb.deleteAirport("67623");

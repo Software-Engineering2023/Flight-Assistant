@@ -1,7 +1,7 @@
 package com.swe2023.model.Planes_Data;
 
 
-public class planes_Manager {
+public class PlaneManager {
     Plane[] planesShown;
     Port[] portsShown;
 

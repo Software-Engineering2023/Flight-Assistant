@@ -28,7 +28,7 @@ public class Auth {
 			User.DB_EMAIL+" = ";
 
 	
-	@SuppressWarnings("deprecation")
+//	@SuppressWarnings("deprecation")
 	public Auth() throws Exception {
 		
 	}

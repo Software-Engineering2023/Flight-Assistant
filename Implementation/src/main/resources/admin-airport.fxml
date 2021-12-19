@@ -32,7 +32,7 @@
       </Label>
       <HBox prefHeight="23.0" prefWidth="457.0" spacing="48.0" style="-fx-background-color: #303355;" GridPane.columnIndex="1">
          <children>
-            <Button onAction="#createAirport" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="77.0" style="-fx-background-color: #5090ff; -fx-font-weight: bold;" text="Create" textAlignment="CENTER" textFill="#a80505">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createAirport" prefHeight="30.0" prefWidth="77.0" style="-fx-background-color: #5090ff; -fx-font-weight: bold;" text="Create" textAlignment="CENTER" textFill="#a80505">
                <font>
                   <Font name="SansSerif Regular" size="13.0" />
                </font>
@@ -65,7 +65,7 @@
             <Cursor fx:constant="V_RESIZE" />
          </cursor>
          <content>
-            <ListView fx:id="listView" onMouseReleased="#getViewItem" minWidth="-Infinity" prefHeight="533.0" prefWidth="224.0" />
+            <ListView fx:id="listView" minWidth="-Infinity" onMouseReleased="#getViewItem" prefHeight="533.0" prefWidth="224.0" />
          </content>
       </ScrollPane>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -97,6 +97,61 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="457.0" spacing="20.0" style="-fx-border-color: #000000; -fx-border-radius: 100;">
                      <children>
+                        <Label style="-fx-font-family: sans-serif; -fx-font-style: italic;" text="Code">
+                           <font>
+                              <Font name="DejaVu Sans Condensed Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="codeField" prefHeight="34.0" prefWidth="222.0" promptText="Airport Code" style="-fx-border-color: #ffffff; -fx-border-radius: 100;">
+                           <font>
+                              <Font name="FreeSerif" size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="457.0" spacing="20.0" style="-fx-border-color: #000000; -fx-border-radius: 100;">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                     <children>
+                        <VBox prefHeight="102.0" prefWidth="407.0">
+                           <children>
+                              <HBox prefHeight="55.0" prefWidth="407.0">
+                                 <children>
+                                    <Label text="Country:" />
+                                    <TextField fx:id="countryField" promptText="Country Name" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets left="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox prefHeight="55.0" prefWidth="407.0">
+                                 <children>
+                                    <Label text="City:" />
+                                    <TextField fx:id="cityField" promptText="City name" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="20.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="457.0" spacing="20.0" style="-fx-border-color: #000000; -fx-border-radius: 100;">
+                     <children>
                         <Label style="-fx-font-family: sans-serif; -fx-font-style: italic;">
                            <font>
                               <Font name="DejaVu Sans Condensed Bold" size="20.0" />
@@ -105,7 +160,7 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                            <children>
                               <Label text="X:" />
-                              <Spinner fx:id="xSpinner" editable="true" prefHeight="24.0" prefWidth="104.0" />
+                              <Spinner editable="true" prefHeight="24.0" prefWidth="104.0" fx:id="xSpinner" />
                            </children>
                            <padding>
                               <Insets left="20.0" />
@@ -133,6 +188,11 @@
                   <Insets top="4.0" />
                </VBox.margin>
             </VBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </HBox>
          </children>
       </VBox>
    </children>
