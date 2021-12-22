@@ -26,6 +26,8 @@ public class SignInController {
         String password= passwordField.getText();
         try {
             User user = new LoginAndSignUp().signIn(username, password);
+            System.out.println(user.getID());
+//            System.out.println(user.getPassword());
         }catch (Exception e){e.printStackTrace();}
         HelloApplication.showWindow(signInButton, "/admin-home.fxml", "Administrator", 800,640);
     }

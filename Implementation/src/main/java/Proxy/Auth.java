@@ -26,25 +26,28 @@ public class Auth {
 			User.DB_EMAIL+" = ";
 	private static final String QUERYOfgetVaildEmail = "SELECT "+ User.DB_EMAIL+" FROM "+User.DB_TABLE_NAME+" WHERE "+
 			User.DB_EMAIL+" = ";
+	private static final String QUERYOfgetUser = "SELECT * FROM "+User.DB_TABLE_NAME+" WHERE "+
+			User.DB_EMAIL+" = ";
 
-	
-//	@SuppressWarnings("deprecation")
+
+
+	//	@SuppressWarnings("deprecation")
 	public Auth() throws Exception {
 		
 	}
 	
 	public static String[] checkAdmin(String Email) throws SQLException {
-		String[] checker = new String[2];
+		String[] checker = new String[]{"",""};
 		Connection connection = DB_Utils.getDataSource().getConnection();
         PreparedStatement pStatement = connection.prepareStatement(QUERYOfCheckAdmin+"'"+Email+"'");
         resultSet=pStatement.executeQuery();
-        if(!resultSet.next()) {
-        	checker[0]="-1";
-			return checker;
-		}
+//        if(!resultSet.next()) {
+//        	checker[0]="-1";
+//			return checker;
+//		}
         while(resultSet.next()){
             //Display values
-        	if(resultSet.getBoolean("isAdmin")==true) {
+        	if(resultSet.getString("isAdmin").equals("1")) {
         		checker[0]="true";
         	}else {
         		checker[0]="false";
@@ -96,14 +99,19 @@ public class Auth {
 	public static User getUser(String Email) throws SQLException {
 		User user = null;
 		Connection connection = DB_Utils.getDataSource().getConnection();
-        PreparedStatement pStatement = connection.prepareStatement(QUERYOfCheckAdmin+"'"+Email+"'");
+        PreparedStatement pStatement = connection.prepareStatement(QUERYOfgetUser+"'"+Email+"'");
         resultSet=pStatement.executeQuery();
+
         
         while(resultSet.next()){
             //Display values
-        	user = new User(resultSet.getString("Email"), resultSet.getString("Password"), resultSet.getString("Gender"),resultSet.getBoolean("isAdmin"));
-        	
+			boolean isAdmin= resultSet.getString("isAdmin").equals("1") ;
+        	user = new User(resultSet.getString("Email"), resultSet.getString("Password"), resultSet.getString("Gender"),isAdmin);
+        	user.setID(resultSet.getInt("Id"));
         }
+		resultSet.close();
+		pStatement.close();
+		connection.close();
 		return user;
 		
 	}

@@ -37,10 +37,12 @@ public class LoginAndSignUp {
 	public User signIn(String Email,String password) throws Exception {
 		Auth auth=new Auth();
 		String[] checkAdmin=auth.checkAdmin(Email);//here we will call the check admin from database 
-		if(checkAdmin[0]=="-1") {
+		if(checkAdmin[0].equals("-1")) {
+			System.out.println("Admin Not found!");
 			return null;
-		}else if (checkAdmin[0]=="true") {
+		}else if (checkAdmin[0].equals("true")) {
 			AdminAuthorization Aauth=new AdminAuthorization();
+			System.out.println("Admin Found!");
 			return Aauth.signIn(Email, password,checkAdmin[1]);
 		}
 		return null;
