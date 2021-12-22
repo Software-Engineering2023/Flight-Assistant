@@ -32,7 +32,7 @@ public class AdminPlaneController {
     }
 
     public void createPlane(ActionEvent actionEvent) {
-        int id = IDField.getText();
+        int id = Integer.parseInt(IDField.getText());
         String kind = KindField.getText();
         String status = StatusField.getText();
         String income = IncomeField.getText();
