@@ -1,19 +1,46 @@
 package com.swe2023.model.Planes_Data;
 
 
+import com.swe2023.Proxy.AirportQueryBuilder;
+import com.swe2023.Proxy.FlightQueryBuilder;
+import com.swe2023.Proxy.PlaneQueryBuilder;
+
+import java.util.ArrayList;
+import java.util.Date;
+
 public class PlaneManager {
     Plane[] planesShown;
     Port[] portsShown;
 
-     public Plane[]  loadPlanesFromDataBase(){
-         // call from database here to laod the planes into the variable palnes
-         Plane[] planesShown = new Plane[0];
-         return planesShown;
+    private PlaneQueryBuilder pqb;
+    private FlightQueryBuilder fqb;
+    private AirportQueryBuilder aqb;
+
+    public PlaneManager() {
+        pqb = new PlaneQueryBuilder();
+        fqb = new FlightQueryBuilder();
+        aqb = new AirportQueryBuilder();
     }
 
-    public void updatePlaneStatus(Plane plane ,String status){
-         plane.setStatus(status);
-         //send changed status to data base here
+     public ArrayList<Plane> loadPlanesFromDataBase(){
+         return pqb.getAll();
+    }
+    public boolean addPlane(Plane plane){
+        if(isPlane(plane)) {
+            boolean returend = pqb.addPlane(plane);
+            return returend;
+        }
+        return false;
+    }
+
+    public boolean updatePlaneStatus(Plane plane ,String status){
+        if(isPlane(plane)) {
+            plane.setStatus(status);
+            boolean returend = pqb.updatePlane(plane);
+            return returend;
+        }
+        return false;
+
     }
     public void stopPlaneFlights(Plane plane){
          // what should do here xd
@@ -21,63 +48,67 @@ public class PlaneManager {
         // fe3lan what should we do here.
 //        plane.flights=null;
         //call database to update here
+
+
     }
 
-    public void changePlaneFlight(Plane plane , Flight oldFlight, Flight newFlight){
-         // ToDo.
-//         for (int i=0 ; i<plane.flights.length;i++){
-//             if(plane.flights[i].flightID.equals(oldFlight.flightID)){
-//                 plane.flights[i]=newFlight;
-//                 //update in dataBase
-//                 break;
-//             }
-//         }
+    // Next MileStone.
+    public boolean changePlaneFlight(Date date ,ArrayList<Flight> newFlights){
+        if(date != null) {
+            boolean deleteflight = fqb.deleteFlight(date);
+            boolean addFlights = fqb.addFlights(newFlights);
+            return deleteflight && addFlights;
+        }
+        return false;
     }
 
     public int getPlaneIncome(Plane plane){
          return plane.getIncome();
     }
 
-    public Flight addNewFlight(String source , String destination , String date){
-         // ToDo.
-        // Should source and destination be ports.
-        // should specify the plane.
-        // should specify departure and arrival dates.
-
-//         Flight flight = new Flight();
-//         flight.source=source;
-//         flight.destination=destination;
-//         flight.date= date;
-//         //update the dataBase
-//        return flight;
-        return null;
+    public boolean addNewFlight(Port source , Port destination , Date deptDate, Date arrivalDate, Plane plane){
+        if(isPort(source)&&isPort(destination)&&deptDate!= null &&arrivalDate!= null &&isPlane(plane)) {
+           boolean returned= fqb.addFlight(new Flight(source, destination, deptDate, arrivalDate, plane));
+            return returned;
+        }
+        return false;
     }
 
     // edited because : what is this? and why does it return Port?
-    public Port addNewPort(String code, String country, String city, String name, int longitude, int latitude) {
-//         Port port = new Port();
-//         port.name=name;
-//         port.ID=ID;
-//         port.longitude =X;
-//         port.latitude =Y;
+    public boolean addNewPort(String code, String country, String city, String name, int longitude, int latitude) {
         Port airport = new Port(code, country, city, name, longitude, latitude);
-
-         // call database here
-         return airport;
+        if(isPort(airport)) {
+            boolean returned= aqb.addAirport(airport);
+            return returned;
+        }
+        return  false;
     }
 
-    public Port[]  loadPortsFromDataBase(){
-         Port[] portsShown = new Port[0];
-         // call dataBase to fill data here
-        return portsShown;
+    public ArrayList<Port> loadPortsFromDataBase(){
+         return aqb.getAll();
     }
 
-    public void deletePort(Port port){
-         // call dataBase to delte this port
+    public boolean deletePort(Port port){
+        boolean returned=aqb.deleteAirport(port.getCode());
+        return returned;
     }
 
-    public void deletePlane(Plane plane){
-         //call datBase
+    public boolean deletePlane(Plane plane){
+        boolean returned=pqb.deletePlane(plane.getId());
+        return returned;
+    }
+
+    private boolean isPlane(Plane plane){
+        if(plane.getNo_of_seats() != 0 && plane.getType() != null && plane.getStatus() != null) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isPort(Port port){
+        if(port.getCode()!= null &&port.getCountry()!= null &&port.getCity()!= null&&port.getName()!= null )
+            return true;
+        return false;
     }
 
 

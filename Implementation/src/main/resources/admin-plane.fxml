@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.swe2023.gui.AdminPlaneController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="333.0" minWidth="10.0" prefWidth="224.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="555.0" minWidth="10.0" prefWidth="457.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="536.0" minHeight="10.0" prefHeight="536.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label prefHeight="28.0" prefWidth="223.0" text="Available Planes">
+         <font>
+            <Font name="LMMono12-Regular" size="16.0" />
+         </font>
+      </Label>
+      <HBox prefHeight="23.0" prefWidth="457.0" spacing="48.0" style="-fx-background-color: #303355;" GridPane.columnIndex="1">
+         <children>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createPlane" prefHeight="30.0" prefWidth="77.0" style="-fx-background-color: #5090ff; -fx-font-weight: bold;" text="Create" textAlignment="CENTER" textFill="#a80505">
+               <font>
+                  <Font name="SansSerif Regular" size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="1.0" right="3.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="updateButton" alignment="CENTER" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #5090ff; -fx-font-weight: bold;" text="Update" textAlignment="CENTER" textFill="#a80505">
+               <font>
+                  <Font name="SansSerif Regular" size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #5090ff; -fx-font-weight: bold;" text="Delete" textAlignment="CENTER" textFill="#a80505">
+               <font>
+                  <Font name="SansSerif Regular" size="13.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToAdminHome" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #da505e; -fx-font-weight: bold;" text="Admin" textAlignment="CENTER" textFill="#512626">
+               <font>
+                  <Font name="SansSerif Regular" size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+         <cursor>
+            <Cursor fx:constant="V_RESIZE" />
+         </cursor>
+         <content>
+            <ListView fx:id="listView" minWidth="-Infinity" onMouseReleased="#getViewItem" prefHeight="533.0" prefWidth="224.0" />
+         </content>
+      </ScrollPane>
+      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <VBox prefHeight="536.0" prefWidth="457.0" spacing="20.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="457.0" spacing="20.0" style="-fx-border-color: #000000; -fx-border-radius: 100;">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <children>
+                        <Label style="-fx-font-family: sans-serif; -fx-font-style: italic;" text="Plane Id">
+                           <font>
+                              <Font name="DejaVu Sans Condensed Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="IDField" prefHeight="34.0" prefWidth="222.0" promptText="Plane ID" style="-fx-border-color: #ffffff; -fx-border-radius: 100;">
+                           <font>
+                              <Font name="FreeSerif" size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="457.0" spacing="20.0" style="-fx-border-color: #000000; -fx-border-radius: 100;">
+                     <children>
+                        <Label style="-fx-font-family: sans-serif; -fx-font-style: italic;">
+                           <font>
+                              <Font name="DejaVu Sans Condensed Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" prefHeight="103.0" prefWidth="185.0" spacing="30.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="59.0" text="Kind" />
+                              <TextField fx:id="KindField" prefHeight="26.0" prefWidth="105.0" promptText="Kind" />
+                           </children>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="103.0" prefWidth="213.0" spacing="30.0">
+                           <children>
+                              <Label text="Size" />
+                              <TextField fx:id="SizeField" prefHeight="26.0" prefWidth="98.0" promptText="Size" />
+                           </children>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="457.0" spacing="20.0" style="-fx-border-color: #000000; -fx-border-radius: 100;">
+                     <children>
+                        <Label style="-fx-font-family: sans-serif; -fx-font-style: italic;">
+                           <font>
+                              <Font name="DejaVu Sans Condensed Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" prefHeight="103.0" prefWidth="169.0" spacing="30.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="59.0" text="Status" />
+                              <TextField fx:id="StatusField" prefHeight="26.0" prefWidth="97.0" promptText="Status" />
+                           </children>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="103.0" prefWidth="195.0" spacing="30.0">
+                           <children>
+                              <Label text="Income" />
+                              <TextField fx:id="IncomeField" prefHeight="26.0" prefWidth="95.0" promptText="Income" />
+                           </children>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="4.0" />
+               </VBox.margin>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</GridPane>
