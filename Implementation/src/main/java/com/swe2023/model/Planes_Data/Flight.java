@@ -56,4 +56,8 @@ public class Flight {
     public void setArrivalDate(String arrivalDate) {
         ArrivalDate = arrivalDate;
     }
+
+    public void setFlightID(int flightID) {
+        this.flightID = flightID;
+    }
 }

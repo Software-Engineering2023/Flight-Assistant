@@ -2,8 +2,8 @@ package com.swe2023.model.Planes_Data;
 
 public class Plane {
 
-    private int  id,no_of_seats, income;
-    private String  type, status,kind;
+    private int id, no_of_seats, income;
+    private String type, status;
     private Flight[] flights;
 
     public Plane(String type, int no_of_seats) {
@@ -11,15 +11,6 @@ public class Plane {
         this.type = type;
         this.status = "Active";
         this.income = 0;
-    }
-
-    public Plane(){}
-    public Plane(int planeID,String status,String kind,int income,int size){
-        this.id =planeID;
-        this.status =status;
-        this.kind =kind;
-        this.no_of_seats =size;
-        this.income =income;
     }
 
     public int getId() {
@@ -54,5 +45,11 @@ public class Plane {
         this.status = status;
     }
 
-    public String getKind() { return kind; }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setIncome(int income) {
+        this.income = income;
+    }
 }

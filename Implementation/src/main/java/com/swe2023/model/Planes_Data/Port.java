@@ -3,8 +3,8 @@ package com.swe2023.model.Planes_Data;
 public class Port {
     // edit to match database.
     String code, country, city, name;
-    int longitude;
-    int latitude;
+    private int longitude;
+    private int latitude;
 
     public Port(){}
 

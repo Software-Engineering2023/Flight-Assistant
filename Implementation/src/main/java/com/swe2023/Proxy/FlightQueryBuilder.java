@@ -1,10 +1,11 @@
 package com.swe2023.Proxy;
 
 import com.swe2023.model.Planes_Data.Flight;
+import com.swe2023.model.Planes_Data.Plane;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FlightQueryBuilder {
 
