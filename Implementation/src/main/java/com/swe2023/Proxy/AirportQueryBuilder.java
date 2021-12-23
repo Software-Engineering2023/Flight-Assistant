@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class AirportQueryBuilder {
 
-    public void addAirport(Port airport) {
+    public boolean addAirport(Port airport) {
         String query = "insert into Airport values(?, ?, ?, ?, ?, ?)";
         try {
             Connection connection = DB_Utils.getDataSource().getConnection();
@@ -22,12 +22,14 @@ public class AirportQueryBuilder {
             pStatement.execute();
             pStatement.close();
             connection.close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
-    public void deleteAirport(String code) {
+    public boolean deleteAirport(String code) {
         String query = "delete from Airport where Airport_code = ?";
         try {
             Connection connection = DB_Utils.getDataSource().getConnection();
@@ -36,8 +38,10 @@ public class AirportQueryBuilder {
             pStatement.execute();
             pStatement.close();
             connection.close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
