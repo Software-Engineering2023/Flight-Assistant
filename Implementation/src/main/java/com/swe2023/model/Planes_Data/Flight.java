@@ -12,7 +12,7 @@ public class Flight {
     private Ticket[] tickets;
     private Date date;
 
-    public Flight(int flightID,Port source, Port destination, Date Date, Plane plane) {
+    public Flight(int flightID, Port source, Port destination, Date Date, Plane plane) {
         this.flightID = flightID;
         this.source = source;
         this.destination = destination;

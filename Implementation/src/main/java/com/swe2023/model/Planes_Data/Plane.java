@@ -6,6 +6,10 @@ public class Plane {
     private String type, status;
     private Flight[] flights;
 
+    public Plane(int id) {
+        this.id = id;
+    }
+
     public Plane(int id,  String type, String status, int no_of_seats, int income) {
         this.id = id;
         this.no_of_seats = no_of_seats;

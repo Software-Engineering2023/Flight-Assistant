@@ -1,5 +1,6 @@
 package com.swe2023.Proxy;
 
+
 import com.swe2023.model.Planes_Data.Port;
 
 import java.sql.*;
@@ -47,6 +48,8 @@ public class AirportQueryBuilder {
     }
 
     public ArrayList<Port> search(HashMap<String, Object> criterias) {
+        if (criterias.isEmpty())
+            return null;
         SelectQueryBuilder selectQueryBuilder = new SelectQueryBuilder("Airport");
         String query = selectQueryBuilder.getQuery(criterias);
         return processQuery(query);

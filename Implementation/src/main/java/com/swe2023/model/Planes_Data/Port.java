@@ -6,7 +6,9 @@ public class Port {
     private int longitude;
     private int latitude;
 
-    public Port(){}
+    public Port(String code) {
+        this.code = code;
+    }
 
     // edit.
     public Port(String code, String country, String city, String name, int longitude, int latitude) {
