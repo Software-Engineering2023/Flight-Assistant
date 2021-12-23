@@ -116,6 +116,7 @@ public class PlaneQueryBuilder {
                         resultSet.getDate(2), resultSet.getDate(3),
                         plane);
                 flight.setFlightID(resultSet.getInt(1));
+                flights.add(flight);
             }
             connection.close();
             pStatement.close();
@@ -128,6 +129,10 @@ public class PlaneQueryBuilder {
 
     public static void main(String[] args) {
         PlaneQueryBuilder pqb = new PlaneQueryBuilder();
+        ArrayList<Plane> planes = pqb.getAll();
+        ArrayList<Flight> flights = pqb.getPlaneFlights(planes.get(0));
+
+        System.out.println(flights);
 
 //        Plane plane = new Plane("TTT", 300);
 //        Plane plane = new Plane("HHH", 350);

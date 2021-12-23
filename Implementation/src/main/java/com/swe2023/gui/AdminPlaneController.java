@@ -59,7 +59,7 @@ public class AdminPlaneController {
     public void updateDetailedView(Plane plane){
         IDField.setText(String.valueOf(plane.getId()));
         SizeField.setText(String.valueOf(plane.getNo_of_seats()));
-        KindField.setText(plane.getKind());
+        KindField.setText(plane.getType());
         StatusField.setText(plane.getStatus());
         IncomeField.setText(String.valueOf(plane.getIncome()));
     }
