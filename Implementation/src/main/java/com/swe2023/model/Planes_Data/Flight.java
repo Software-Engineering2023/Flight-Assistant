@@ -10,15 +10,13 @@ public class Flight {
     private Port destination;
     private Plane plane;
     private Ticket[] tickets;
+    private Date date;
 
-    // I think they should be dates ,but leave them Strings now.
-    private Date departureDate, ArrivalDate;
-
-    public Flight(Port source, Port destination, Date departureDate, Date arrivalDate, Plane plane) {
+    public Flight(int flightID,Port source, Port destination, Date Date, Plane plane) {
+        this.flightID = flightID;
         this.source = source;
         this.destination = destination;
-        this.departureDate = departureDate;
-        ArrivalDate = arrivalDate;
+        this.date = Date;
         this.plane = plane;
     }
 
@@ -42,21 +40,10 @@ public class Flight {
         return tickets;
     }
 
-    public Date getDepartureDate() {
-        return departureDate;
-    }
+    public java.util.Date getDate() { return date; }
 
-    public Date getArrivalDate() {
-        return ArrivalDate;
-    }
-
-    // updatable attributes.
-    public void setDepartureDate(Date departureDate) {
-        this.departureDate = departureDate;
-    }
-
-    public void setArrivalDate(Date arrivalDate) {
-        ArrivalDate = arrivalDate;
+    public void setDate(java.util.Date date) {
+        date = date;
     }
 
     public void setFlightID(int flightID) {

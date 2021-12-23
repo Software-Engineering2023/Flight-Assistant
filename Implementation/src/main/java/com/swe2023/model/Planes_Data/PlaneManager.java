@@ -66,12 +66,19 @@ public class PlaneManager {
          return plane.getIncome();
     }
 
-    public boolean addNewFlight(Port source , Port destination , Date deptDate, Date arrivalDate, Plane plane){
-        if(isPort(source)&&isPort(destination)&&deptDate!= null &&arrivalDate!= null &&isPlane(plane)) {
-           boolean returned= fqb.addFlight(new Flight(source, destination, deptDate, arrivalDate, plane));
+    public boolean isFlight(Port source , Port destination , Date date, Plane plane){
+        if(isPort(source)&&isPort(destination)&&date!= null &&isPlane(plane)) {
+           boolean returned= fqb.addFlight(new Flight(plane.getId(), source, destination, date, plane));
             return returned;
         }
         return false;
+    }
+
+    public boolean addNewFlight(Flight flight) {
+        if(isFlight(flight.getSource(),flight.getSource(),flight.getDate(),flight.getPlane())) {
+            return fqb.addFlight(flight);
+        }
+        return  false;
     }
 
     // edited because : what is this? and why does it return Port?
@@ -107,9 +114,5 @@ public class PlaneManager {
             return true;
         return false;
     }
-
-
-
-
 
 }

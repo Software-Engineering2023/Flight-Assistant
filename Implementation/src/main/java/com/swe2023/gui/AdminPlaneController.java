@@ -1,10 +1,16 @@
 package com.swe2023.gui;
 
+import com.swe2023.Admin.AdminSession;
 import com.swe2023.HelloApplication;
 import com.swe2023.model.Planes_Data.Plane;
+import com.swe2023.model.Planes_Data.Port;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+
+import com.swe2023.Proxy.AirportQueryBuilder;
+import com.swe2023.Proxy.FlightQueryBuilder;
+import com.swe2023.Proxy.PlaneQueryBuilder;
 
 import java.util.ArrayList;
 
@@ -24,23 +30,53 @@ public class AdminPlaneController {
     private ArrayList<Plane> Planes;
     private Plane plane;
 
+    private AdminSession adminSession;
+
+
     public void initialize(){
+        adminSession= AdminSession.getSession();
         Planes= new ArrayList<>();
+        loadPlanes();
     }
+
+    private void loadPlanes(){
+        Planes= adminSession.loadPlanesFromDataBase();
+        for (Plane port :Planes )
+            listView.getItems().add(String.valueOf(port.getId()));
+    }
+
     public void goToAdminHome() {
         HelloApplication.showWindow(updateButton, "/admin-home.fxml", "Administrator", 800,640);
     }
 
-    public void createPlane(ActionEvent actionEvent) {
+    private Plane getCurrentPlane(){
         int id = Integer.parseInt(IDField.getText());
         String kind = KindField.getText();
         String status = StatusField.getText();
         String income = IncomeField.getText();
         String size = SizeField.getText();
+        return new Plane(id,status,kind,Integer.parseInt(income),Integer.parseInt(size));
+    }
 
-        Plane plane= new Plane(id,status,kind,Integer.parseInt(income),Integer.parseInt(size));
-        Planes.add(plane);
-        updateListView();
+    private void reset(){
+        KindField.setText("");
+        IDField.setText("");
+        StatusField.setText("");
+        IncomeField.setText("");
+        SizeField.setText("");
+    }
+
+    public void createPlane(ActionEvent actionEvent) {
+
+        Plane plane= getCurrentPlane();
+        if(adminSession.addNewPlane(plane)) {
+            reset();
+            Planes.add(plane);
+            updateListView();
+        }
+        else{
+            HelloApplication.showErrorMessage("plane already there");
+        }
     }
 
     public void updateListView(){
@@ -62,5 +98,15 @@ public class AdminPlaneController {
         KindField.setText(plane.getType());
         StatusField.setText(plane.getStatus());
         IncomeField.setText(String.valueOf(plane.getIncome()));
+    }
+
+    public void deletePlane(){
+        Plane plane= getCurrentPlane();
+        if(adminSession.deletePlane(plane)){
+            //removePortFromLists();
+            return;
+        }
+        HelloApplication.showErrorMessage("plane not found!");
+
     }
 }
