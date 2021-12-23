@@ -13,7 +13,7 @@ public class PlaneQueryBuilder {
 
     // getFlights.
 
-    public void addPlane(Plane plane) {
+    public boolean addPlane(Plane plane) {
         String query = "insert into Plane (Type, No_of_seats, Status) values(?, ?, ?)";
         try {
             Connection connection = DB_Utils.getDataSource().getConnection();
@@ -24,12 +24,14 @@ public class PlaneQueryBuilder {
             pStatement.execute();
             pStatement.close();
             connection.close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
-    public void updatePlane(Plane plane) {
+    public boolean updatePlane(Plane plane) {
         String query = "update Plane set Status = ? where Plane_id = ?";
         try {
             Connection connection = DB_Utils.getDataSource().getConnection();
@@ -39,12 +41,14 @@ public class PlaneQueryBuilder {
             pStatement.execute();
             pStatement.close();
             connection.close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
-    public void deletePlane(int id) {
+    public boolean deletePlane(int id) {
         String query = "delete from Plane where Plane_id = ?";
         try {
             Connection connection = DB_Utils.getDataSource().getConnection();
@@ -53,8 +57,10 @@ public class PlaneQueryBuilder {
             pStatement.execute();
             pStatement.close();
             connection.close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
