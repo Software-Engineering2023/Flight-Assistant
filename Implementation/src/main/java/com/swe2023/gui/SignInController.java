@@ -21,14 +21,49 @@ public class SignInController {
     @FXML
     public TextField usernameField;
 
-    public void signIn() throws Exception {
+    private String errorMessage;
+
+    public void signIn() {
         String username= usernameField.getText();
         String password= passwordField.getText();
-        try {
-            User user = new LoginAndSignUp().signIn(username, password);
-            if(user.getAdmin())
-                HelloApplication.showWindow(signInButton, "/admin-home.fxml", "Administrator", 800,640);
-        }catch (Exception e){e.printStackTrace();}
+        User user;
+        try{
+            checkValidityOfInputs(username, password);
+            user=checkUserIsAdmin(username, password);
+        }catch (Exception e){
+            HelloApplication.showErrorMessage(getErrorMessage());
+            return;
+        }
+        if(user.getAdmin())
+            HelloApplication.showWindow(signInButton, "/admin-home.fxml", "Administrator", 800,640);
 
+    }
+
+    private User checkUserIsAdmin(String username, String password){
+        try {
+            User user= new LoginAndSignUp().signIn(username, password);
+            if(user ==null)throw new RuntimeException();
+            return user;
+        }catch (Exception e){
+            setErrorMessage("Incorrect Username or Password!");
+            throw new RuntimeException();
+        }
+    }
+
+    private void checkValidityOfInputs(String username, String password){
+        boolean userCorrect=  (username != null) && username.matches("[A-Za-z0-9_@.]+");
+        boolean passwordCorrect=  (password != null) && password.length() > 4 ;
+        if(!userCorrect || !passwordCorrect){
+            setErrorMessage("Username or Password are not valid inputs!");
+            throw new RuntimeException();
+        }
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }

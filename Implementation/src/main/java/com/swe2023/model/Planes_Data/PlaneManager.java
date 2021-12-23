@@ -87,7 +87,9 @@ public class PlaneManager {
     }
 
     public boolean deletePort(Port port){
-        return aqb.deleteAirport(port.getCode());
+        if(isPort(port))
+            return aqb.deleteAirport(port.getCode());
+        return false;
     }
 
     public boolean deletePlane(Plane plane){
@@ -103,9 +105,8 @@ public class PlaneManager {
     }
 
     private boolean isPort(Port port){
-        if(port.getCode()!= null &&port.getCountry()!= null &&port.getCity()!= null&&port.getName()!= null )
-            return true;
-        return false;
+        return port.getCode().length() == 0 && port.getCountry().length() != 0
+                && port.getCity().length() != 0 && port.getName().length() != 0;
     }
 
 

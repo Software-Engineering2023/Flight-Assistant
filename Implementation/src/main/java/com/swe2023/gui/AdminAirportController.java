@@ -68,7 +68,7 @@ public class AdminAirportController {
     }
 
     public void updateListView(){
-        listView.getItems().removeAll();
+        listView.getItems().remove(0,listView.getItems().size());
         for(Port i : ports)
                 listView.getItems().add(i.getName());
     }
@@ -93,11 +93,21 @@ public class AdminAirportController {
     public void deleteAirport(){
         Port port= getCurrentPort();
         if(adminSession.deletePort(port)){
-            //removePortFromLists();
+            removePortFromLists(port);
+            reset();
             return;
         }
         HelloApplication.showErrorMessage("Port not found!");
-
+    }
+    private void removePortFromLists(Port port){
+        Port temp=null;
+        for(Port i : ports)
+            if(i.getCode().equals(port.getCode())){
+                temp= i;
+                break;
+            }
+        listView.getItems().remove(temp.getName());
+        ports.remove(temp);
     }
     private void reset(){
         nameField.setText("");
@@ -107,4 +117,9 @@ public class AdminAirportController {
         xSpinner.getValueFactory().setValue(0.0);
         ySpinner.getValueFactory().setValue(0.0);
     }
+
+//    private void emptyList(){
+//        while(listView.getItems().size()> 0)
+//            listView.getItems().remove(0);
+//    }
 }
