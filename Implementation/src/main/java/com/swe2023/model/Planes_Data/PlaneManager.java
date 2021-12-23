@@ -75,11 +75,9 @@ public class PlaneManager {
     }
 
     // edited because : what is this? and why does it return Port?
-    public boolean addNewPort(String code, String country, String city, String name, int longitude, int latitude) {
-        Port airport = new Port(code, country, city, name, longitude, latitude);
+    public boolean addNewPort(Port airport) {
         if(isPort(airport)) {
-            boolean returned= aqb.addAirport(airport);
-            return returned;
+            return aqb.addAirport(airport);
         }
         return  false;
     }
@@ -89,8 +87,7 @@ public class PlaneManager {
     }
 
     public boolean deletePort(Port port){
-        boolean returned=aqb.deleteAirport(port.getCode());
-        return returned;
+        return aqb.deleteAirport(port.getCode());
     }
 
     public boolean deletePlane(Plane plane){

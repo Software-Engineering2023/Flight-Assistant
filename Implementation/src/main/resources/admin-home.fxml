@@ -33,7 +33,7 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="291.0" prefWidth="433.0" spacing="30.0" GridPane.columnIndex="1">
                <children>
-                  <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="132.0" text="Manage Planes" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+                  <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="132.0" text="Manage Planes" onAction="#managePlanes" textAlignment="CENTER" VBox.vgrow="ALWAYS">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -41,7 +41,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="132.0" text="Manage Flights" textAlignment="CENTER">
+                  <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="132.0" text="Manage Flights" onAction="#manageFlights" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>

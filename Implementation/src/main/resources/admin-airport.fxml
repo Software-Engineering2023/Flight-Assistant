@@ -48,7 +48,7 @@
                   <Insets />
                </HBox.margin>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #5090ff; -fx-font-weight: bold;" text="Delete" textAlignment="CENTER" textFill="#a80505">
+            <Button onAction="#deleteAirport" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #5090ff; -fx-font-weight: bold;" text="Delete" textAlignment="CENTER" textFill="#a80505">
                <font>
                   <Font name="SansSerif Regular" size="13.0" />
                </font>

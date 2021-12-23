@@ -3,6 +3,7 @@ package com.swe2023;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Control;
 import javafx.stage.Stage;
 
@@ -34,5 +35,12 @@ public class HelloApplication extends Application {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public static void showErrorMessage(String errorMessage){
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        errorAlert.setHeaderText("Invalid Operation");
+        errorAlert.setContentText(errorMessage);
+        errorAlert.showAndWait();
     }
 }

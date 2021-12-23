@@ -31,27 +31,37 @@ public class AdminAirportController {
         xSpinner.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(-90,90,0.0,0.01));
         ySpinner.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(-180,180,0.0,0.01));
         ports= new ArrayList<>();
+        loadAirports();
+    }
+
+    private void loadAirports(){
+        ports= adminSession.loadPortsFromDatabase();
+        for (Port port :ports )
+            listView.getItems().add(port.getName());
     }
     public void goToAdminHome() {
         HelloApplication.showWindow(updateButton, "/admin-home.fxml", "Administrator", 800,640);
     }
 
-    public void createAirport(ActionEvent actionEvent) {
+    private Port getCurrentPort(){
         String airportName= nameField.getText();
         String code= codeField.getText();
         String country= countryField.getText();
         String city= cityField.getText();
         double x= xSpinner.getValue();
         double y= ySpinner.getValue();
-        Port port= new Port(code, country, city, airportName, (int)x, (int)y);
+        return new Port(code, country, city, airportName, (int)x, (int)y);
+    }
+    public void createAirport() {
 
+        Port port= getCurrentPort();
         if(adminSession.addNewAirPort(port)) {
             reset();
             ports.add(port);
             updateListView();
         }
         else{
-            System.out.println("Error");
+            HelloApplication.showErrorMessage("Airport already there");
         }
 
 
@@ -67,14 +77,28 @@ public class AdminAirportController {
     public void getViewItem() {
         int index= listView.getSelectionModel().getSelectedIndex();
         Port port= ports.get(index);
+        System.out.println(port);
+
         updateDetailedView(port);
     }
     public void updateDetailedView(Port port){
         nameField.setText(port.getName());
+        codeField.setText(port.getCode());
+        countryField.setText(port.getCountry());
+        cityField.setText(port.getCity());
         xSpinner.getValueFactory().setValue((double)port.getLongitude());
         ySpinner.getValueFactory().setValue((double)port.getLatitude());
     }
 
+    public void deleteAirport(){
+        Port port= getCurrentPort();
+        if(adminSession.deletePort(port)){
+            //removePortFromLists();
+            return;
+        }
+        HelloApplication.showErrorMessage("Port not found!");
+
+    }
     private void reset(){
         nameField.setText("");
         countryField.setText("");

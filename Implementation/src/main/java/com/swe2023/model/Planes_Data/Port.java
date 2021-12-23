@@ -41,4 +41,16 @@ public class Port {
     public int getLatitude() {
         return latitude;
     }
+
+    @Override
+    public String toString() {
+        return "Port{" +
+                "code='" + code + '\'' +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", name='" + name + '\'' +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                '}';
+    }
 }

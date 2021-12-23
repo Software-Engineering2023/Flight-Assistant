@@ -3,6 +3,7 @@ package com.swe2023.model.signUpAndLogin;
 import java.util.Date;
 
 import com.swe2023.Admin.AdminAuthorization;
+import com.swe2023.Admin.AdminSession;
 import com.swe2023.model.Passenger.PassengerAuthorization;
 import Proxy.Auth;
 public class LoginAndSignUp {
@@ -43,7 +44,9 @@ public class LoginAndSignUp {
 		}else if (checkAdmin[0].equals("true")) {
 			AdminAuthorization Aauth=new AdminAuthorization();
 			System.out.println("Admin Found!");
-			return Aauth.signIn(Email, password,checkAdmin[1]);
+			User admin= Aauth.signIn(Email, password,checkAdmin[1]);
+			AdminSession.getSession();
+			return admin;
 		}
 		return null;
 	}
