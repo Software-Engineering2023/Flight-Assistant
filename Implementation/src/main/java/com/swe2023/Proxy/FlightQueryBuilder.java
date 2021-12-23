@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class FlightQueryBuilder {
 
 
-    public void addFlight(Flight flight) {
+    public boolean addFlight(Flight flight) {
         String query = "insert into Flight (Departure, Arrival, Source, Destination, Plane_id) values(?, ?, ?, ?, ?)";
         try {
             Connection connection = DB_Utils.getDataSource().getConnection();
@@ -24,13 +24,15 @@ public class FlightQueryBuilder {
             pStatement.execute();
             pStatement.close();
             connection.close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
 
     }
 
-    public void addFlights(ArrayList<Flight> flights) {
+    public boolean addFlights(ArrayList<Flight> flights) {
         String query = "insert into Flight (Departure, Arrival, Source, Destination, Plane_id) values(?, ?, ?, ?, ?)";
         try {
             Connection connection = DB_Utils.getDataSource().getConnection();
@@ -42,10 +44,13 @@ public class FlightQueryBuilder {
                 pStatement.setString(4, flight.getDestination().getCode());
                 pStatement.setInt(5, flight.getPlane().getId());
                 pStatement.execute();
+
             }
+            return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
@@ -79,7 +84,7 @@ public class FlightQueryBuilder {
         }
     }
 
-    public void deleteFlight(Date date) {
+    public boolean deleteFlight(Date date) {
         String query = "delete from Flight where Departure < ?";
         try {
             Connection connection = DB_Utils.getDataSource().getConnection();
@@ -88,8 +93,10 @@ public class FlightQueryBuilder {
             pStatement.execute();
             pStatement.close();
             connection.close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
