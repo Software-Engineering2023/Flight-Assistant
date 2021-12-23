@@ -2,6 +2,8 @@ package com.swe2023.model.Planes_Data;
 
 import com.swe2023.model.Tickets_Data.Ticket;
 
+import java.util.Date;
+
 public class Flight {
     private int flightID;
     private Port source;
@@ -10,9 +12,9 @@ public class Flight {
     private Ticket[] tickets;
 
     // I think they should be dates ,but leave them Strings now.
-    private String departureDate, ArrivalDate;
+    private Date departureDate, ArrivalDate;
 
-    public Flight(Port source, Port destination, String departureDate, String arrivalDate, Plane plane) {
+    public Flight(Port source, Port destination, Date departureDate, Date arrivalDate, Plane plane) {
         this.source = source;
         this.destination = destination;
         this.departureDate = departureDate;
@@ -40,20 +42,20 @@ public class Flight {
         return tickets;
     }
 
-    public String getDepartureDate() {
+    public Date getDepartureDate() {
         return departureDate;
     }
 
-    public String getArrivalDate() {
+    public Date getArrivalDate() {
         return ArrivalDate;
     }
 
     // updatable attributes.
-    public void setDepartureDate(String departureDate) {
+    public void setDepartureDate(Date departureDate) {
         this.departureDate = departureDate;
     }
 
-    public void setArrivalDate(String arrivalDate) {
+    public void setArrivalDate(Date arrivalDate) {
         ArrivalDate = arrivalDate;
     }
 

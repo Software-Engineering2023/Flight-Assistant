@@ -113,7 +113,7 @@ public class PlaneQueryBuilder {
                         new Port(resultSet.getString(13), resultSet.getString(14),
                                 resultSet.getString(15), resultSet.getString(16),
                                 resultSet.getInt(17), resultSet.getInt(18)),
-                        resultSet.getString(2), resultSet.getString(3),
+                        resultSet.getDate(2), resultSet.getDate(3),
                         plane);
                 flight.setFlightID(resultSet.getInt(1));
             }
