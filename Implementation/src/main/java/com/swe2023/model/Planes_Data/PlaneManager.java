@@ -78,15 +78,18 @@ public class PlaneManager {
         return false;
     }
 
-    public boolean addNewFlight(Flight flight) {
-        if(flight.getDate().compareTo(new Date()) < 1)
-            return false;
-        if (flight.getSource().getCode().equals(flight.getDestination().getCode()))
-                return false;
+    public String addNewFlight(Flight flight) {
         if(isFlight(flight.getSource(),flight.getDestination(),flight.getDate(),flight.getPlane())) {
-            return fqb.addFlight(flight);
+            if(flight.getDate().compareTo(new Date()) < 1)
+                return "date invalid";
+            if (flight.getSource().getCode().equals(flight.getDestination().getCode()))
+                return "source same port as destination";
+            if( fqb.addFlight(flight))
+                return  "ok";
+            else
+                return "flight already there";
         }
-        return  false;
+        return  "not valid flight";
     }
 
     // edited because : what is this? and why does it return Port?

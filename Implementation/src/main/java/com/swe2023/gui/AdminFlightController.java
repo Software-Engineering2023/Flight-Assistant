@@ -91,17 +91,21 @@ public class AdminFlightController {
 
 
     public void createFlight(ActionEvent actionEvent) {
-        Flight flight= getCurrentFlight();
-        System.out.println(flight.getFlightID());
-        if(adminSession.addNewFlight(flight)) {
-            reset();
-            Flights.add(flight);
-            updateListView();
+        try {
+            Flight flight = getCurrentFlight();
+            System.out.println(flight.getFlightID());
+            String add = adminSession.addNewFlight(flight);
+            if (add.equals("ok")) {
+                reset();
+                Flights.add(flight);
+                updateListView();
+            } else {
+                HelloApplication.showErrorMessage(add);
+            }
         }
-        else{
-            HelloApplication.showErrorMessage("flight already there");
+        catch (Exception e){
+            HelloApplication.showErrorMessage("invalid data");
         }
-
     }
 
 

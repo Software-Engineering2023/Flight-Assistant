@@ -70,14 +70,18 @@ public class AdminPlaneController {
 
     public void createPlane(ActionEvent actionEvent) {
 
-        Plane plane= getCurrentPlane();
-        if(adminSession.addNewPlane(plane)) {
-            reset();
-            Planes.add(plane);
-            updateListView();
+        try {
+            Plane plane = getCurrentPlane();
+            if (adminSession.addNewPlane(plane)) {
+                reset();
+                Planes.add(plane);
+                updateListView();
+            } else {
+                HelloApplication.showErrorMessage("plane already there");
+            }
         }
-        else{
-            HelloApplication.showErrorMessage("plane already there");
+        catch (Exception e){
+            HelloApplication.showErrorMessage("invalid data");
         }
     }
 

@@ -39,7 +39,7 @@ public class AdminSession {
         return planeManager.addPlane(plane);
     }
 
-    public boolean addNewFlight(Flight flight){
+    public String addNewFlight(Flight flight){
         return planeManager.addNewFlight(flight);
     }
 

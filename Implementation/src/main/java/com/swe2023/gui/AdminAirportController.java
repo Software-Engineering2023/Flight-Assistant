@@ -53,17 +53,18 @@ public class AdminAirportController {
         return new Port(code, country, city, airportName, (int)x, (int)y);
     }
     public void createAirport() {
-
-        Port port= getCurrentPort();
-        if(adminSession.addNewAirPort(port)) {
+        try{
+        Port port = getCurrentPort();
+        if (adminSession.addNewAirPort(port)) {
             reset();
             ports.add(port);
             updateListView();
-        }
-        else{
+        } else {
             HelloApplication.showErrorMessage("Airport already there");
         }
-
+        }catch (Exception e){
+            HelloApplication.showErrorMessage("invalid data");
+        }
 
     }
 

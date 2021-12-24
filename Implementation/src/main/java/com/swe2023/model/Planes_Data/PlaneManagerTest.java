@@ -21,15 +21,15 @@ public class PlaneManagerTest {
     static Port port2 =new Port("78965","USA","Newyork","NewyorkPort",15748,69);
     static Port port3 =new Port("","France","Paris","ParisPort",787,4564);
     static Port port4 =new Port("365948","Germany","Berlin","BerlinPort",656,787);
-    static LocalDate  myDateObj = LocalDate.now();
+    static LocalDate  myDateObj = LocalDate.of(2022,2,1);
     static ZoneId defaultZoneId = ZoneId.systemDefault();
     static Flight flight1 =new Flight(1,port1,port2, Date.from(myDateObj.atStartOfDay(defaultZoneId).toInstant()),plane1);
     static Flight flight2 =new Flight(2,port3,port4, null,plane2);
 
     @Test
     public void testAddNewPort(){
-        boolean result1= manager.addNewPort(port1);
-        boolean result2=manager.addNewPort(port3);
+        boolean result1 = manager.addNewPort(port1);
+        boolean result2 = manager.addNewPort(port3);
         assertTrue(result1);
         assertFalse(result2);
     }
@@ -64,10 +64,10 @@ public class PlaneManagerTest {
     @Test
     public void testAddNewFlight(){
 
-        boolean result1= manager.addNewFlight(flight1);
-        boolean result2=manager.addNewFlight(flight2);
-        assertTrue(result1);
-        assertFalse(result2);
+        String result1= manager.addNewFlight(flight1);
+        String result2=manager.addNewFlight(flight2);
+        assertEquals("ok",result1);
+        assertEquals("not valid flight",result2);
     }
 
 
