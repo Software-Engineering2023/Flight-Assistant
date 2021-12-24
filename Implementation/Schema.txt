@@ -1,6 +1,16 @@
 create schema Airline;
 use Airline;
 
+create table User(
+	Id int auto_increment not null,
+    Name varchar(30),
+    Gender char,
+    Email varchar(100) not null,
+    Password varchar(100) not null,
+    isAdmin char,
+	primary key (Id)
+);
+
 create table Airport (
 	Airport_code varchar(10) not null,
     Country varchar(20) not null,
@@ -11,48 +21,34 @@ create table Airport (
     primary key (Airport_code)
 );
 
+
+
 create table Plane(
-	Plane_id int auto_increment not null,
+	Plane_id int not null,
     Type varchar(20),
     No_of_seats int not null,
     Income int,
     Status varchar(10),
-    primary key (Plane_id),
-    foreign key (Type) references Plane_type (Name)
-);
-
-create table Plane_type(
-	Name varchar(20) not null,
-    company varchar(20),
-    primary key (Name)
+    primary key (Plane_id)
 );
 
 create table Flight(
-	Flight_id int auto_increment not null,
+	Flight_id int not null,
     Departure timestamp not null,
-    Arrival timestamp not null,
     Source varchar(10) not null,
     Destination varchar(10) not null,
     Plane_id int not null,
     primary key (Flight_id),
-    foreign key (Source) references Airport(Airport_code),
-    foreign key (Destination) references Airport(Airport_code),
-    foreign key (Plane_id) references Plane (Plane_id)
+    foreign key (Source) references Airport(Airport_code) on delete cascade,
+    foreign key (Destination) references Airport(Airport_code) on delete cascade,
+    foreign key (Plane_id) references Plane (Plane_id) on delete cascade
 );
-create table User(
-	Id int auto_increment not null,
-    Name varchar(30),
-    Gender char,
-    Email varchar(100) not null,
-    Password varchar(100) not null,
-    isAdmin CHAR not NULL,
-	primary key (Id)
-);
+
 create table Ticket(
 	Ticket_no int auto_increment not null,
     Owner int not null,
     Cost double not null,
     Seat_no int not null,
     primary key (Ticket_no),
-    foreign key (Owner) references User (Id)
+    foreign key (Owner) references User (Id) on delete cascade
 );
