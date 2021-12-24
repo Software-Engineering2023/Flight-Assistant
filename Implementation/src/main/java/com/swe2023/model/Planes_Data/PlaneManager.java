@@ -125,7 +125,9 @@ public class PlaneManager {
     }
 
     public boolean deleteFlight(Flight flight){
-        return fqb.deleteFlight(flight.getFlightID());
+        if(isFlight(flight.getSource(), flight.getDestination(), flight.getDate(), flight.getPlane()))
+            return fqb.deleteFlight(flight.getFlightID());
+        return false;
     }
 
 }

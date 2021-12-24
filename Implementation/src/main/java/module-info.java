@@ -9,4 +9,5 @@ module com.swe2023 {
     opens com.swe2023 to javafx.fxml;
     exports com.swe2023.gui;
     exports com.swe2023;
+    exports com.swe2023.model.Planes_Data;
 }
