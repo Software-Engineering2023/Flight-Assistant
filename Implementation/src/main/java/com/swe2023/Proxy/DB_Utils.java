@@ -9,8 +9,8 @@ public class DB_Utils {
 
     // add your db main setup here.
     private static final String URL = "jdbc:mysql://localhost:3306/Airline";
-    private static final String DB_USERNAME = "airSystem";
-    private static final String DB_PASSWORD = "Root$12345?";
+    private static final String DB_USERNAME = "root";
+    private static final String DB_PASSWORD = "spurs136";
 
     private static BasicDataSource dataSource;
 
@@ -21,8 +21,8 @@ public class DB_Utils {
             dataSource.setUsername(DB_USERNAME);
             dataSource.setPassword(DB_PASSWORD);
 
-            dataSource.setMinIdle(5);
-            dataSource.setMaxIdle(10);
+            dataSource.setMinIdle(100);
+            dataSource.setMaxIdle(1000);
         } catch (Exception e) {
             e.printStackTrace();
         }
