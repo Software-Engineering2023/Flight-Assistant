@@ -35,35 +35,39 @@ public class Auth {
 	public Auth() throws Exception {
 		
 	}
-	
+///////////////////////////////////function to check if it is admin or passenger//////////////	
 	public static String[] checkAdmin(String Email) throws SQLException {
+		//checker string with index to check the first index is admin or not 
 		String[] checker = new String[]{"",""};
-		Connection connection = DB_Utils.getDataSource().getConnection();
-        PreparedStatement pStatement = connection.prepareStatement(QUERYOfCheckAdmin+"'"+Email+"'");
-        resultSet=pStatement.executeQuery();
-//        if(!resultSet.next()) {
-//        	checker[0]="-1";
-//			return checker;
-//		}
+		Connection connection = DB_Utils.getDataSource().getConnection();//start connection 
+        PreparedStatement pStatement = connection.prepareStatement(QUERYOfCheckAdmin+"'"+Email+"'");//statement to get the result 
+        resultSet=pStatement.executeQuery();//result of the result
         while(resultSet.next()){
             //Display values
         	if(resultSet.getString("isAdmin").equals("1")) {
-        		checker[0]="true";
+        		checker[0]="true"; //return true if admin
         	}else {
         		checker[0]="false";
         	}
         	
         }
+        /////////////get password of the email////////////////
         pStatement= connection.prepareStatement(QUERYOfgetPassword+"'"+Email+"'");
         resultSet=pStatement.executeQuery();
         while(resultSet.next()){
             //Display values
         	checker[1]=resultSet.getString("Password");
         }
+        ///////////close connection 
         pStatement.close();
         connection.close();
-        return checker;
+        if(checker[0].equals("")&&checker[1].equals("")) {
+        	checker[0]="-1";
+        	return checker;
+        }
+        return checker;//return result if he id admin or not and password of him 
 	}
+	/////////////////////////check valid Email to sign up new user///////////////////////
 	public static boolean checkValidEmail(String Email) throws SQLException {
 		resultSet = statement.executeQuery(QUERYOfgetVaildEmail+"'"+Email+"'");
 		if(!resultSet.next()) {
@@ -73,13 +77,14 @@ public class Auth {
 	            //Display values
 	            System.out.print("ID: " + resultSet.getString("Email"));
 	     }
-
+		 resultSet.close();
 		return false;
 	}
-
+////////////////////////////add new passenger//////////////////////////////
 	public static boolean addNewUser(User user) throws SQLException {
 		 String query = "insert into User values(?, ?, ?, ?, ?)";
 	        try {
+	        	//////////make the connection
 	            Connection connection = DB_Utils.getDataSource().getConnection();
 	            PreparedStatement pStatement = connection.prepareStatement(query);
 	            pStatement.setString(1, user.getEmail());
@@ -95,50 +100,33 @@ public class Auth {
 	        }
 		return true;
 	}
-	
+	////////////////////////get the user and fill it //////////////////////
 	public static User getUser(String Email) throws SQLException {
 		User user = null;
+		/////////////////////////start connection///////////////
 		Connection connection = DB_Utils.getDataSource().getConnection();
         PreparedStatement pStatement = connection.prepareStatement(QUERYOfgetUser+"'"+Email+"'");
         resultSet=pStatement.executeQuery();
 
-        
+        /////////////fill the user attribute here /////////////////
         while(resultSet.next()){
             //Display values
 			boolean isAdmin= resultSet.getString("isAdmin").equals("1") ;
         	user = new User(resultSet.getString("Email"), resultSet.getString("Password"), resultSet.getString("Gender"),isAdmin);
         	user.setID(resultSet.getInt("Id"));
         }
+        /////////////////////close the connection /////////////////
 		resultSet.close();
 		pStatement.close();
 		connection.close();
-		return user;
+		return user;///return the user 
 		
 	}
 
 
-//	public static void connect() throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
-//		  // Setup the connection with the DB
-//		
-//		try {
-//
-//			// connection  = DB_Utils.getDataSource().getConnection();
-//
-//			connect =  (Connection) DriverManager
-//			      .getConnection(url, userName, password);
-//			statement=connect.createStatement();
-//			if(connect!=null) {
-//				System.out.println(" connection");
-//			}
-//		} catch (SQLException e) {
-//			throw new RuntimeException("Failed to connect");
-////			e.printStackTrace();
-//		}
-//
-//	}
+
 	public static void main(String[] args) throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		//connect();
-		checkAdmin("sakr@gmail.com");
 	}
 
 
