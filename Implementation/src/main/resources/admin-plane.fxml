@@ -160,6 +160,33 @@
                         <Insets left="20.0" />
                      </padding>
                   </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="457.0" spacing="20.0" style="-fx-border-color: #000000; -fx-border-radius: 100;">
+                     <children>
+                        <Label style="-fx-font-family: sans-serif; -fx-font-style: italic;">
+                           <font>
+                              <Font name="DejaVu Sans Condensed Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" prefHeight="77.0" prefWidth="459.0" spacing="30.0">
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                           <children>
+                              <Button fx:id="showFlights" onAction="#showFLights" mnemonicParsing="false" prefHeight="26.0" prefWidth="160.0" style="-fx-background-color: #008888;" text="show plane's flights">
+                                 <HBox.margin>
+                                    <Insets left="60.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
                </children>
                <VBox.margin>
                   <Insets top="4.0" />

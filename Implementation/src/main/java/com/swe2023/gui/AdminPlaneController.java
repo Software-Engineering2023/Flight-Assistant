@@ -18,6 +18,7 @@ public class AdminPlaneController {
 
     @FXML
     public Button updateButton;
+    public Button showFlights;
     public TextField IDField;
     public TextField SizeField;
     public TextField IncomeField;
@@ -46,6 +47,7 @@ public class AdminPlaneController {
     }
 
     public void goToAdminHome() {
+        adminSession.setPlaneToShowFlights(null);
         HelloApplication.showWindow(updateButton, "/admin-home.fxml", "Administrator", 800,640);
     }
 
@@ -89,7 +91,7 @@ public class AdminPlaneController {
 
     public void getViewItem() {
         int index= listView.getSelectionModel().getSelectedIndex();
-        Plane plane= Planes.get(index);
+        plane= Planes.get(index);
         updateDetailedView(plane);
     }
     public void updateDetailedView(Plane plane){
@@ -104,9 +106,16 @@ public class AdminPlaneController {
         Plane plane= getCurrentPlane();
         if(adminSession.deletePlane(plane)){
             //removePortFromLists();
+            reset();
+            updateListView();
             return;
         }
         HelloApplication.showErrorMessage("plane not found!");
 
+    }
+
+    public void showFLights(){
+        adminSession.setPlaneToShowFlights(plane);
+        HelloApplication.showWindow(showFlights, "/admin-flight.fxml","Flights Management", 800,640);
     }
 }

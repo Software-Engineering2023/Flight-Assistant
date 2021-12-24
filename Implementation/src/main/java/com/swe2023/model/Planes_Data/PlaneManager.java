@@ -12,6 +12,8 @@ public class PlaneManager {
     Plane[] planesShown;
     Port[] portsShown;
 
+    Plane planeToShowFlights;
+
     private PlaneQueryBuilder pqb;
     private FlightQueryBuilder fqb;
     private AirportQueryBuilder aqb;
@@ -20,6 +22,7 @@ public class PlaneManager {
         pqb = new PlaneQueryBuilder();
         fqb = new FlightQueryBuilder();
         aqb = new AirportQueryBuilder();
+        planeToShowFlights = null;
     }
 
      public ArrayList<Plane> loadPlanesFromDataBase(){
@@ -33,6 +36,12 @@ public class PlaneManager {
         return false;
     }
 
+    public ArrayList<Flight> loadFlightsFromDataBase(){
+        if(planeToShowFlights==null)
+            return fqb.getAll();
+        return  pqb.getPlaneFlights(planeToShowFlights);
+    }
+
     public boolean updatePlaneStatus(Plane plane ,String status){
         if(isPlane(plane)) {
             plane.setStatus(status);
@@ -43,13 +52,9 @@ public class PlaneManager {
 
     }
     public void stopPlaneFlights(Plane plane){
-         // what should do here xd
         // ToDo.
-        // fe3lan what should we do here.
 //        plane.flights=null;
         //call database to update here
-
-
     }
 
     // Next MileStone.
@@ -68,8 +73,7 @@ public class PlaneManager {
 
     public boolean isFlight(Port source , Port destination , Date date, Plane plane){
         if(isPort(source)&&isPort(destination)&&date!= null &&isPlane(plane)) {
-           boolean returned= fqb.addFlight(new Flight(plane.getId(), source, destination, date, plane));
-            return returned;
+            return true;
         }
         return false;
     }
@@ -113,6 +117,14 @@ public class PlaneManager {
         if(port.getCode()!= null &&port.getCountry()!= null &&port.getCity()!= null&&port.getName()!= null )
             return true;
         return false;
+    }
+
+    public void setPlaneToShowFlights(Plane planeToShowFlights) {
+        this.planeToShowFlights = planeToShowFlights;
+    }
+
+    public boolean deleteFlight(Flight flight){
+        return fqb.deleteFlight(flight.getFlightID());
     }
 
 }

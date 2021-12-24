@@ -6,6 +6,7 @@ import com.swe2023.model.Planes_Data.Port;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class PlaneQueryBuilder {
@@ -30,7 +31,6 @@ public class PlaneQueryBuilder {
             connection.close();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
             return false;
         }
     }
@@ -50,9 +50,8 @@ public class PlaneQueryBuilder {
             connection.close();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            return false;
         }
-        return false;
     }
 
     public boolean deletePlane(int id) {
@@ -66,7 +65,6 @@ public class PlaneQueryBuilder {
             connection.close();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
             return false;
         }
     }
@@ -127,7 +125,7 @@ public class PlaneQueryBuilder {
                         new Port(resultSet.getString(12), resultSet.getString(13),
                                 resultSet.getString(14), resultSet.getString(15),
                                 resultSet.getInt(16), resultSet.getInt(17)),
-                        resultSet.getDate(2),
+                        new Date(resultSet.getTimestamp(2).getTime()),
                         plane));
             }
             connection.close();
@@ -142,9 +140,9 @@ public class PlaneQueryBuilder {
     public static void main(String[] args) {
         PlaneQueryBuilder pqb = new PlaneQueryBuilder();
         ArrayList<Plane> planes = pqb.getAll();
-        ArrayList<Flight> flights = pqb.getPlaneFlights(planes.get(2));
-
-        System.out.println(flights);
+//        ArrayList<Flight> flights = pqb.getPlaneFlights(planes.get(2));
+//
+//        System.out.println(flights);
 
 //        Plane plane = new Plane("TTT", 300);
 //        Plane plane = new Plane("HHH", 350);

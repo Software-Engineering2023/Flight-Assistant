@@ -16,11 +16,15 @@ public class AdminSession {
     private AdminTicketsManager ticketManager;
 
     private AdminSession(){
+        System.out.println("111111");
+
         planeManager= new PlaneManager();
     }
 
     public static AdminSession getSession() {
-        return session==null ? new AdminSession():session;
+        if(session == null)
+            session= new AdminSession();
+        return  session;
     }
 
     /**
@@ -54,4 +58,11 @@ public class AdminSession {
         return planeManager.deletePlane(plane);
     }
 
+    public void setPlaneToShowFlights(Plane plane){planeManager.setPlaneToShowFlights(plane);}
+
+    public ArrayList<Flight> loadFlightsFromDataBase() {return planeManager.loadFlightsFromDataBase(); }
+
+    public boolean deleteFlight(Flight flight){
+        return planeManager.deleteFlight(flight);
+    }
 }
