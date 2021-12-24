@@ -31,7 +31,6 @@ public class PlaneQueryBuilder {
             connection.close();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
             return false;
         }
     }
@@ -151,5 +150,8 @@ public class PlaneQueryBuilder {
 //        pqb.addPlane(plane);
 
 //        pqb.deletePlane(2);
+
+        System.out.println(new Date().toString().substring(0, 13));
+        System.out.println(new Date().toString().substring(0, 13));
     }
 }

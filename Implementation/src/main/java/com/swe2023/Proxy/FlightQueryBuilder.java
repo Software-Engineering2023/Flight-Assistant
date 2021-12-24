@@ -8,6 +8,7 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 public class FlightQueryBuilder {
 
@@ -27,10 +28,8 @@ public class FlightQueryBuilder {
             connection.close();
             return true;
         } catch (SQLException e) {
-            System.out.println(e);
             return false;
         }
-
     }
 
     public boolean addFlights(ArrayList<Flight> flights) {
@@ -133,15 +132,43 @@ public class FlightQueryBuilder {
         return flights;
     }
 
+    public Flight searchFlight(int id) {
+        String query = "select * from Flight where Flight_id = ?";
+        try {
+            Connection connection = DB_Utils.getDataSource().getConnection();
+            PreparedStatement pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, id);
+
+            ResultSet resultSet = pStatement.executeQuery();
+
+            Flight flight = new Flight(resultSet.getInt(1),
+                    new Port(resultSet.getString(3)),
+                    new Port(resultSet.getString(4)),
+                    new Date(resultSet.getTimestamp(2).getTime()),
+                    new Plane(resultSet.getInt(5)));
+
+            connection.close();
+            pStatement.close();
+            resultSet.close();
+            return flight;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
     public static void main(String[] args) {
         FlightQueryBuilder fqb = new FlightQueryBuilder();
+//        Timestamp timestamp = new Timestamp(Objects.requireNonNull(fqb.parseDate("2021-03-20 03:00:00")).getTime());
+//        fqb.deleteFlight(new Date(timestamp.getTime()));
+//        ArrayList<Flight> flights = fqb.getAll();
+//        System.out.println(flights);
+
+        Flight flight = new Flight(10, new Port("44444"), new Port("33333"),
+                new Date(), new Plane(6));
+
+        fqb.addFlight(flight);
         ArrayList<Flight> flights = fqb.getAll();
-//        flights.add(new Flight(new Port("11111"), new Port("22222"),
-//                fqb.parseDate("2021-11-20 23:18:03"), fqb.parseDate("2021-11-21 20:25:14"), new Plane(1)));
-//        flights.add(new Flight(new Port("22222"), new Port("11111"),
-//                fqb.parseDate("2021-11-20 23:18:03"), fqb.parseDate("2021-11-21 20:25:14"), new Plane(3)));
         System.out.println(flights);
-//        fqb.addFlights(flights);
     }
 
     private Date parseDate(String date) {

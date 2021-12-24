@@ -79,7 +79,11 @@ public class PlaneManager {
     }
 
     public boolean addNewFlight(Flight flight) {
-        if(isFlight(flight.getSource(),flight.getSource(),flight.getDate(),flight.getPlane())) {
+        if(flight.getDate().compareTo(new Date()) < 1)
+            return false;
+        if (flight.getSource().getCode().equals(flight.getDestination().getCode()))
+                return false;
+        if(isFlight(flight.getSource(),flight.getDestination(),flight.getDate(),flight.getPlane())) {
             return fqb.addFlight(flight);
         }
         return  false;
