@@ -22,7 +22,7 @@ public class AdminFlightController {
     public ChoiceBox PlaneIDField = null;
     public ChoiceBox SourceField = null;
     public ChoiceBox DestinationField = null;
-    public DatePicker DateField;
+    public DatePicker DateField = new DatePicker();
 
 
     public ListView<String> listView;
@@ -36,15 +36,6 @@ public class AdminFlightController {
 
 
     public void initialize() {
-
-//        Ports.add("paris");
-//        Ports.add("cairo");
-//        Ports.add("london");
-//        Ports.add("new york");
-//        Planes.add("1");
-//        Planes.add("2");
-//        Planes.add("3");
-
 
         adminSession= AdminSession.getSession();
         Flights = new ArrayList<>();
@@ -73,14 +64,10 @@ public class AdminFlightController {
 
     private void loadAirports(){
         Ports= adminSession.loadPortsFromDatabase();
-//        for (Port port :Ports )
-//            listView.getItems().add(port.getName());
     }
 
     private void loadPlanes(){
         Planes= adminSession.loadPlanesFromDataBase();
-//        for (Plane port :Planes )
-//            listView.getItems().add(String.valueOf(port.getId()));
     }
 
     private Flight getCurrentFlight(){
@@ -99,7 +86,6 @@ public class AdminFlightController {
         PlaneIDField.getSelectionModel().clearSelection();
         SourceField.getSelectionModel().clearSelection();
         DestinationField.getSelectionModel().clearSelection();
-        DateField = new DatePicker();
         IDField.setText("");
     }
 
@@ -109,9 +95,7 @@ public class AdminFlightController {
         System.out.println(flight.getFlightID());
         if(adminSession.addNewFlight(flight)) {
             reset();
-            System.out.println(flight.getFlightID());
             Flights.add(flight);
-            System.out.println(flight.getFlightID());
             updateListView();
         }
         else{
@@ -140,13 +124,19 @@ public class AdminFlightController {
         //System.out.println(flight.getFlightID());
         SourceField.getSelectionModel().select(flight.getSource().getName()+" "+flight.getSource().getCity()+" "+flight.getSource().getCountry());
         DestinationField.getSelectionModel().select(flight.getDestination().getName()+" "+flight.getDestination().getCity()+" "+flight.getDestination().getCountry());
-        DateField.setValue(flight.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate( ));
+        DateField.setValue((flight.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate( )));
     }
 
     public void deleteFlight(){
         Flight flight= getCurrentFlight();
         if(adminSession.deleteFlight(flight)){
             //removePortFromLists();
+            for (int i = 0; i < Flights.size(); i++) {
+                if(Flights.get(i).getFlightID() == flight.getFlightID()){
+                    Flights.remove(i);
+                    break;
+                }
+            }
             reset();
             updateListView();
             return;

@@ -106,6 +106,12 @@ public class AdminPlaneController {
         Plane plane= getCurrentPlane();
         if(adminSession.deletePlane(plane)){
             //removePortFromLists();
+            for (int i = 0; i < Planes.size(); i++) {
+                if(Planes.get(i).getId() == plane.getId()){
+                    Planes.remove(i);
+                    break;
+                }
+            }
             reset();
             updateListView();
             return;

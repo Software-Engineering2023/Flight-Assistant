@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.swe2023.Proxy;
 
 import javax.sql.DataSource;
@@ -9,8 +10,8 @@ public class DB_Utils {
 
     // add your db main setup here.
     private static final String URL = "jdbc:mysql://localhost:3306/Airline";
-    private static final String DB_USERNAME = "root";
-    private static final String DB_PASSWORD = "1111";
+    private static final String DB_USERNAME = "airSystem";
+    private static final String DB_PASSWORD = "Root$12345?";
 
     private static BasicDataSource dataSource;
 
@@ -33,3 +34,40 @@ public class DB_Utils {
     }
 
 }
+=======
+package com.swe2023.Proxy;
+
+import javax.sql.DataSource;
+
+import org.apache.commons.dbcp2.BasicDataSource;
+
+public class DB_Utils {
+
+
+    // add your db main setup here.
+    private static final String URL = "jdbc:mysql://localhost:3306/Airline";
+    private static final String DB_USERNAME = "root";
+    private static final String DB_PASSWORD = "spurs136";
+
+    private static BasicDataSource dataSource;
+
+    static {
+        try {
+            dataSource = new BasicDataSource();
+            dataSource.setUrl(URL);
+            dataSource.setUsername(DB_USERNAME);
+            dataSource.setPassword(DB_PASSWORD);
+
+            dataSource.setMinIdle(100);
+            dataSource.setMaxIdle(1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static DataSource getDataSource() {
+        return dataSource;
+    }
+
+}
+>>>>>>> 8ebe86075369de827896562ad7237c24f26f6606
