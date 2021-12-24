@@ -8,7 +8,7 @@ import com.swe2023.model.Passenger.PassengerAuthorization;
 import Proxy.Auth;
 public class LoginAndSignUp {
 
-	
+	//////////////////////////sign up new passenger///////////////////
 	public boolean signUp(String Email,String password,Date BitrhDate,String passportNumber,String gender) {
 		boolean checkValidEmail=checkVaildEmail(Email);//check if the use already exist
 		if(checkValidEmail) {
