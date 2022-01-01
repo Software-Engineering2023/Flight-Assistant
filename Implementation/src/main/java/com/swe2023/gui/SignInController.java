@@ -39,7 +39,8 @@ public class SignInController {
             return;
         }
         if(user.getAdmin())
-            HelloApplication.showWindow(signInButton, "/admin-home.fxml", "Administrator", null,800,640);
+            HelloApplication.showWindow(signInButton, "/admin-home.fxml", "Administrator", "/home-admin.css",950,650);
+
 
     }
 

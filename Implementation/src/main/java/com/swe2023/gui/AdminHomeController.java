@@ -21,7 +21,6 @@ public class AdminHomeController {
 
     public void managePlanes() {
         HelloApplication.showWindow(signInButton, "/admin-plane.fxml","Planes Management", null,800,640);
-
     }
     public void manageFlights(){
         HelloApplication.showWindow(signInButton, "/admin-flight.fxml","Flights Management", null,800,640);
