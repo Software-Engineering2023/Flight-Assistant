@@ -141,21 +141,5 @@ public class ProxyTester {
         }
     }
 
-    @Test
-    public void testUpdatePlane() {
-        Plane plane = new Plane(7, "Y-MT12", "Suspended", 500, 0);
-
-        if (pqb.updatePlane(plane)) {
-            HashMap<String, Object> criterias = new HashMap<>();
-            criterias.put("Plane_id", plane.getId());
-            Plane testedPlane = pqb.search(criterias).get(0);
-
-            assertEquals(plane.getId(), testedPlane.getId());
-            assertEquals(plane.getType(), testedPlane.getType());
-            assertEquals(plane.getStatus(), testedPlane.getStatus());
-            assertEquals(plane.getNo_of_seats(), testedPlane.getNo_of_seats());
-            assertEquals(plane.getIncome(), testedPlane.getIncome());
-        }
-    }
 
 }

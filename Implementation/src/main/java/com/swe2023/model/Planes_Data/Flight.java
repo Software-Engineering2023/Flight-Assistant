@@ -3,6 +3,7 @@ package com.swe2023.model.Planes_Data;
 import com.swe2023.model.Tickets_Data.Ticket;
 
 import java.util.Date;
+import java.util.LinkedList;
 
 import static com.swe2023.model.Planes_Data.Plane.isPlane;
 import static com.swe2023.model.Planes_Data.Port.isPort;
@@ -12,8 +13,9 @@ public class Flight {
     private Port source;
     private Port destination;
     private Plane plane;
-    private Ticket[] tickets;
+    private LinkedList<Ticket> tickets;
     private Date date;
+    private int availableSeats;
 
     public Flight(int flightID, Port source, Port destination, Date Date, Plane plane) {
         this.flightID = flightID;
@@ -21,6 +23,7 @@ public class Flight {
         this.destination = destination;
         this.date = Date;
         this.plane = plane;
+        this.availableSeats = plane.getNo_of_seats();
     }
 
     public int getFlightID() {
@@ -39,7 +42,7 @@ public class Flight {
         return plane;
     }
 
-    public Ticket[] getTickets() {
+    public LinkedList<Ticket> getTickets() {
         return tickets;
     }
 
@@ -53,6 +56,13 @@ public class Flight {
         this.flightID = flightID;
     }
 
+    public void setAvailableSeats(int availableSeats) {
+        this.availableSeats = availableSeats;
+    }
+
+    public int getAvailableSeats() {
+        return availableSeats;
+    }
     public static boolean isFlight(Port source , Port destination , Date date, Plane plane){
         if(isPort(source)&&isPort(destination)&&date!= null &&isPlane(plane)) {
             return true;

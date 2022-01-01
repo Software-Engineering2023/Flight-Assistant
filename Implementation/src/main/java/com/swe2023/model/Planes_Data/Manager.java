@@ -8,7 +8,6 @@ public class Manager implements PlanesInformation {
     private final PlaneManager planeManager;
     private final FlightManager flightManager;
     private final PortManager portManager;
-
     private Plane planeToShowFlights= null;
 
     public Manager(){
