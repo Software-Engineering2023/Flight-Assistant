@@ -56,9 +56,11 @@ public class LoginAndSignUp {
 	}
 
 	private User authorizeUserOnPassword(String email, String password, String truePassword) throws Exception{
+		System.out.println("Authorizing User...");
 		UserAuthorization authorization= new UserAuthorization(email,password,truePassword);
 		User user=authorization.authorize();
 		//Call User Session Here and set the user of the session.
+		System.out.println("User Authorized!");
 		return user;
 	}
 
