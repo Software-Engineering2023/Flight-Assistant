@@ -2,7 +2,8 @@ package com.swe2023.model.Tickets_Data;
 
 import com.swe2023.model.Planes_Data.Flight;
 import com.swe2023.model.signUpAndLogin.User;
-import com.swe2023.model.signUpAndLogin.passenger;
+import com.swe2023.model.signUpAndLogin.Passenger;
+import com.swe2023.model.signUpAndLogin.Passenger;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -16,7 +17,7 @@ public class Ticket {
 
 
     private String ticketID;
-    private passenger user;
+    private Passenger user;
     private float cost;
     private int passengersNo;
 
@@ -24,7 +25,7 @@ public class Ticket {
     private LinkedList<Flight> flights;
     private LinkedList<Integer []> seatNo;
 
-    public Ticket(passenger user,int passengersNo){
+    public Ticket(Passenger user,int passengersNo){
         this.user = user;
         this.passengersNo = passengersNo;
     }
@@ -78,5 +79,5 @@ public class Ticket {
         this.ticketID = ticketID;
     }
 
-    public void setUser(passenger user) { this.user = user; }
+    public void setUser(Passenger user) { this.user = user; }
 }

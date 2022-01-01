@@ -1,7 +1,7 @@
 package com.swe2023.model.Tickets_Data;
 
 import com.swe2023.model.Planes_Data.Flight;
-import com.swe2023.model.signUpAndLogin.passenger;
+import com.swe2023.model.signUpAndLogin.Passenger;
 
 import java.util.LinkedList;
 
@@ -20,8 +20,9 @@ public class AdminTicketsManager {
          int i = ticket.getFlights().indexOf(flight);
          ticket.getExtras().set(i,extra);
     }
-    public void modifyTicketUser(Ticket ticket, passenger user){
+    public void modifyTicketUser(Ticket ticket, Passenger user){
         ticket.setUser(user);
+
     }
 
     public void loadTicketCertainDate(String date){

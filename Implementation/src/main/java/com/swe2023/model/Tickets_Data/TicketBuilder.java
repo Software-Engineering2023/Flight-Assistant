@@ -2,7 +2,7 @@ package com.swe2023.model.Tickets_Data;
 
 import com.swe2023.model.Planes_Data.Flight;
 import com.swe2023.model.signUpAndLogin.User;
-import com.swe2023.model.signUpAndLogin.passenger;
+import com.swe2023.model.signUpAndLogin.Passenger;
 
 import java.nio.charset.Charset;
 import java.util.Random;
@@ -10,7 +10,7 @@ import java.util.Random;
 public class TicketBuilder {
     private Ticket ticket;
 
-    public void TicketBuild(passenger user, int passengersNo){
+    public void TicketBuild(Passenger user, int passengersNo){
         ticket = new Ticket(user,passengersNo);
 
         byte[] array = new byte[9];

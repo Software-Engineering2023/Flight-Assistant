@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,8 +21,11 @@ public class SignInController {
     public PasswordField passwordField;
     @FXML
     public TextField usernameField;
+    @FXML
+    public ImageView img;
 
     private String errorMessage;
+
 
     public void signIn() {
         String username= usernameField.getText();

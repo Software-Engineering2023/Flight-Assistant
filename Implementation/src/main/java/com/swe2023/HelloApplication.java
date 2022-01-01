@@ -10,16 +10,17 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
-        showWindow(null, "/signIn.fxml","Welcome", 800,640);
+        showWindow(null, "/signIn.fxml","Welcome", 950,650);
     }
 
     public static void main(String[] args) {
         launch();
     }
 
-    public static void showWindow(Control control, String newWindow ,String title,int v, int v1){
+    public static void showWindow(Control control, String newWindow, String title, int v, int v1){
         try {
             if (control !=null) {
                 Stage st = (Stage) control.getScene().getWindow();
@@ -29,6 +30,8 @@ public class HelloApplication extends Application {
             Stage stage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(newWindow));
             Scene scene = new Scene(fxmlLoader.load(), v, v1);
+            scene.getStylesheets().add(
+                    HelloApplication.class.getResource("/signINCSS.css").toExternalForm());
             stage.setTitle(title);
             stage.setScene(scene);
             stage.show();

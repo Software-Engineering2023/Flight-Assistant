@@ -5,6 +5,9 @@ import com.swe2023.model.Tickets_Data.Ticket;
 import java.util.Date;
 import java.util.LinkedList;
 
+import static com.swe2023.model.Planes_Data.Plane.isPlane;
+import static com.swe2023.model.Planes_Data.Port.isPort;
+
 public class Flight {
     private int flightID;
     private Port source;
@@ -60,4 +63,11 @@ public class Flight {
     public int getAvailableSeats() {
         return availableSeats;
     }
+    public static boolean isFlight(Port source , Port destination , Date date, Plane plane){
+        if(isPort(source)&&isPort(destination)&&date!= null &&isPlane(plane)) {
+            return true;
+        }
+        return false;
+    }
+
 }
