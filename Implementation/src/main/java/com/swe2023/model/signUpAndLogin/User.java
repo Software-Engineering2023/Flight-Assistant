@@ -12,11 +12,6 @@ public class User {
 	public static final String DB_isAdmin="isAdmin";
 
 
-
-
-
-
-
 	private int ID;
 	private String Email;
 	private String password;
@@ -25,104 +20,54 @@ public class User {
 	protected double balance;
 	protected boolean admin;
 
-	public User(){}//Just to make program compile
-	
-	
-	
+
 	public User(String email, String password,String gender,boolean isAdmin) {
+		this(email,password,gender,null);
+		this.admin=isAdmin;
+	}
+	public User(String email, String password,String gender, Date birthDate){
 		this.Email = email;
 		this.password = password;
 		this.gender=gender;
-		this.admin=isAdmin;
-		
+		this.birthDate=birthDate;
+		this.admin=false;
+		this.balance=0;
 	}
-	
-	
-	
-	
-
 
 	public String getGender() {
 		return gender;
 	}
 
-
-
-
-
-
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
-
-
-
-
-
 	public boolean isAdmin() {
 		return admin;
 	}
-
-
-
-
-
 
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
 
 
-
-
-
-
 	public int getID() {
 		return ID;
 	}
-
-
-
-
-
 
 	public void setID(int iD) {
 		ID = iD;
 	}
 
-
-
-
-
-
 	public String getEmail() {
 		return Email;
 	}
-
-
-
-
-
-
 	public void setEmail(String email) {
 		Email = email;
 	}
-
-
-
-
-
-
 	public String getPassword() {
 		return password;
 	}
-
-
-
-
-
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -144,12 +89,6 @@ public class User {
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
-
-
-
-
-
-
 	public double getBalance() {
 		return balance;
 	}
@@ -157,17 +96,9 @@ public class User {
 	public boolean getAdmin() {
 		return admin;
 	}
-
-
-
-
-
-
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-
-
 
 
 

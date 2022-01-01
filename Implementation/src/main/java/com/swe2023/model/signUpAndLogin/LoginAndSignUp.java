@@ -1,28 +1,30 @@
 package com.swe2023.model.signUpAndLogin;
 
+import java.sql.SQLException;
 import java.util.Date;
 
 import com.swe2023.Admin.AdminAuthorization;
 import com.swe2023.Admin.AdminSession;
 import com.swe2023.User.UserAuthorization;
-import com.swe2023.model.Passenger.PassengerAuthorization;
 import Proxy.Auth;
 public class LoginAndSignUp {
 
 	//////////////////////////sign up new passenger///////////////////
-	public boolean signUp(String Email,String password,Date BitrhDate,String passportNumber,String gender) {
-		boolean checkValidEmail=checkVaildEmail(Email);//check if the use already exist
-		if(checkValidEmail) {
-			passenger pass=new passenger(Email,password, BitrhDate,passportNumber,gender);
-			addUserToDatabase(pass); //class passenger to add it 
-			return true;
-		}else
-			return false;
-		
+
+	/**
+	 * This function will add a user to database if email is not present
+	 * The function will end successfully if no errors were found.
+	 * @throws Exception in case email was already there.
+	 */
+	public boolean signUp(String Email,String password,Date BitrhDate,String passportNumber,String gender) throws Exception {
+		checkValidEmail(Email);//check if the use already exist
+		Passenger pass=new Passenger(Email,password, BitrhDate,passportNumber,gender);
+		addUserToDatabase(pass); //class passenger to add it
+		return true;
 	}
 
-	private void addUserToDatabase(passenger pass) {
-		//TODO
+	private void addUserToDatabase(Passenger pass) throws Exception {
+		Auth.addNewUser(pass);
 	}
 
 	private Object getTheGeneratedID() {
@@ -30,9 +32,9 @@ public class LoginAndSignUp {
 		return null;
 	}
 
-	private boolean checkVaildEmail(String email) {
-		//TODO
-		return false;
+	private void checkValidEmail(String email) throws Exception{
+		if(!Auth.checkValidEmail(email))
+			throw new RuntimeException("Email is already there!");
 	}
 
 	// return user.
