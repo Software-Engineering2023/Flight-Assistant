@@ -54,7 +54,7 @@ public class AdminFlightController {
     }
     public void goToAdminHome() {
         adminSession.setPlaneToShowFlights(null);
-        HelloApplication.showWindow(updateButton, "/admin-home.fxml", "Administrator", 800,640);
+        HelloApplication.showWindow(updateButton, "/admin-home.fxml", "Administrator", 950,650);
     }
     private void loadFlights(){
         Flights = adminSession.loadFlightsFromDataBase();
