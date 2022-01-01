@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.swe2023.Admin.AdminAuthorization;
 import com.swe2023.Admin.AdminSession;
+import com.swe2023.User.UserAuthorization;
 import com.swe2023.model.Passenger.PassengerAuthorization;
 import Proxy.Auth;
 public class LoginAndSignUp {
@@ -36,23 +37,28 @@ public class LoginAndSignUp {
 
 	// return user.
 	public User signIn(String Email,String password) throws Exception {
-		Auth auth=new Auth();
-		String[] checkAdmin=auth.checkAdmin(Email);//here we will call the check admin from database 
-		if(checkAdmin[0].equals("-1")) {
-			System.out.println("Admin Not found!");
-			return null;
+		String[] checkAdmin=Auth.checkAdmin(Email);//here we will call the check admin from database
+		if(checkAdmin[0].equals("false")) { //User found but not an admin
+			return authorizeUserOnPassword(Email, password, checkAdmin[1]);
 		}else if (checkAdmin[0].equals("true")) {
-			AdminAuthorization Aauth=new AdminAuthorization();
-			System.out.println("Admin Found!");
-			User admin= Aauth.signIn(Email, password,checkAdmin[1]);
-			AdminSession.getSession();
-			return admin;
+			return  authorizeAdminOnPassword(Email, password, checkAdmin[1]);
 		}
-		return null;
+		throw new RuntimeException("Email is not correct!");
 	}
-	
 
-	
+	private User authorizeAdminOnPassword(String email, String password, String truePassword) throws Exception {
+		System.out.println("Admin Found!");
+		User admin= AdminAuthorization.signIn(email, password,truePassword);
+		AdminSession.getSession();
+		return admin;
+	}
+
+	private User authorizeUserOnPassword(String email, String password, String truePassword) throws Exception{
+		UserAuthorization authorization= new UserAuthorization(email,password,truePassword);
+		User user=authorization.authorize();
+		//Call User Session Here and set the user of the session.
+		return user;
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
