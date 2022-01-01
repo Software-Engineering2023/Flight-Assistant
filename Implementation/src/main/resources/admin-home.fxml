@@ -42,7 +42,7 @@
       </Label>
       <VBox layoutX="3.0" layoutY="88.0" prefHeight="451.0" prefWidth="966.0">
          <children>
-            <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#goToAirport" prefHeight="66.0" prefWidth="616.0" style="-fx-background-color: #000;" text="Manage Airports" textAlignment="CENTER">
+            <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#goToAirport" prefHeight="66.0" prefWidth="616.0" style="-fx-background-color: #000;" text="Manage Airports" textAlignment="CENTER" textFill="#1f88ff">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -50,7 +50,7 @@
                   <Insets bottom="50.0" left="100.0" right="250.0" top="50.0" />
                </VBox.margin>
             </Button>
-            <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#manageFlights" prefHeight="38.0" prefWidth="762.0" style="-fx-background-color: #000;" text="Manage Flights" textAlignment="CENTER">
+            <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#manageFlights" prefHeight="38.0" prefWidth="762.0" style="-fx-background-color: #000;" text="Manage Flights" textAlignment="CENTER" textFill="#1f88ff">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -58,7 +58,7 @@
                   <Insets bottom="50.0" left="100.0" right="250.0" top="50.0" />
                </VBox.margin>
             </Button>
-            <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#managePlanes" prefHeight="38.0" prefWidth="762.0" style="-fx-background-color: #000;" text="Manage Planes" textAlignment="CENTER">
+            <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#managePlanes" prefHeight="38.0" prefWidth="762.0" style="-fx-background-color: #000;" text="Manage Planes" textAlignment="CENTER" textFill="#1f88ff">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -66,7 +66,7 @@
                   <Insets bottom="50.0" left="100.0" right="250.0" top="50.0" />
                </VBox.margin>
             </Button>
-            <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="762.0" style="-fx-background-color: #000;" text="Manage Tickets" textAlignment="CENTER">
+            <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="762.0" style="-fx-background-color: #000;" text="Manage Tickets" textAlignment="CENTER" textFill="#1f88ff">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -76,6 +76,6 @@
             </Button>
          </children>
       </VBox>
-      <Button fx:id="signInButton" layoutX="37.0" layoutY="23.0" mnemonicParsing="false" onAction="#goToSignIn" prefHeight="24.0" prefWidth="93.0" text="Back" />
+      <Button fx:id="signInButton" layoutX="37.0" layoutY="23.0" mnemonicParsing="false" onAction="#goToSignIn" prefHeight="24.0" prefWidth="93.0" style="-fx-background-color: black;" text="Back" textFill="#1f88ff" />
    </children>
 </AnchorPane>
