@@ -3,14 +3,16 @@ package com.swe2023.model.Planes_Data;
 import com.swe2023.model.Tickets_Data.Ticket;
 
 import java.util.Date;
+import java.util.LinkedList;
 
 public class Flight {
     private int flightID;
     private Port source;
     private Port destination;
     private Plane plane;
-    private Ticket[] tickets;
+    private LinkedList<Ticket> tickets;
     private Date date;
+    private int availableSeats;
 
     public Flight(int flightID, Port source, Port destination, Date Date, Plane plane) {
         this.flightID = flightID;
@@ -18,6 +20,7 @@ public class Flight {
         this.destination = destination;
         this.date = Date;
         this.plane = plane;
+        this.availableSeats = plane.getNo_of_seats();
     }
 
     public int getFlightID() {
@@ -36,7 +39,7 @@ public class Flight {
         return plane;
     }
 
-    public Ticket[] getTickets() {
+    public LinkedList<Ticket> getTickets() {
         return tickets;
     }
 
@@ -48,5 +51,13 @@ public class Flight {
 
     public void setFlightID(int flightID) {
         this.flightID = flightID;
+    }
+
+    public void setAvailableSeats(int availableSeats) {
+        this.availableSeats = availableSeats;
+    }
+
+    public int getAvailableSeats() {
+        return availableSeats;
     }
 }
