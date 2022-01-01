@@ -1,7 +1,7 @@
 package com.swe2023.model.Tickets_Data;
 
 import com.swe2023.model.Planes_Data.Flight;
-import com.swe2023.model.signUpAndLogin.passenger;
+import com.swe2023.model.signUpAndLogin.Passenger;
 
 public class AdminTicketsManager {
     Ticket[] ticketsShown;
@@ -12,7 +12,7 @@ public class AdminTicketsManager {
 
 
     }
-    public void modifyTicketUser(Ticket ticket, passenger user){
+    public void modifyTicketUser(Ticket ticket, Passenger user){
 
 
     }

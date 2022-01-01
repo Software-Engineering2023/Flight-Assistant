@@ -1,6 +1,6 @@
 package com.swe2023.model.Tickets_Data;
 
-import com.swe2023.model.signUpAndLogin.passenger;
+import com.swe2023.model.signUpAndLogin.Passenger;
 
 
 public class Ticket {
@@ -11,7 +11,7 @@ public class Ticket {
 
 
     int ticketID;
-    passenger user;
+    Passenger user;
     int cost;
     String extra[];
     String date;
