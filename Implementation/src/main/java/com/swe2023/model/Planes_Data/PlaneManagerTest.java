@@ -1,12 +1,8 @@
 package com.swe2023.model.Planes_Data;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 import static org.junit.Assert.*;
@@ -86,5 +82,6 @@ public class PlaneManagerTest {
         assertTrue(result1);
         assertFalse(result2);
     }
+
 
 }

@@ -7,10 +7,9 @@ import com.swe2023.Proxy.PlaneQueryBuilder;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public class PlaneManager {
-    Plane[] planesShown;
-    Port[] portsShown;
+public class PlaneManager implements PlanesInformation {
 
     Plane planeToShowFlights;
 
@@ -35,7 +34,7 @@ public class PlaneManager {
         }
         return false;
     }
-
+    @Override
     public ArrayList<Flight> loadFlightsFromDataBase(){
         if(planeToShowFlights==null)
             return fqb.getAll();
@@ -100,8 +99,27 @@ public class PlaneManager {
         return  false;
     }
 
+    @Override
     public ArrayList<Port> loadPortsFromDataBase(){
          return aqb.getAll();
+    }
+
+    @Override
+    public List<Flight> searchFlights(Port source, Port destination) {
+        List<Flight> flights= loadFlightsFromDataBase();
+        filterFlights(flights,source, destination);
+        return flights;
+    }
+
+    private void filterFlights(List<Flight> flights, Port source, Port destination){
+        for (Flight flight : flights) {
+            if (source != null && !flight.getSource().equals(source)) {
+                flights.remove(flight);
+                continue;
+            }
+            if (destination != null && !flight.getDestination().equals(destination))
+                flights.remove(flight);
+        }
     }
 
     public boolean deletePort(Port port){

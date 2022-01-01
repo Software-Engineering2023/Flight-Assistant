@@ -38,8 +38,6 @@ public class LoginAndSignUpTest {
 		signIn();
 	}
 
-
-
 //	@Test
 //	public void test() throws Exception {
 //		LoginAndSignUp lAs=new LoginAndSignUp();
