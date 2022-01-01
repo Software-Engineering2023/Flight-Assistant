@@ -1,9 +1,6 @@
 package com.swe2023.Admin;
 
-import com.swe2023.model.Planes_Data.Flight;
-import com.swe2023.model.Planes_Data.Plane;
-import com.swe2023.model.Planes_Data.PlaneManager;
-import com.swe2023.model.Planes_Data.Port;
+import com.swe2023.model.Planes_Data.*;
 import com.swe2023.model.Tickets_Data.AdminTicketsManager;
 
 import java.util.ArrayList;
@@ -12,13 +9,12 @@ import java.util.List;
 public class AdminSession {
 
     private static AdminSession session;
-    private final PlaneManager planeManager;
+    private final Manager manager;
     private AdminTicketsManager ticketManager;
 
     private AdminSession(){
         System.out.println("111111");
-
-        planeManager= new PlaneManager();
+        manager= new Manager();
     }
 
     public static AdminSession getSession() {
@@ -32,37 +28,37 @@ public class AdminSession {
      * @return false if error occured.
      */
     public boolean addNewAirPort(Port port){
-        return planeManager.addNewPort(port);
+        return manager.getPortManager().addNewPort(port);
     }
 
     public boolean addNewPlane(Plane plane){
-        return planeManager.addPlane(plane);
+        return manager.getPlaneManager().addPlane(plane);
     }
 
     public String addNewFlight(Flight flight){
-        return planeManager.addNewFlight(flight);
+        return manager.getFlightManager().addNewFlight(flight);
     }
 
     public ArrayList<Port> loadPortsFromDatabase(){
-        return planeManager.loadPortsFromDataBase();
+        return manager.getPortManager().loadPortsFromDataBase();
     }
 
     public ArrayList<Plane> loadPlanesFromDataBase(){
-        return planeManager.loadPlanesFromDataBase();
+        return manager.getPlaneManager().loadPlanesFromDataBase();
     }
 
     public boolean deletePort(Port port){
-        return planeManager.deletePort(port);
+        return manager.getPortManager().deletePort(port);
     }
     public boolean deletePlane(Plane plane){
-        return planeManager.deletePlane(plane);
+        return manager.getPlaneManager().deletePlane(plane);
     }
 
-    public void setPlaneToShowFlights(Plane plane){planeManager.setPlaneToShowFlights(plane);}
+    public void setPlaneToShowFlights(Plane plane){manager.setPlaneToShowFlights(plane);}
 
-    public ArrayList<Flight> loadFlightsFromDataBase() {return planeManager.loadFlightsFromDataBase(); }
+    public ArrayList<Flight> loadFlightsFromDataBase() {return manager.loadFlightsFromDataBase(); }
 
     public boolean deleteFlight(Flight flight){
-        return planeManager.deleteFlight(flight);
+        return manager.getFlightManager().deleteFlight(flight);
     }
 }

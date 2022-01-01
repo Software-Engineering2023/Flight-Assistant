@@ -37,11 +37,11 @@ public class Auth {
 	}
 ///////////////////////////////////function to check if it is admin or passenger//////////////	
 	public static String[] checkAdmin(String Email) throws SQLException {
-		//checker string with index to check the first index is admin or not 
+		//checker string with index to check the first index is admin or not
 		String[] checker = new String[]{"",""};
 		Connection connection = DB_Utils.getDataSource().getConnection();//start connection 
-        PreparedStatement pStatement = connection.prepareStatement(QUERYOfCheckAdmin+"'"+Email+"'");//statement to get the result 
-        resultSet=pStatement.executeQuery();//result of the result
+        PreparedStatement pStatement = connection.prepareStatement(QUERYOfCheckAdmin+"'"+Email+"'");//statement to get the result
+		resultSet=pStatement.executeQuery();//result of the result
         while(resultSet.next()){
             //Display values
         	if(resultSet.getString("isAdmin").equals("1")) {
@@ -49,7 +49,6 @@ public class Auth {
         	}else {
         		checker[0]="false";
         	}
-        	
         }
         /////////////get password of the email////////////////
         pStatement= connection.prepareStatement(QUERYOfgetPassword+"'"+Email+"'");
@@ -69,8 +68,11 @@ public class Auth {
 	}
 	/////////////////////////check valid Email to sign up new user///////////////////////
 	public static boolean checkValidEmail(String Email) throws SQLException {
+		Connection connection = DB_Utils.getDataSource().getConnection();//start connection
+		statement= connection.createStatement();
 		resultSet = statement.executeQuery(QUERYOfgetVaildEmail+"'"+Email+"'");
 		if(!resultSet.next()) {
+			connection.close();
 			return true;
 		}
 		 while(resultSet.next()){
@@ -78,25 +80,26 @@ public class Auth {
 	            System.out.print("ID: " + resultSet.getString("Email"));
 	     }
 		 resultSet.close();
+		 connection.close();
 		return false;
 	}
 ////////////////////////////add new passenger//////////////////////////////
 	public static boolean addNewUser(User user) throws SQLException {
-		 String query = "insert into User values(?, ?, ?, ?, ?)";
+		 String query = "insert into User(Name,Gender,Email,Password,isAdmin) values(?, ?, ?, ?, ?)";
 	        try {
 	        	//////////make the connection
 	            Connection connection = DB_Utils.getDataSource().getConnection();
 	            PreparedStatement pStatement = connection.prepareStatement(query);
 	            pStatement.setString(1, user.getEmail());
 	            pStatement.setString(2, user.getGender());
-	            pStatement.setBoolean(3, user.getAdmin());
-	            pStatement.setString(4, user.getEmail());
-	            pStatement.setString(5, user.getPassword());
+	            pStatement.setString(5, user.getAdmin() ? "1" : "2");
+	            pStatement.setString(3, user.getEmail());
+	            pStatement.setString(4, user.getPassword());
 	            pStatement.execute();
 	            pStatement.close();
 	            connection.close();
 	        }catch(Exception e) {
-	        	
+	        	e.printStackTrace();
 	        }
 		return true;
 	}

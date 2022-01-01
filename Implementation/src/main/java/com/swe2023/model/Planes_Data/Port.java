@@ -44,6 +44,11 @@ public class Port {
         return latitude;
     }
 
+    public static boolean isPort(Port port){
+        return port.getCode().length() != 0 && port.getCountry().length() != 0
+                && port.getCity().length() != 0 && port.getName().length() != 0;
+    }
+
     @Override
     public String toString() {
         return "Port{" +

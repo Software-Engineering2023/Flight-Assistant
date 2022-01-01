@@ -30,6 +30,8 @@ public class HelloApplication extends Application {
             Stage stage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(newWindow));
             Scene scene = new Scene(fxmlLoader.load(), v, v1);
+            scene.getStylesheets().add(
+                    HelloApplication.class.getResource("/signINCSS.css").toExternalForm());
             stage.setTitle(title);
             stage.setScene(scene);
             stage.show();

@@ -1,10 +1,10 @@
 .button {
-  -fx-background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+  -fx-background-color: #4CAF50;
+  -fx-border: none;
+  -fx-color: white;
+  -fx-padding: 15px 32px;
+  -fx-text-align: center;
+  -fx-text-decoration: none;
+  -fx-display: inline-block;
+  -fx-font-size: 16px;
 }

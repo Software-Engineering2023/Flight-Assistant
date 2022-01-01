@@ -12,5 +12,6 @@ module com.swe2023 {
     exports com.swe2023.model.Planes_Data;
     exports com.swe2023.Admin;
     exports com.swe2023.Proxy;
+    exports com.swe2023.model.signUpAndLogin;
     exports Proxy;
 }

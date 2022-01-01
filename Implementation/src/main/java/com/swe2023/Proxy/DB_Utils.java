@@ -12,6 +12,10 @@ public class DB_Utils {
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "5622192";
 
+//    private static final String DB_USERNAME = "airSystem";
+//    private static final String DB_PASSWORD = "Root$12345?";
+
+
     private static BasicDataSource dataSource;
 
     static {

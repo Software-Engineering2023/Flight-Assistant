@@ -64,4 +64,12 @@ public class Plane {
     public void setIncome(int income) {
         this.income = income;
     }
+
+    public static boolean isPlane(Plane plane){
+        if(plane.getNo_of_seats() != 0 && plane.getType() != null && plane.getStatus() != null) {
+            return true;
+        }
+        return false;
+    }
+
 }
