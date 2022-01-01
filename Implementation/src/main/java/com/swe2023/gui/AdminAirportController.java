@@ -40,7 +40,7 @@ public class AdminAirportController {
             listView.getItems().add(port.getName());
     }
     public void goToAdminHome() {
-        HelloApplication.showWindow(updateButton, "/admin-home.fxml", "Administrator", 800,640);
+        HelloApplication.showWindow(updateButton, "/admin-home.fxml", "Administrator",null, 800,640);
     }
 
     private Port getCurrentPort(){

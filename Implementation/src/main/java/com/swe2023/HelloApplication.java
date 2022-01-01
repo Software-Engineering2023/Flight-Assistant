@@ -13,14 +13,14 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        showWindow(null, "/signIn.fxml","Welcome", 950,650);
+        showWindow(null, "/signIn.fxml","Welcome","/signINCSS.css", 950,650);
     }
 
     public static void main(String[] args) {
         launch();
     }
 
-    public static void showWindow(Control control, String newWindow, String title, int v, int v1){
+    public static void showWindow(Control control, String newWindow, String title,String cssPath, int v, int v1){
         try {
             if (control !=null) {
                 Stage st = (Stage) control.getScene().getWindow();
@@ -30,8 +30,9 @@ public class HelloApplication extends Application {
             Stage stage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(newWindow));
             Scene scene = new Scene(fxmlLoader.load(), v, v1);
-            scene.getStylesheets().add(
-                    HelloApplication.class.getResource("/signINCSS.css").toExternalForm());
+            if(cssPath!=null)
+                scene.getStylesheets().add(
+                        HelloApplication.class.getResource(cssPath).toExternalForm());
             stage.setTitle(title);
             stage.setScene(scene);
             stage.show();
