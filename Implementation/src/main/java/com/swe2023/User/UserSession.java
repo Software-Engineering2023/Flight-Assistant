@@ -1,9 +1,6 @@
 package com.swe2023.User;
 
-import com.swe2023.model.Planes_Data.Flight;
-import com.swe2023.model.Planes_Data.PlaneManager;
-import com.swe2023.model.Planes_Data.PlanesInformation;
-import com.swe2023.model.Planes_Data.Port;
+import com.swe2023.model.Planes_Data.*;
 import com.swe2023.model.signUpAndLogin.Passenger;
 
 import java.util.List;
@@ -20,7 +17,7 @@ public class UserSession {
     private Passenger user; /* Used to book tickets directly and to save current user's progress */
 
     private UserSession(){
-        planesInformation= new PlaneManager();
+        planesInformation= new Manager();
     }
     public void setUser(Passenger user){
         this.user= user;
