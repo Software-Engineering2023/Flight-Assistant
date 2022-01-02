@@ -1,6 +1,7 @@
 package com.swe2023.model.Planes_Data;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Manager implements PlanesInformation {
@@ -44,8 +45,8 @@ public class Manager implements PlanesInformation {
     }
 
     @Override
-    public List<Flight> searchFlights(Port source, Port destination) {
-        return flightManager.searchFlights(source,destination);
+    public List<Flight> searchFlights(Port source, Port destination, Date date, int pass) {
+        return flightManager.searchFlights(source,destination, date,pass);
     }
 
 }

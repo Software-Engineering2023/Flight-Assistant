@@ -3,6 +3,7 @@ package com.swe2023.User;
 import com.swe2023.model.Planes_Data.*;
 import com.swe2023.model.signUpAndLogin.Passenger;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,8 +28,8 @@ public class UserSession {
         return planesInformation.loadPortsFromDataBase();
     }
 
-    public List<Flight> searchFlights(Port source, Port destination){
-        return planesInformation.searchFlights(source,destination);
+    public List<Flight> searchFlights(Port source, Port destination, Date date, int passengersToBook){
+        return planesInformation.searchFlights(source,destination, date, passengersToBook);
     }
 
     public static UserSession getSession(){
@@ -36,11 +37,5 @@ public class UserSession {
             session= new UserSession();
         return session;
     }
-
-
-
-
-
-
 
 }
