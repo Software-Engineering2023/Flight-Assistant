@@ -6,9 +6,16 @@ import com.swe2023.model.signUpAndLogin.Passenger;
 
 import java.nio.charset.Charset;
 import java.util.Random;
+import com.swe2023.Proxy.TicketQuery;
+
 
 public class TicketBuilder {
     private Ticket ticket;
+    private TicketQuery tqb;
+
+    public TicketBuilder (){
+        tqb = new TicketQuery();
+    }
 
     public void TicketBuild(Passenger user, int passengersNo){
         ticket = new Ticket(user,passengersNo);
@@ -47,5 +54,10 @@ public class TicketBuilder {
     public void confirmBuild(){
        this.calculateCost();
        //add ticket to each plane
+        tqb.addTicket(ticket);
+        for(Flight flight: ticket.getFlights()){
+            flight.setAvailableSeats(flight.getAvailableSeats()-ticket.getPassengersNo());
+            flight.getTickets().add(ticket);
+        }
     }
 }

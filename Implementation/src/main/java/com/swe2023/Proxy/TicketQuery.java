@@ -99,7 +99,7 @@ public class TicketQuery {
 //        }
 //    }
 	
-	public boolean deleteFlight(Ticket tiket) {
+	public boolean deleteTicket(Ticket tiket) {
         String query = "delete from Ticket where Ticket_id = ?";
         try {
             Connection connection = DB_Utils.getDataSource().getConnection();
