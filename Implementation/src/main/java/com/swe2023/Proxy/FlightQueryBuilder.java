@@ -6,9 +6,8 @@ import com.swe2023.model.Planes_Data.Port;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Date;
-import java.util.Objects;
 
 public class FlightQueryBuilder {
 
@@ -23,12 +22,13 @@ public class FlightQueryBuilder {
             pStatement.setString(3, flight.getSource().getCode());
             pStatement.setString(4, flight.getDestination().getCode());
             pStatement.setInt(5, flight.getPlane().getId());
-            pStatement.setInt(5, flight.getAvailableSeats());
+            pStatement.setInt(6, flight.getAvailableSeats());
             pStatement.execute();
             pStatement.close();
             connection.close();
             return true;
         } catch (SQLException e) {
+            e.printStackTrace();
             return false;
         }
     }
@@ -133,30 +133,74 @@ public class FlightQueryBuilder {
         return flights;
     }
 
-    public Flight searchFlight(int id) {
-        String query = "select * from Flight where Flight_id = ?";
+    public List<Flight> searchFlight(Port source, Port dest) {
+        String query=configureQuery(source, dest);
         try {
             Connection connection = DB_Utils.getDataSource().getConnection();
-            PreparedStatement pStatement = connection.prepareStatement(query);
-            pStatement.setInt(1, id);
-
-            ResultSet resultSet = pStatement.executeQuery();
-
-            Flight flight = new Flight(resultSet.getInt(1),
-                    new Port(resultSet.getString(3)),
-                    new Port(resultSet.getString(4)),
-                    new Date(resultSet.getTimestamp(2).getTime()),
-                    new Plane(resultSet.getInt(5)));
-
+            Statement st= connection.createStatement();
+            ResultSet resultSet = st.executeQuery(query);
+            List<Flight> flights= extractFlightsFromResultSet(connection,resultSet);
             connection.close();
-            pStatement.close();
+            st.close();
             resultSet.close();
-            return flight;
+            return flights;
         } catch (SQLException e) {
+            e.printStackTrace();
             return null;
         }
     }
 
+    private String configureQuery(Port source, Port dest){
+        SelectQueryBuilder builder= new SelectQueryBuilder("Flight");
+        HashMap<String, Object> portGetter= new HashMap<>();
+        if(source != null)
+            portGetter.put("Source",source.getCode());
+        if(dest != null)
+            portGetter.put("Destination",dest.getCode());
+        return builder.getQuery(portGetter);
+    }
+
+    private List<Flight> extractFlightsFromResultSet(Connection conn,ResultSet set) throws SQLException {
+        List<Flight> flights= new ArrayList<>();
+        while(set.next()){
+            int flight_id= set.getInt("Flight_id");
+            Port source= getPort(conn.createStatement(),set.getString("Source"));
+            Port dest= getPort(conn.createStatement(),set.getString("Destination"));
+            Date timeStamp= new Date(set.getTimestamp("Departure").getTime());
+            Plane plane= getPlane(conn.createStatement(),set.getInt("Plane_id"));
+            flights.add(new Flight(flight_id,source,dest,timeStamp,plane));
+        }
+        return flights;
+    }
+
+    private Port getPort(Statement st, String code) throws SQLException {
+        SelectQueryBuilder builder= new SelectQueryBuilder("Airport");
+        HashMap<String,Object> data= new HashMap<>();
+        data.put("Airport_code",code);
+        String query=builder.getQuery(data);
+        ResultSet set= st.executeQuery(query);
+        set.next();
+        Port port= new Port(set.getString(1),set.getString(2),set.getString(3),set.getString(4),set.getInt(5),set.getInt(6));
+        set.close();
+        st.close();
+        return port;
+    }
+
+    private Plane getPlane(Statement st, int plane_id) throws SQLException {
+        SelectQueryBuilder builder= new SelectQueryBuilder("Plane");
+        HashMap<String,Object> data= new HashMap<>();
+        data.put("Plane_id",plane_id);
+        String query=builder.getQuery(data);
+        ResultSet set= st.executeQuery(query);
+        set.next();
+
+        Plane plane= new Plane(set.getInt(1),set.getString(2),
+        set.getString(5),set.getInt(3),set.getInt(4));
+
+        set.close();
+        st.close();
+        return  plane;
+    }
     public static void main(String[] args) {
         FlightQueryBuilder fqb = new FlightQueryBuilder();
 //        Timestamp timestamp = new Timestamp(Objects.requireNonNull(fqb.parseDate("2021-03-20 03:00:00")).getTime());

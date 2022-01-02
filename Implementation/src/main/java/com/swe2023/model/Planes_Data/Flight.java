@@ -67,10 +67,19 @@ public class Flight {
         return availableSeats;
     }
     public static boolean isFlight(Port source , Port destination , Date date, Plane plane){
-        if(isPort(source)&&isPort(destination)&&date!= null &&isPlane(plane)) {
-            return true;
-        }
-        return false;
+        return isPort(source) && isPort(destination) && date != null && isPlane(plane);
     }
 
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "flightID=" + flightID +
+                ", source=" + source +
+                ", destination=" + destination +
+                ", plane=" + plane +
+                ", tickets=" + tickets +
+                ", date=" + date +
+                ", availableSeats=" + availableSeats +
+                '}';
+    }
 }
