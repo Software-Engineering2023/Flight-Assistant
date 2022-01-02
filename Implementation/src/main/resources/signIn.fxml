@@ -28,6 +28,16 @@
             <Image url="@wp5142628.jpg" />
          </image>
       </ImageView>
+      <Label layoutX="763.0" layoutY="493.0" text="Contact Us">
+         <font>
+            <Font name="Baskerville Old Face" size="25.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="720.0" layoutY="546.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@contact_us.png" />
+         </image>
+      </ImageView>
       <Label alignment="CENTER" layoutX="293.0" layoutY="26.0" prefHeight="68.0" prefWidth="542.0" style="-fx-font-style: italic; -fx-border-width: 0; -fx-border-color: #3355aa; -fx-border-radius: 10;" text="Flight System" textAlignment="RIGHT" textFill="#a0ade1">
          <font>
             <Font name="Broadway" size="55.0" />
@@ -100,12 +110,12 @@
             </HBox>
          </children>
       </VBox>
-      <Button fx:id="signInButton" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="662.0" layoutY="220.0" mnemonicParsing="false" onAction="#signIn" prefHeight="63.0" prefWidth="225.0" style="-fx-background-color: #4169e1; -fx-border-color: #0000cd;" text="Sign In" textAlignment="RIGHT" textFill="#f2f0f7" textOverrun="LEADING_WORD_ELLIPSIS">
+      <Button fx:id="signInButton" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="662.0" layoutY="220.0" mnemonicParsing="false" onAction="#signIn" opacity="0.57" prefHeight="63.0" prefWidth="225.0" style="-fx-background-color: LightSkyBlue; -fx-border-color: #0000cd;" text="Sign In" textAlignment="RIGHT" textFill="#1a0551" textOverrun="LEADING_WORD_ELLIPSIS">
          <font>
-            <Font size="27.0" />
+            <Font name="System Bold" size="40.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="CLOSED_HAND" />
+            <Cursor fx:constant="HAND" />
          </cursor>
          <effect>
             <Glow level="0.49" />
@@ -137,6 +147,12 @@
             </Label>
          </children>
       </GridPane>
-      <Button fx:id="SignUPButton" layoutX="443.0" layoutY="510.0" mnemonicParsing="false" onAction="#ButtonClicked" prefHeight="52.0" prefWidth="146.0" style="-fx-border-color: #000080; -fx-background-color: #f5deb3;" text="Sign Up Here" textFill="#08ceff" />
+      <Button fx:id="SignUPButton" layoutX="443.0" layoutY="510.0" mnemonicParsing="false" onAction="#ButtonClicked" opacity="0.66" prefHeight="52.0" prefWidth="146.0" style="-fx-border-color: #000080; -fx-background-color: LightSeaGreen;" text="Sign Up Here" textFill="#0e3138">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </AnchorPane>
