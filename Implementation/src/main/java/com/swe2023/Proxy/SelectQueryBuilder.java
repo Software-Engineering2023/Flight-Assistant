@@ -57,7 +57,6 @@ public class SelectQueryBuilder {
         ResultSet resultSet = statement.executeQuery(str);
 
 
-
         while (resultSet.next()) {
             System.out.println(resultSet.getString("City") + " " + resultSet.getInt("Latitude"));
         }

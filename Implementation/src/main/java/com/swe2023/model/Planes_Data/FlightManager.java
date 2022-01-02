@@ -45,10 +45,8 @@ public class FlightManager {
         return false;
     }
 
-    public List<Flight> searchFlights(Port source, Port destination) {
-        List<Flight> flights= loadAllFlights();
-        filterFlights(flights,source, destination);
-        return flights;
+    public List<Flight> searchFlights(Port source, Port destination, Date date, int passengersToBook) {
+        return fqb.searchFlight(source,destination);
     }
 
     private void filterFlights(List<Flight> flights, Port source, Port destination){
