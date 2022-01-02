@@ -8,6 +8,9 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -15,185 +18,210 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.swe2023.gui.AdminAirportController">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="333.0" minWidth="10.0" prefWidth="224.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="555.0" minWidth="10.0" prefWidth="457.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="536.0" minHeight="10.0" prefHeight="536.0" vgrow="SOMETIMES" />
-  </rowConstraints>
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.swe2023.gui.AdminAirportController">
    <children>
-      <Label prefHeight="28.0" prefWidth="223.0" text="Available Airports">
-         <font>
-            <Font name="LMMono12-Regular" size="16.0" />
-         </font>
-      </Label>
-      <HBox prefHeight="23.0" prefWidth="457.0" spacing="48.0" style="-fx-background-color: #303355;" GridPane.columnIndex="1">
+      <ImageView fitHeight="568.0" fitWidth="1010.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@6975454.jpg" />
+         </image>
+      </ImageView>
+      <GridPane gridLinesVisible="true" layoutX="0.5" layoutY="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="950.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="333.0" minWidth="10.0" prefWidth="224.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="555.0" minWidth="10.0" prefWidth="457.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="536.0" minHeight="10.0" prefHeight="536.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createAirport" prefHeight="30.0" prefWidth="77.0" style="-fx-background-color: #5090ff; -fx-font-weight: bold;" text="Create" textAlignment="CENTER" textFill="#a80505">
+            <Label prefHeight="28.0" prefWidth="223.0" text="Available Airports" textFill="#00fffb">
                <font>
-                  <Font name="SansSerif Regular" size="13.0" />
+                  <Font name="LMMono12-Regular" size="16.0" />
                </font>
-               <HBox.margin>
-                  <Insets left="1.0" right="3.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="updateButton" alignment="CENTER" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #5090ff; -fx-font-weight: bold;" text="Update" textAlignment="CENTER" textFill="#a80505">
-               <font>
-                  <Font name="SansSerif Regular" size="13.0" />
-               </font>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Button>
-            <Button onAction="#deleteAirport" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #5090ff; -fx-font-weight: bold;" text="Delete" textAlignment="CENTER" textFill="#a80505">
-               <font>
-                  <Font name="SansSerif Regular" size="13.0" />
-               </font>
-            </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToAdminHome" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #da505e; -fx-font-weight: bold;" text="Admin" textAlignment="CENTER" textFill="#512626">
-               <font>
-                  <Font name="SansSerif Regular" size="13.0" />
-               </font>
-            </Button>
-         </children>
-      </HBox>
-      <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-         <cursor>
-            <Cursor fx:constant="V_RESIZE" />
-         </cursor>
-         <content>
-            <ListView fx:id="listView" minWidth="-Infinity" onMouseReleased="#getViewItem" prefHeight="533.0" prefWidth="224.0" />
-         </content>
-      </ScrollPane>
-      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <children>
-            <VBox prefHeight="536.0" prefWidth="457.0" spacing="20.0">
+            </Label>
+            <HBox prefHeight="23.0" prefWidth="457.0" spacing="48.0" GridPane.columnIndex="1">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="457.0" spacing="20.0" style="-fx-border-color: #000000; -fx-border-radius: 100;">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createAirport" prefHeight="30.0" prefWidth="77.0" style="-fx-background-color: #5090ff; -fx-font-weight: bold;" text="Create" textAlignment="CENTER" textFill="#a80505">
+                     <font>
+                        <Font name="SansSerif Regular" size="13.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="1.0" right="3.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="updateButton" alignment="CENTER" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #5090ff; -fx-font-weight: bold;" text="Update" textAlignment="CENTER" textFill="#a80505">
+                     <font>
+                        <Font name="SansSerif Regular" size="13.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#deleteAirport" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #5090ff; -fx-font-weight: bold;" text="Delete" textAlignment="CENTER" textFill="#a80505">
+                     <font>
+                        <Font name="SansSerif Regular" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToAdminHome" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #da505e; -fx-font-weight: bold;" text="Back" textAlignment="CENTER" textFill="#2b00ff">
+                     <font>
+                        <Font name="SansSerif Regular" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <cursor>
+                  <Cursor fx:constant="V_RESIZE" />
+               </cursor>
+               <content>
+                  <ListView fx:id="listView" minWidth="-Infinity" onMouseReleased="#getViewItem" prefHeight="533.0" prefWidth="224.0" />
+               </content>
+            </ScrollPane>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <VBox prefHeight="536.0" prefWidth="457.0" spacing="20.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="457.0" spacing="20.0" style="-fx-border-color: #000000; -fx-border-radius: 100;">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <children>
+                              <ImageView fitHeight="46.0" fitWidth="48.0">
+                                 <image>
+                                    <Image url="@airport_48px.png" />
+                                 </image>
+                              </ImageView>
+                              <TextField fx:id="nameField" prefHeight="34.0" prefWidth="222.0" promptText="Airport Name" style="-fx-border-color: #ffffff; -fx-border-radius: 100;">
+                                 <font>
+                                    <Font name="FreeSerif" size="14.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="457.0" spacing="20.0" style="-fx-border-color: #000000; -fx-border-radius: 100;">
+                           <children>
+                              <ImageView fitHeight="36.0" fitWidth="43.0">
+                                 <image>
+                                    <Image url="@code_40px.png" />
+                                 </image>
+                              </ImageView>
+                              <TextField fx:id="codeField" prefHeight="34.0" prefWidth="222.0" promptText="Airport Code" style="-fx-border-color: #ffffff; -fx-border-radius: 100;">
+                                 <font>
+                                    <Font name="FreeSerif" size="14.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="457.0" spacing="20.0" style="-fx-border-color: #000000; -fx-border-radius: 100;">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                           <children>
+                              <VBox prefHeight="102.0" prefWidth="407.0">
+                                 <children>
+                                    <HBox prefHeight="55.0" prefWidth="407.0">
+                                       <children>
+                                          <ImageView fitHeight="40.0" fitWidth="73.0">
+                                             <image>
+                                                <Image url="@country_40px.png" />
+                                             </image>
+                                          </ImageView>
+                                          <TextField fx:id="countryField" promptText="Country Name" />
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <padding>
+                                          <Insets left="10.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox prefHeight="55.0" prefWidth="407.0">
+                                       <children>
+                                          <ImageView fitHeight="32.0" fitWidth="64.0">
+                                             <image>
+                                                <Image url="@city_64px.png" />
+                                             </image>
+                                          </ImageView>
+                                          <TextField fx:id="cityField" promptText="City name" />
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="457.0" spacing="20.0" style="-fx-border-color: #000000; -fx-border-radius: 100;">
+                           <children>
+                              <Label style="-fx-font-family: sans-serif; -fx-font-style: italic;">
+                                 <font>
+                                    <Font name="DejaVu Sans Condensed Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                                 <children>
+                                    <ImageView fitHeight="37.0" fitWidth="49.0">
+                                       <image>
+                                          <Image url="@location_64px.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Spinner editable="true" prefHeight="24.0" prefWidth="104.0" fx:id="xSpinner" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                                 <children>
+                                    <ImageView fitHeight="41.0" fitWidth="48.0">
+                                       <image>
+                                          <Image url="@location_64px.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Spinner fx:id="ySpinner" editable="true" prefHeight="24.0" prefWidth="104.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </HBox>
+                     </children>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="4.0" />
                      </VBox.margin>
-                     <children>
-                        <Label style="-fx-font-family: sans-serif; -fx-font-style: italic;" text="Airport Name">
-                           <font>
-                              <Font name="DejaVu Sans Condensed Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="nameField" prefHeight="34.0" prefWidth="222.0" promptText="Airport Name" style="-fx-border-color: #ffffff; -fx-border-radius: 100;">
-                           <font>
-                              <Font name="FreeSerif" size="14.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="457.0" spacing="20.0" style="-fx-border-color: #000000; -fx-border-radius: 100;">
-                     <children>
-                        <Label style="-fx-font-family: sans-serif; -fx-font-style: italic;" text="Code">
-                           <font>
-                              <Font name="DejaVu Sans Condensed Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="codeField" prefHeight="34.0" prefWidth="222.0" promptText="Airport Code" style="-fx-border-color: #ffffff; -fx-border-radius: 100;">
-                           <font>
-                              <Font name="FreeSerif" size="14.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="457.0" spacing="20.0" style="-fx-border-color: #000000; -fx-border-radius: 100;">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                     <children>
-                        <VBox prefHeight="102.0" prefWidth="407.0">
-                           <children>
-                              <HBox prefHeight="55.0" prefWidth="407.0">
-                                 <children>
-                                    <Label text="Country:" />
-                                    <TextField fx:id="countryField" promptText="Country Name" />
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <padding>
-                                    <Insets left="10.0" top="10.0" />
-                                 </padding>
-                              </HBox>
-                              <HBox prefHeight="55.0" prefWidth="407.0">
-                                 <children>
-                                    <Label text="City:" />
-                                    <TextField fx:id="cityField" promptText="City name" />
-                                 </children>
-                                 <padding>
-                                    <Insets left="20.0" top="10.0" />
-                                 </padding>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="457.0" spacing="20.0" style="-fx-border-color: #000000; -fx-border-radius: 100;">
-                     <children>
-                        <Label style="-fx-font-family: sans-serif; -fx-font-style: italic;">
-                           <font>
-                              <Font name="DejaVu Sans Condensed Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
-                           <children>
-                              <Label text="X:" />
-                              <Spinner editable="true" prefHeight="24.0" prefWidth="104.0" fx:id="xSpinner" />
-                           </children>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
-                           <children>
-                              <Label text="Y:" />
-                              <Spinner fx:id="ySpinner" editable="true" prefHeight="24.0" prefWidth="104.0" />
-                           </children>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </HBox>
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
+                  </VBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                      <padding>
                         <Insets left="20.0" />
                      </padding>
                   </HBox>
                </children>
-               <VBox.margin>
-                  <Insets top="4.0" />
-               </VBox.margin>
             </VBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
-               <padding>
-                  <Insets left="20.0" />
-               </padding>
-            </HBox>
          </children>
-      </VBox>
+      </GridPane>
    </children>
-</GridPane>
+</AnchorPane>

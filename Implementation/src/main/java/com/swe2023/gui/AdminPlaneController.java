@@ -127,6 +127,6 @@ public class AdminPlaneController {
 
     public void showFLights(){
         adminSession.setPlaneToShowFlights(plane);
-        HelloApplication.showWindow(showFlights, "/admin-flight.fxml","Flights Management", null,800,640);
+        HelloApplication.showWindow(showFlights, "/admin-flight.fxml","Flights Management", null,890,576);
     }
 }
