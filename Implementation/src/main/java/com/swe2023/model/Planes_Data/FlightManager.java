@@ -46,7 +46,18 @@ public class FlightManager {
     }
 
     public List<Flight> searchFlights(Port source, Port destination, Date date, int passengersToBook) {
-        return fqb.searchFlight(source,destination);
+        List<Flight> flights=fqb.searchFlight(source,destination);
+        long requiredDay= date.getTime() / (1000*60*60*24);
+        for (Flight flight : flights){
+            if(flight.getAvailableSeats() < passengersToBook){
+                flights.remove(flight);
+                continue;
+            }
+            long flightDate= flight.getDate().getTime()/ (1000*60*60*24);
+            if(flightDate != requiredDay)
+                flights.remove(flight);
+        }
+        return flights;
     }
 
     private void filterFlights(List<Flight> flights, Port source, Port destination){
