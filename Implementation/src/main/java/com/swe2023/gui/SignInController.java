@@ -22,7 +22,7 @@ public class SignInController {
     @FXML
     public TextField usernameField;
     @FXML
-    public ImageView img;
+    public Button SignUPButton;
 
     private String errorMessage;
 
@@ -41,6 +41,10 @@ public class SignInController {
         if(user.getAdmin())
             HelloApplication.showWindow(signInButton, "/admin-home.fxml", "Administrator", "/home-admin.css",950,650);
 
+    }
+
+    public void ButtonClicked(){
+        HelloApplication.showWindow(SignUPButton, "/user-SignUp.fxml", "Sign Up", null,950,650);
 
     }
 
