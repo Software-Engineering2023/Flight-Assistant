@@ -5,6 +5,7 @@ import java.util.Date;
 
 import com.swe2023.Admin.AdminAuthorization;
 import com.swe2023.Admin.AdminSession;
+import com.swe2023.HelloApplication;
 import com.swe2023.User.UserAuthorization;
 import Proxy.Auth;
 public class LoginAndSignUp {
@@ -17,7 +18,14 @@ public class LoginAndSignUp {
 	 * @throws Exception in case email was already there.
 	 */
 	public boolean signUp(String Email,String password,Date BitrhDate,String passportNumber,String gender) throws Exception {
-		checkValidEmail(Email);//check if the use already exist
+		try {
+			checkValidEmail(Email);//check if the use already exist
+		}
+	catch (Exception e){
+			e.printStackTrace();
+
+		return false;
+	}
 		Passenger pass=new Passenger(Email,password, BitrhDate,passportNumber,gender);
 		addUserToDatabase(pass); //class passenger to add it
 		return true;
