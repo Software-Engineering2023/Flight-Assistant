@@ -8,6 +8,8 @@ create table User(
     Email varchar(100) not null,
     Password varchar(100) not null,
     isAdmin char,
+    Bdate date,
+    PassportNumber varchar(45), 
 	primary key (Id)
 );
 
@@ -38,6 +40,7 @@ create table Flight(
     Source varchar(10) not null,
     Destination varchar(10) not null,
     Plane_id int not null,
+    no_of_available_seats int not null,
     primary key (Flight_id),
     foreign key (Source) references Airport(Airport_code) on delete cascade,
     foreign key (Destination) references Airport(Airport_code) on delete cascade,
@@ -45,10 +48,35 @@ create table Flight(
 );
 
 create table Ticket(
-	Ticket_no int auto_increment not null,
-    Owner int not null,
+	Ticket_id int auto_increment not null,
+    usderID int not null,
     Cost double not null,
-    Seat_no int not null,
-    primary key (Ticket_no),
-    foreign key (Owner) references User (Id) on delete cascade
+    no_of_passenger int not null,
+    primary key (Ticket_id),
+    foreign key (usderID) references User (Id) on delete cascade
 );
+
+create table Flight_In_Tickets(
+	Ticket_id int not null,
+    flightID int not null,
+    primary key (Ticket_id),
+    foreign key (flightID) references Flight (Flight_id) on delete cascade
+);
+create table Flight_extra_In_Tickets(
+	Ticket_id int  not null,
+    flightID int not null,
+    extra varchar(45) not null,
+    primary key (Ticket_id,flightID),
+    foreign key (Ticket_id) references Ticket (Ticket_id) on delete cascade,
+    foreign key (flightID) references Flight (Flight_id) on delete cascade
+);
+
+create table seat_no_In_Tickets(
+	Ticket_id int not null,
+    flightID int not null,
+    seatNo int not null,
+    primary key (Ticket_id,flightID),
+    foreign key (Ticket_id) references Ticket (Ticket_id) on delete cascade,
+    foreign key (flightID) references Flight (Flight_id) on delete cascade
+);
+
