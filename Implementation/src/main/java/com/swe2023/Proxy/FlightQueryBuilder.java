@@ -14,7 +14,7 @@ public class FlightQueryBuilder {
 
 
     public boolean addFlight(Flight flight) {
-        String query = "insert into Flight values(?, ?, ?, ?, ?)";
+        String query = "insert into Flight values(?, ?, ?, ?, ?,?)";
         try {
             Connection connection = DB_Utils.getDataSource().getConnection();
             PreparedStatement pStatement = connection.prepareStatement(query);
@@ -23,6 +23,7 @@ public class FlightQueryBuilder {
             pStatement.setString(3, flight.getSource().getCode());
             pStatement.setString(4, flight.getDestination().getCode());
             pStatement.setInt(5, flight.getPlane().getId());
+            pStatement.setInt(5, flight.getAvailableSeats());
             pStatement.execute();
             pStatement.close();
             connection.close();

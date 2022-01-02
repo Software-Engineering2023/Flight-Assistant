@@ -21,7 +21,7 @@ public class Ticket {
     private float cost;
     private int passengersNo;
 
-    private LinkedList<String []> extras;
+    private LinkedList<String [ ]> extras;
     private LinkedList<Flight> flights;
     private LinkedList<Integer []> seatNo;
 
@@ -33,8 +33,14 @@ public class Ticket {
     public float getCost() {
         return cost;
     }
+    
+    
 
-    public int getPassengersNo() {
+    public Passenger getUser() {
+		return user;
+	}
+
+	public int getPassengersNo() {
         return passengersNo;
     }
 

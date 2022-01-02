@@ -25,6 +25,9 @@ public class Flight {
         this.plane = plane;
         this.availableSeats = plane.getNo_of_seats();
     }
+    public Flight(int flightID) {
+    	this.flightID=flightID;
+    }
 
     public int getFlightID() {
         return flightID;
