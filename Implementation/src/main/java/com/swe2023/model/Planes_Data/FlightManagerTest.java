@@ -28,10 +28,10 @@ public class FlightManagerTest {
         st.execute("DELETE FROM Plane");
         st.close();
         connection.close();
-        ports= new Port[]{new Port("AA1","X","XX","A",10,15),
-                new Port("AA2","X","XX","A",10,15),
-                new Port("BB1","X","XX","A",10,15),
-                new Port("BB2","X","XX","A",10,15)};
+        ports= new Port[]{new Port("AA1","AX","XX","A",10,15),
+                new Port("AA2","BX","XX","AB",10,15),
+                new Port("BB1","CX","XX","ABB",10,15),
+                new Port("BB2","CX","XX","ABBB",10,15)};
         planes= new Plane[]{new Plane(1,"A","AA",10,10),new Plane(2,"A","AA",10,10),
                 new Plane(3,"A","AA",10,10),new Plane(4,"A","AA",10,10)};
         for(Port port :ports)

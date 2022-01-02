@@ -9,6 +9,16 @@ import static com.swe2023.model.Planes_Data.Plane.isPlane;
 import static com.swe2023.model.Planes_Data.Port.isPort;
 
 public class Flight {
+
+    public static final String DB_TABLE_NAME= "Flight";
+    public static final String DB_ID= "Flight_id";
+    public static final String DB_DATE= "Departure";
+    public static final String DB_SOURCE= "Source";
+    public static final String DB_DESTINATION= "Destination";
+    public static final String DB_AVAILABLE_SEATS= "no_of_available_seats";
+    public static final String DB_PLANE_ID= "Plane_id";
+
+
     private int flightID;
     private Port source;
     private Port destination;

@@ -1,6 +1,15 @@
 package com.swe2023.model.Planes_Data;
 
+import java.util.Arrays;
+
 public class Plane {
+
+    public static final String DB_TABLE_NAME="Plane";
+    public static final String DB_ID="Plane_id";
+    public static final String DB_TYPE="Type";
+    public static final String DB_INCOME="Income";
+    public static final String DB_STATUS="Status";
+    public static final String DB_SEATS_NUMBER="No_of_seats";
 
     private int id, no_of_seats, income;
     private String type, status;
@@ -72,4 +81,15 @@ public class Plane {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "Plane{" +
+                "id=" + id +
+                ", no_of_seats=" + no_of_seats +
+                ", income=" + income +
+                ", type='" + type + '\'' +
+                ", status='" + status + '\'' +
+                ", flights=" + Arrays.toString(flights) +
+                '}';
+    }
 }

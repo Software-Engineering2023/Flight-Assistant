@@ -1,6 +1,15 @@
 package com.swe2023.model.Planes_Data;
 
 public class Port {
+
+    public static final String DB_TABLE_NAME= "Airport";
+    public static final String DB_ID= "Airport_code";
+    public static final String DB_CITY= "City";
+    public static final String DB_COUNTRY= "Country";
+    public static final String DB_NAME= "Name";
+    public static final String DB_X_LOCATION= "Longitude";
+    public static final String DB_Y_LOCATION= "Latitude";
+
     // edit to match database.
     private String code, country, city, name;
     private int longitude;

@@ -3,6 +3,6 @@
 */target/
 */.classpath
 */.project
-*.jar
+
 */Implementation/src/main/java/com.swe.2023/Proxy/DB_Utils.java
 

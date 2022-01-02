@@ -90,15 +90,16 @@ public class PlaneQueryBuilder {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
-                planes.add(new Plane(resultSet.getInt("Plane_id"),
-                        resultSet.getString("Type"),
-                        resultSet.getString("Status"),
-                        resultSet.getInt("No_of_seats"),
-                        resultSet.getInt("Income")));
+                planes.add(new Plane(resultSet.getInt(Plane.DB_ID),
+                        resultSet.getString(Plane.DB_TYPE),
+                        resultSet.getString(Plane.DB_STATUS),
+                        resultSet.getInt(Plane.DB_SEATS_NUMBER),
+                        resultSet.getInt(Plane.DB_INCOME)));
             }
             connection.close();
             statement.close();
             resultSet.close();
+            System.out.println(planes);
         } catch (SQLException e) {
             e.printStackTrace();
         }

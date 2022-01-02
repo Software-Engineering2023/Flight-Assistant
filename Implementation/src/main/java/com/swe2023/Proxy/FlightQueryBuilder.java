@@ -105,7 +105,7 @@ public class FlightQueryBuilder {
     public ArrayList<Flight> getAll() {
         String query = "select * from ((select * from Flight) as F " +
                 "join Airport As A on F.Source = A.Airport_code) " +
-                "join Airport on F.Destination = Airport.Airport_code";
+                "join Airport AS B on F.Destination = B.Airport_code";
         ArrayList<Flight> flights = new ArrayList<>();
         try {
             Connection connection = DB_Utils.getDataSource().getConnection();
@@ -114,15 +114,19 @@ public class FlightQueryBuilder {
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
-                flights.add(new Flight(resultSet.getInt(1),
-                        new Port(resultSet.getString(6), resultSet.getString(7),
-                                resultSet.getString(8), resultSet.getString(9),
-                                resultSet.getInt(10), resultSet.getInt(11)),
-                        new Port(resultSet.getString(12), resultSet.getString(13),
-                                resultSet.getString(14), resultSet.getString(15),
-                                resultSet.getInt(16), resultSet.getInt(17)),
-                        new Date(resultSet.getTimestamp(2).getTime()),
-                        new Plane(resultSet.getInt(5))));
+//                for(int i= 1 ; i<=20; i++)
+//                    System.out.println(resultSet.getString(i));
+                flights.add(new Flight(resultSet.getInt(Flight.DB_ID),
+                        new Port(resultSet.getString("A."+Port.DB_ID), resultSet.getString("A."+Port.DB_COUNTRY),
+                                resultSet.getString("A."+Port.DB_CITY), resultSet.getString("A."+Port.DB_NAME),
+                                resultSet.getInt("A."+Port.DB_X_LOCATION), resultSet.getInt("A."+Port.DB_Y_LOCATION)),
+
+                        new Port(resultSet.getString("B."+Port.DB_ID), resultSet.getString("B."+Port.DB_COUNTRY),
+                                resultSet.getString("B."+Port.DB_CITY), resultSet.getString("B."+Port.DB_NAME),
+                                resultSet.getInt("B."+Port.DB_X_LOCATION), resultSet.getInt("B."+Port.DB_Y_LOCATION))
+                        ,
+                        new Date(resultSet.getTimestamp(Flight.DB_DATE).getTime()),
+                        new Plane(resultSet.getInt(Flight.DB_PLANE_ID))));
             }
             connection.close();
             statement.close();
