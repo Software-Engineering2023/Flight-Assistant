@@ -40,16 +40,19 @@ public class FlightManagerTest {
         for(Plane plane: planes)
             manager.getPlaneManager().addPlane(plane);
 
-        Date date= new Date();
-        date.setTime(System.currentTimeMillis()+ 654789L);
-        System.out.println(manager.getFlightManager().addNewFlight(new Flight(1,ports[0],ports[2],date,planes[0])));
-        manager.getFlightManager().addNewFlight(new Flight(2,ports[1],ports[2],date,planes[0]));
-        manager.getFlightManager().addNewFlight(new Flight(3,ports[0],ports[3],date,planes[0]));
-        manager.getFlightManager().addNewFlight(new Flight(4,ports[1],ports[3],date,planes[0]));
-        manager.getFlightManager().addNewFlight(new Flight(5,ports[2],ports[3],date,planes[2]));
+
+//        System.out.println(manager.getFlightManager().addNewFlight(new Flight(1,ports[0],ports[2],date,planes[0])));
     }
 
     @Test
+    public void test(){
+        addNewFlight();
+        loadAllFlights();
+        searchFlights();
+        deleteFlight();
+    }
+
+
     public void searchFlights() {
         List<List<Flight>> flights=manager.getFlightManager().searchFlights(ports[0],ports[1],null,10);
         assertEquals(0,flights.size());
@@ -57,9 +60,28 @@ public class FlightManagerTest {
         assertEquals(2,flights.size());
         for (List<Flight> flight: flights)
             System.out.println(flight);
-
     }
 
 
+    public void addNewFlight() {
+        Date date= new Date();
+        date.setTime(System.currentTimeMillis()+ 654789L);
+        assertEquals("ok",manager.getFlightManager().addNewFlight(new Flight(2,ports[1],ports[2],date,planes[0])));
+        assertEquals("ok",manager.getFlightManager().addNewFlight(new Flight(3,ports[0],ports[3],date,planes[0])));
+        assertEquals("ok",manager.getFlightManager().addNewFlight(new Flight(4,ports[1],ports[3],date,planes[0])));
+        assertEquals("ok",manager.getFlightManager().addNewFlight(new Flight(5,ports[2],ports[3],date,planes[2])));
 
+        assertNotEquals("ok",manager.getFlightManager().addNewFlight(new Flight(3,ports[0],ports[3],date,planes[0])));
+    }
+
+    public void deleteFlight() {
+        Date date= new Date();
+        date.setTime(System.currentTimeMillis() +100000L);
+        manager.getFlightManager().deleteFlight(new Flight(4,ports[2],ports[3],date,planes[2]));
+        assertEquals(3,manager.loadFlightsFromDataBase().size());
+    }
+
+    public void loadAllFlights() {
+        assertEquals(4, manager.loadFlightsFromDataBase().size());
+    }
 }
