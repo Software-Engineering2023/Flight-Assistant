@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.swe2023.gui.AdminPlaneController">
    <children>
       <ImageView fitHeight="676.0" fitWidth="1013.0" pickOnBounds="true" preserveRatio="true">
@@ -56,7 +55,7 @@
                   </Button>
                </children>
             </HBox>
-            <ScrollPane  hbarPolicy="NEVER" prefHeight="627.0" prefWidth="427.0" GridPane.rowIndex="1">
+            <ScrollPane fx:id="listView" hbarPolicy="NEVER" prefHeight="627.0" prefWidth="427.0" GridPane.rowIndex="1">
                <cursor>
                   <Cursor fx:constant="V_RESIZE" />
                </cursor>
