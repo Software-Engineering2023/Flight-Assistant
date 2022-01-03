@@ -29,6 +29,12 @@ public class Ticket {
         this.user = user;
         this.passengersNo = passengersNo;
     }
+    public Ticket(String ticketID,Passenger user,float cost,int passengersNo){
+        this.user = user;
+        this.passengersNo = passengersNo;
+        this.ticketID=ticketID;
+        this.cost=cost;
+    }
 
     public float getCost() {
         return cost;
