@@ -4,6 +4,7 @@ import com.swe2023.Proxy.FlightQueryBuilder;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import static com.swe2023.model.Planes_Data.Flight.isFlight;
@@ -11,6 +12,7 @@ import static com.swe2023.model.Planes_Data.Flight.isFlight;
 public class FlightManager {
 
     private final FlightQueryBuilder fqb;
+    private static final long CURRENT_DAY= 1000*60*60*24;
 
     public FlightManager(){
         fqb= new FlightQueryBuilder();
@@ -45,22 +47,72 @@ public class FlightManager {
         return false;
     }
 
-    public List<Flight> searchFlights(Port source, Port destination, Date date, int passengersToBook) {
-        List<Flight> flights=fqb.searchFlight(source,destination);
-        long requiredDay= date==null ? -1:date.getTime() / (1000*60*60*24);
-        for (Flight flight : flights){
-            if(flight.getAvailableSeats() < passengersToBook){
-                flights.remove(flight);
-                continue;
-            }
-            if(requiredDay ==-1)
-                continue;
-            long flightDate= flight.getDate().getTime()/ (1000*60*60*24);
-            if(flightDate != requiredDay)
-                flights.remove(flight);
-        }
+    public List<List<Flight>> searchFlights(Port source, Port destination, Date date, int passengersToBook) {
+        List<List<Flight>> flights= new LinkedList<>();
+        fillFlights(flights, source, destination);
+        filterByDate(flights,date);
+        filterByPassengers(flights, passengersToBook);
         return flights;
     }
+
+    private void filterByPassengers(List<List<Flight>> flights, int passengersToBook) {
+        for(List<Flight> flightList : flights){
+            boolean remove= false;
+            for(Flight singleFlight: flightList)
+                if(singleFlight.getAvailableSeats() < passengersToBook){
+                    remove=true;
+                    break;
+                }
+            if(remove) flights.remove(flightList);
+        }
+    }
+
+    private void filterByDate(List<List<Flight>> flights, Date date) {
+        if (date == null)
+            return;
+        long expectedDay= date.getTime()/CURRENT_DAY;
+        for (List<Flight> i : flights){
+            long flightBeginningDate= (i.get(0).getDate().getTime()) / CURRENT_DAY;
+            if (flightBeginningDate != expectedDay)
+                flights.remove(i);
+        }
+    }
+
+    /**
+     * Get all flights of same destination.
+     * Remove flights with same source as required (direct).
+     * For each remaining flight:
+     * ---Search for flights of required source and destination is source of second trip
+     */
+    private void fillFlights(List<List<Flight>> flights, Port source, Port destination) {
+        List<Flight> correctDestinationFlights= fqb.searchFlight(null, destination);
+        for (Flight i : correctDestinationFlights)
+            if(source.getCode().equals(i.getSource().getCode())) { //Direct Trip
+                LinkedList<Flight> directFlight= new LinkedList<>();
+                directFlight.add(i);
+                flights.add(directFlight);
+                correctDestinationFlights.remove(i);
+            }
+        //The remaining trips have correct destination but wrong source.
+        //We will search for flights having current flight source as destination and required source as source.
+
+        for(Flight secondFlight : correctDestinationFlights) {
+            List<Flight> correctSourceFlights = fqb.searchFlight(source, secondFlight.getSource());//A transit flight
+            fillTransitList(flights,correctSourceFlights,secondFlight);
+        }
+    }
+
+    private void fillTransitList(List<List<Flight>> flights, List<Flight> correctSourceFlights, Flight secondFlight) {
+        if(correctSourceFlights == null || correctSourceFlights.isEmpty())
+            return;
+        for(Flight firstFlight: correctSourceFlights){
+            List<Flight> transitFlights= new LinkedList<>();
+            transitFlights.add(firstFlight);
+            transitFlights.add(secondFlight);
+            flights.add(transitFlights);
+        }
+    }
+
 
     private void filterFlights(List<Flight> flights, Port source, Port destination){
         for (Flight flight : flights) {
