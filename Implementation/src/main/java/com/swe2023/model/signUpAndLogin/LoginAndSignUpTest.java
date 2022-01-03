@@ -34,7 +34,7 @@ public class LoginAndSignUpTest {
 	}
 
 	@Test
-	public void performTests(){
+	public void performTests() throws Exception {
 		signUp();
 		signIn();
 	}
@@ -49,25 +49,13 @@ public class LoginAndSignUpTest {
 //		assertNull(userExpected);
 //	}
 
-	public void signUp() {
-		boolean passed1= true;
-		try{
-			loginAndSignUp.signUp(email, password1 , new Date() , null, "M");
-			System.out.println("Done");
-		}catch (Exception e){
-			e.printStackTrace();
-			passed1= false;
-		}
-		boolean passed2= false;
-		try {
-			loginAndSignUp.signUp(email, password2 , new Date(), null, "F");
-			System.out.println("False");
-		}catch (Exception e){
-			passed2= true;
-		}
+	public void signUp() throws Exception {
+		boolean passed1= loginAndSignUp.signUp(email, password1 , new Date() , null, "M");
+		boolean passed2= !loginAndSignUp.signUp(email, password2 , new Date(), null, "F");
 		assertTrue(passed1);
 		assertTrue(passed2);
 	}
+
 
 	public void signIn() {
 		boolean passed1= true;

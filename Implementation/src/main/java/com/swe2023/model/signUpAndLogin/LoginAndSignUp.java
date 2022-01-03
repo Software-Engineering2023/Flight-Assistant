@@ -23,7 +23,6 @@ public class LoginAndSignUp {
 		}
 	catch (Exception e){
 			e.printStackTrace();
-
 		return false;
 	}
 		Passenger pass=new Passenger(Email,password, BitrhDate,passportNumber,gender);

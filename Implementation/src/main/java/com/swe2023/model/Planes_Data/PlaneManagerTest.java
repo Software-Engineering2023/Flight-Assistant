@@ -1,87 +1,103 @@
 package com.swe2023.model.Planes_Data;
 
+import com.swe2023.Proxy.DB_Utils;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.ZoneId;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
 public class PlaneManagerTest {
 
 
-    static PlaneManager manager = new PlaneManager();
-    static Plane plane1 = new Plane(1,"Piston ","Active",100,999999);
-    static Plane plane2 = new Plane(2,"Turboprop  ","Suspended",0,0);
-    static Port port1 =new Port("12345","Egypt","Alex","AlexPort",12,156);
-    static Port port2 =new Port("78965","USA","Newyork","NewyorkPort",15748,69);
-    static Port port3 =new Port("","France","Paris","ParisPort",787,4564);
-    static Port port4 =new Port("365948","Germany","Berlin","BerlinPort",656,787);
-    static LocalDate  myDateObj = LocalDate.of(2022,2,1);
-    static ZoneId defaultZoneId = ZoneId.systemDefault();
-    static Flight flight1 =new Flight(1,port1,port2, Date.from(myDateObj.atStartOfDay(defaultZoneId).toInstant()),plane1);
-    static Flight flight2 =new Flight(2,port3,port4, null,plane2);
-/*
-    @Test
-    public void testAddNewPort(){
-        boolean result1 = manager.addNewPort(port1);
-        boolean result2 = manager.addNewPort(port3);
-        assertTrue(result1);
-        assertFalse(result2);
-    }
-    @Test
-    public void testAddNewPlane(){
-        manager.addNewPort(port2);
-        manager.addNewPort(port4);
-        boolean result1= manager.addPlane(plane1);
-        boolean result2=manager.addPlane(plane2);
-        assertTrue(result1);
-        assertFalse(result2);
-    }
+    private final List<Port> ports= new ArrayList<>();
+    private final List<Flight> flights= new ArrayList<>();
 
+    private static final PlaneManager manager= new PlaneManager();
 
-    @Test
-    public void testUpdatePlaneStatus(){
-        boolean result1= manager.updatePlaneStatus(plane1,"Suspended");
-        boolean result2=manager.updatePlaneStatus(plane2,"Active");
-        assertTrue(result1);
-        assertFalse(result2);
-
-    }
-    @Test
-    public void testGetPlaneIncome(){
-        int result1= manager.getPlaneIncome(plane1);
-        int result2=manager.getPlaneIncome(plane2);
-        assertEquals(999999,result1);
-        assertEquals(0,result2);
-
+    @BeforeClass
+    public static void deletePlanes() throws SQLException {
+        Connection connection = DB_Utils.getDataSource().getConnection();
+        Statement st= connection.createStatement();
+        st.execute("DELETE FROM Plane");
+        st.close();
+        connection.close();
     }
 
     @Test
-    public void testAddNewFlight(){
-
-        String result1= manager.addNewFlight(flight1);
-        String result2=manager.addNewFlight(flight2);
-        assertEquals("ok",result1);
-        assertEquals("not valid flight",result2);
+    public void testPlanes(){
+        addPlane();
+        loadPlanesFromDataBase();
+        deletePlane();
+        getPlaneFlights();
     }
 
 
-    @Test
-    public void testDeletePlane(){
-        boolean result1= manager.deletePlane(plane1);
-//        boolean result2=manager.deletePlane(plane2);
-        assertTrue(result1);
-//        assertFalse(result2);
+    private void addPlane() {
+        Plane plane= new Plane(0,"Buing","Good",15,654);
+        boolean passed1=manager.addPlane(plane);
+        assertTrue(passed1);
+
+        plane= new Plane(0, "Xtran", "Perfect", 10,254);
+        boolean passed2= !manager.addPlane(plane);
+        assertTrue(passed2);
+
+        plane= new Plane(2, null, null, 45,25);
+        boolean passed3= !manager.addPlane(plane);
+        assertTrue(passed3);
+    }
+    private void loadPlanesFromDataBase() {
+        List<Plane> planes= manager.loadPlanesFromDataBase();
+        assertEquals(1,planes.size());
+
+        Plane plane= new Plane(2,"Another One", "Well", 147,658);
+        manager.addPlane(plane);
+
+        planes= manager.loadPlanesFromDataBase();
+        assertEquals(2,planes.size());
     }
 
-    @Test
-    public void testDeleteFlight(){
-        boolean result1= manager.deleteFlight(flight1);
-        //boolean result2=manager.deleteFlight(flight2);
-        assertTrue(result1);
-        assertFalse(result2);
+    private void deletePlane() {
+        Plane plane= new Plane(0);
+        boolean passed1= manager.deletePlane(plane);
+        assertTrue(passed1);
+
+        assertEquals(1, manager.loadPlanesFromDataBase().size());
+
+        plane= new Plane(0);
+        assertTrue(manager.deletePlane(plane));
     }
 
-*/
+
+    private void getPlaneFlights(){
+        addPorts();
+        addFlights();
+        Plane plane= manager.loadPlanesFromDataBase().get(0);
+        assertEquals(1,manager.getPlaneFlights(plane).size());
+        Flight flight= manager.getPlaneFlights(plane).get(0);
+        assertEquals(10,flight.getFlightID());
+        assertEquals(ports.get(0).getCode(), flight.getSource().getCode());
+        assertEquals(ports.get(1).getCode(), flight.getDestination().getCode());
+    }
+    private void addPorts(){
+        Port source= new Port("123456","Egypt","Alexandria","Borg El Arab",35,45);
+        Port destination= new Port("1234567","Egypt","Cairo","Cairo Airport",35,45);
+        PortManager mn= new PortManager();
+        mn.addNewPort(source);
+        mn.addNewPort(destination);
+        ports.add(source);
+        ports.add(destination);
+    }
+    private void addFlights(){
+        Plane plane= manager.loadPlanesFromDataBase().get(0);
+        Date date= new Date();
+        date.setTime(System.currentTimeMillis()+10000);
+        Flight flight= new Flight(10,ports.get(0),ports.get(1),date,plane);
+        new FlightManager().addNewFlight(flight);
+    }
 }
