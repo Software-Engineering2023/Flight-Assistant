@@ -53,11 +53,6 @@
                         <Font name="SansSerif Regular" size="13.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goToAdminHome" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #da505e; -fx-font-weight: bold;" text="Back" textAlignment="CENTER" textFill="#1129ff">
-                     <font>
-                        <Font name="SansSerif Regular" size="13.0" />
-                     </font>
-                  </Button>
                </children>
             </HBox>
             <ScrollPane fx:id="listView" hbarPolicy="NEVER" prefHeight="627.0" prefWidth="427.0" GridPane.rowIndex="1">

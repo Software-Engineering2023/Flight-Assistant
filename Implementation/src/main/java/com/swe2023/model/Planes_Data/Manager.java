@@ -45,7 +45,7 @@ public class Manager implements PlanesInformation {
     }
 
     @Override
-    public List<Flight> searchFlights(Port source, Port destination, Date date, int pass) {
+    public List<List<Flight>> searchFlights(Port source, Port destination, Date date, int pass) {
         return flightManager.searchFlights(source,destination, date,pass);
     }
 
