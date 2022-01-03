@@ -33,11 +33,11 @@ public class TicketBuilder {
 
     public void ExtrasBuild(String [] extras){ ticket.getExtras().push(extras); }
 
-    public void SeatsNoBuild(Integer [] seatNo){ ticket.getSeatNo().push(seatNo); }
+    public void SeatsNoBuild(Integer [] seatNo){ ticket.getSeatNo().push(seatNo); } //1,2,3
 
 
 
-    public void calculateCost() {
+    private void calculateCost() {
         float cost = 0;
         for (Flight flight : ticket.getFlights()) {
             int xCost = (flight.getDestination().getLatitude() - flight.getSource().getLatitude());

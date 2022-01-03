@@ -1,18 +1,14 @@
 package com.swe2023.gui;
 
 import com.swe2023.HelloApplication;
+import com.swe2023.User.UserSession;
 import com.swe2023.model.signUpAndLogin.LoginAndSignUp;
+import com.swe2023.model.signUpAndLogin.Passenger;
 import com.swe2023.model.signUpAndLogin.User;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class SignInController {
     @FXML
@@ -40,7 +36,9 @@ public class SignInController {
         }
         if(user.getAdmin())
             HelloApplication.showWindow(signInButton, "/admin-home.fxml", "Administrator", "/home-admin.css",950,650);
-
+        else{
+            UserSession.getSession().setUser((Passenger) user);
+        }
     }
 
     public void ButtonClicked(){
