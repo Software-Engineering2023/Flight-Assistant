@@ -1,5 +1,6 @@
 package com.swe2023.model.Tickets_Data;
 
+import com.swe2023.Proxy.FlightQueryBuilder;
 import com.swe2023.model.Planes_Data.Flight;
 import com.swe2023.model.signUpAndLogin.User;
 import com.swe2023.model.signUpAndLogin.Passenger;
@@ -52,12 +53,14 @@ public class TicketBuilder {
     }
 
     public void confirmBuild(){
-       this.calculateCost();
+        FlightQueryBuilder fqb = new FlightQueryBuilder();
+        this.calculateCost();
        //add ticket to each plane
         tqb.addTicket(ticket);
         for(Flight flight: ticket.getFlights()){
             flight.setAvailableSeats(flight.getAvailableSeats()-ticket.getPassengersNo());
             flight.getTickets().add(ticket);
+            fqb.updateFlightSeats(flight);
         }
     }
 }
