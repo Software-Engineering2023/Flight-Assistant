@@ -2,10 +2,7 @@ package com.swe2023.model.Planes_Data;
 
 import com.swe2023.Proxy.FlightQueryBuilder;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static com.swe2023.model.Planes_Data.Flight.isFlight;
 
@@ -48,7 +45,7 @@ public class FlightManager {
     }
 
     public List<List<Flight>> searchFlights(Port source, Port destination, Date date, int passengersToBook) {
-        List<List<Flight>> flights= new LinkedList<>();
+        List<List<Flight>> flights= new ArrayList<>();
         fillFlights(flights, source, destination);
         filterByDate(flights,date);
         filterByPassengers(flights, passengersToBook);
@@ -86,13 +83,15 @@ public class FlightManager {
      */
     private void fillFlights(List<List<Flight>> flights, Port source, Port destination) {
         List<Flight> correctDestinationFlights= fqb.searchFlight(null, destination);
-        for (Flight i : correctDestinationFlights)
-            if(source.getCode().equals(i.getSource().getCode())) { //Direct Trip
-                LinkedList<Flight> directFlight= new LinkedList<>();
-                directFlight.add(i);
+        for (int i =0 ;i<correctDestinationFlights.size();i++) {
+            Flight f= correctDestinationFlights.get(i);
+            if (source.getCode().equals(f.getSource().getCode())) { //Direct Trip
+                List<Flight> directFlight = new ArrayList<>();
+                directFlight.add(f);
                 flights.add(directFlight);
-                correctDestinationFlights.remove(i);
+                correctDestinationFlights.remove(f);
             }
+        }
         //The remaining trips have correct destination but wrong source.
         //We will search for flights having current flight source as destination and required source as source.
 
@@ -106,7 +105,7 @@ public class FlightManager {
         if(correctSourceFlights == null || correctSourceFlights.isEmpty())
             return;
         for(Flight firstFlight: correctSourceFlights){
-            List<Flight> transitFlights= new LinkedList<>();
+            List<Flight> transitFlights= new ArrayList<>();
             transitFlights.add(firstFlight);
             transitFlights.add(secondFlight);
             flights.add(transitFlights);

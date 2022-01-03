@@ -86,10 +86,10 @@ public class Flight {
                 "flightID=" + flightID +
                 ", source=" + source +
                 ", destination=" + destination +
-                ", plane=" + plane +
-                ", tickets=" + tickets +
-                ", date=" + date +
-                ", availableSeats=" + availableSeats +
+//                ", plane=" + plane +
+//                ", tickets=" + tickets +
+//                ", date=" + date +
+//                ", availableSeats=" + availableSeats +
                 '}';
     }
 }

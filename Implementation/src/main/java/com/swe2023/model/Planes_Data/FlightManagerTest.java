@@ -46,14 +46,17 @@ public class FlightManagerTest {
         manager.getFlightManager().addNewFlight(new Flight(2,ports[1],ports[2],date,planes[0]));
         manager.getFlightManager().addNewFlight(new Flight(3,ports[0],ports[3],date,planes[0]));
         manager.getFlightManager().addNewFlight(new Flight(4,ports[1],ports[3],date,planes[0]));
+        manager.getFlightManager().addNewFlight(new Flight(5,ports[2],ports[3],date,planes[2]));
     }
 
     @Test
     public void searchFlights() {
-//        List<Flight> flights=manager.getFlightManager().searchFlights(ports[0],ports[1],null,10);
-//        assertEquals(0,flights.size());
-//        flights=manager.getFlightManager().searchFlights(ports[0],ports[2],null,10);
-//        assertEquals(1,flights.size());
+        List<List<Flight>> flights=manager.getFlightManager().searchFlights(ports[0],ports[1],null,10);
+        assertEquals(0,flights.size());
+        flights=manager.getFlightManager().searchFlights(ports[1],ports[3],null,10);
+        assertEquals(2,flights.size());
+        for (List<Flight> flight: flights)
+            System.out.println(flight);
 
     }
 
