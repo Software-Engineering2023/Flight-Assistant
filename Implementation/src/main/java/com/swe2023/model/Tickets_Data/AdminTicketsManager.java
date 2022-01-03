@@ -21,10 +21,16 @@ public class AdminTicketsManager {
            //increase free seats by Passengers number
              flight.getTickets().remove(ticket);
              flight.setAvailableSeats(flight.getAvailableSeats()+ticket.getPassengersNo());
+             
+             //updateFlightSeats(flight);
          }
         tqb.deleteTicket(ticket);
+        
         ticket = null;
+        
      }
+    
+    
 
      public void modifyTicketExtra(Ticket ticket,Flight flight,String extra[]){
          int i = ticket.getFlights().indexOf(flight);

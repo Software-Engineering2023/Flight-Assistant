@@ -71,6 +71,22 @@ public class FlightQueryBuilder {
             return false;
         }
     }
+    public boolean updateFlightSeats(Flight flight) {
+        String query = "update Flight set no_of_available_seats=?  where Flight_id = ?";
+        try {
+            Connection connection = DB_Utils.getDataSource().getConnection();
+            PreparedStatement pStatement = connection.prepareStatement(query);
+            pStatement.setInt(1, flight.getAvailableSeats());
+            pStatement.setInt(2, flight.getFlightID());
+            pStatement.execute();
+            pStatement.close();
+            connection.close();
+
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
 
     public boolean deleteFlight(Date date) {
         String query = "delete from Flight where Departure < ?";
