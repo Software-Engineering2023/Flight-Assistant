@@ -28,7 +28,7 @@ public class UserSession {
         return planesInformation.loadPortsFromDataBase();
     }
 
-    public List<Flight> searchFlights(Port source, Port destination, Date date, int passengersToBook){
+    public List<List<Flight>> searchFlights(Port source, Port destination, Date date, int passengersToBook){
         return planesInformation.searchFlights(source,destination, date, passengersToBook);
     }
 
