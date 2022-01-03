@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.swe2023.gui.AdminPlaneController">
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.swe2023.gui.AdminPlaneController">
    <children>
       <ImageView fitHeight="676.0" fitWidth="1013.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -30,7 +40,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <HBox prefHeight="650.0" prefWidth="950.0" spacing="48.0" style="-fx-background-image: airport_30px.png;" GridPane.columnIndex="1">
+            <HBox prefHeight="650.0" prefWidth="950.0" spacing="48.0" GridPane.columnIndex="1">
                <children>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createPlane" prefHeight="30.0" prefWidth="77.0" style="-fx-background-color: #5090ff; -fx-font-weight: bold;" text="Create" textAlignment="CENTER" textFill="#a80505">
                      <font>
@@ -53,9 +63,14 @@
                         <Font name="SansSerif Regular" size="13.0" />
                      </font>
                   </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="11.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToAdminHome" prefHeight="30.0" prefWidth="77.0" style="-fx-background-color: red; -fx-font-weight: bold;" text="Back" textAlignment="CENTER" textFill="#070bd7">
+                     <font>
+                        <Font name="SansSerif Regular" size="13.0" />
+                     </font>
+                  </Button>
                </children>
             </HBox>
-            <ScrollPane fx:id="listView" hbarPolicy="NEVER" prefHeight="627.0" prefWidth="427.0" GridPane.rowIndex="1">
+            <ScrollPane hbarPolicy="NEVER" prefHeight="627.0" prefWidth="427.0" GridPane.rowIndex="1">
                <cursor>
                   <Cursor fx:constant="V_RESIZE" />
                </cursor>
