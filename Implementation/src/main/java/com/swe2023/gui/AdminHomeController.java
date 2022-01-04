@@ -12,18 +12,22 @@ public class AdminHomeController {
 
 
     public void goToSignIn() throws IOException {
-        HelloApplication.showWindow(signInButton, "/signIn.fxml", "Welcome", null,950,650);
+        HelloApplication.showWindow(signInButton, "/signIn.fxml", "Welcome",
+                null,950,650);
     }
 
     public void goToAirport() {
-        HelloApplication.showWindow(signInButton, "/admin-airport.fxml","Airports Management", null,890,568);
+        HelloApplication.showWindow(signInButton, "/admin-airport.fxml","Airports Management",
+                 null, 890,568);
     }
 
     public void managePlanes() {
-        HelloApplication.showWindow(signInButton, "/admin-plane.fxml","Planes Management", null,890,568);
+        HelloApplication.showWindow(signInButton, "/admin-plane.fxml","Planes Management",
+                null,890,568);
     }
     public void manageFlights(){
-        HelloApplication.showWindow(signInButton, "/admin-flight.fxml","Flights Management", null,890,576);
+        HelloApplication.showWindow(signInButton, "/admin-flight.fxml","Flights Management",
+                null,890,576);
 
     }
 }

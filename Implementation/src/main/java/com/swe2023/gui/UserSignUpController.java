@@ -69,7 +69,8 @@ public class UserSignUpController {
             }
     }
     public void ButtonClicked(){
-        HelloApplication.showWindow(b1, "/signIn.fxml", "Welcome", null,950,650);
+        HelloApplication.showWindow(b1, "/signIn.fxml", "Welcome",
+                null,950,650);
 
     }
 

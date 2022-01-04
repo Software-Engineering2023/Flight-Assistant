@@ -5,6 +5,7 @@ module com.swe2023 {
     requires java.management;
     requires java.sql;
     requires junit;
+    requires de.jensd.fx.glyphs.fontawesome;
 
     opens com.swe2023 to javafx.fxml;
     exports com.swe2023.gui;

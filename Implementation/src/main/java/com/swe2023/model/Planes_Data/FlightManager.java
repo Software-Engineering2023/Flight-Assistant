@@ -68,11 +68,14 @@ public class FlightManager {
         if (date == null)
             return;
         long expectedDay= date.getTime()/CURRENT_DAY;
-        for (List<Flight> i : flights){
-            long flightBeginningDate= (i.get(0).getDate().getTime()) / CURRENT_DAY;
-            if (flightBeginningDate != expectedDay)
-                flights.remove(i);
-        }
+
+        flights.removeIf((List<Flight> i) ->
+                ((i.get(0).getDate().getTime()) / CURRENT_DAY) != expectedDay);
+//        for (List<Flight> i : flights){
+//            long flightBeginningDate= (i.get(0).getDate().getTime()) / CURRENT_DAY;
+//            if (flightBeginningDate != expectedDay)
+//                flights.remove(i);
+//        }
     }
 
     /**

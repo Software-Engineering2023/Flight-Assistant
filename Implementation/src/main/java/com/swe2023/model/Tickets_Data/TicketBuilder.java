@@ -6,11 +6,14 @@ import com.swe2023.model.signUpAndLogin.User;
 import com.swe2023.model.signUpAndLogin.Passenger;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.Random;
 import com.swe2023.Proxy.TicketQuery;
 
 
 public class TicketBuilder {
+
     private Ticket ticket;
     private TicketQuery tqb;
 
@@ -19,11 +22,11 @@ public class TicketBuilder {
     }
 
     public void TicketBuild(Passenger user, int passengersNo){
-        ticket = new Ticket(user,passengersNo);
+        ticket = new Ticket(user, passengersNo);
 
         byte[] array = new byte[9];
         new Random().nextBytes(array);
-        String generatedID = new String(array, Charset.forName("UTF-8"));
+        String generatedID = new String(array, StandardCharsets.UTF_8);
         ticket.setTicketID(generatedID);
     }
 
@@ -37,7 +40,7 @@ public class TicketBuilder {
 
 
 
-    private void calculateCost() {
+    public float calculateCost() {
         float cost = 0;
         for (Flight flight : ticket.getFlights()) {
             int xCost = (flight.getDestination().getLatitude() - flight.getSource().getLatitude());
@@ -45,16 +48,21 @@ public class TicketBuilder {
             int yCost = (flight.getDestination().getLongitude() - flight.getSource().getLongitude());
             cost += (yCost * yCost) * ticket.getPassengersNo();
         }
-        for (String [] extra : ticket.getExtras()) {
-            cost += extra.length*10;
-            //add hashmap for each extra cost
-        }
+        HashMap<String, Integer> classCosts = new HashMap<>();
+        classCosts.put("First Class", 2000);
+        classCosts.put("Business", 1500);
+        classCosts.put("Economic", 700);
+        for (String [] extra : ticket.getExtras())
+            cost += classCosts.get(extra[0]);
         ticket.setCost(cost);
+        return cost;
     }
 
     public void confirmBuild(){
         FlightQueryBuilder fqb = new FlightQueryBuilder();
-        this.calculateCost();
+
+//        this.calculateCost();
+
        //add ticket to each plane
         tqb.addTicket(ticket);
         for(Flight flight: ticket.getFlights()){

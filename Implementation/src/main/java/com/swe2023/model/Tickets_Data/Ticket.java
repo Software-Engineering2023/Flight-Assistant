@@ -21,19 +21,25 @@ public class Ticket {
     private float cost;
     private int passengersNo;
 
-    private LinkedList<String [ ]> extras;
+    private LinkedList<String []> extras;
     private LinkedList<Flight> flights;
     private LinkedList<Integer []> seatNo;
 
     public Ticket(Passenger user,int passengersNo){
         this.user = user;
         this.passengersNo = passengersNo;
+        // edit...
+        this.flights = new LinkedList<>();
+        this.extras = new LinkedList<>();
     }
     public Ticket(String ticketID,Passenger user,float cost,int passengersNo){
         this.user = user;
         this.passengersNo = passengersNo;
         this.ticketID=ticketID;
         this.cost=cost;
+        // edit...
+        this.flights = new LinkedList<>();
+        this.extras = new LinkedList<>();
     }
 
     public float getCost() {

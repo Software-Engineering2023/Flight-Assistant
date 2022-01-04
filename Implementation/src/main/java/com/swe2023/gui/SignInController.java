@@ -35,14 +35,16 @@ public class SignInController {
             return;
         }
         if(user.getAdmin())
-            HelloApplication.showWindow(signInButton, "/admin-home.fxml", "Administrator", "/home-admin.css",950,650);
+            HelloApplication.showWindow(signInButton, "/admin-home.fxml", "Administrator",
+                    "/home-admin.css", 950,650);
         else{
             UserSession.getSession().setUser((Passenger) user);
         }
     }
 
     public void ButtonClicked(){
-        HelloApplication.showWindow(SignUPButton, "/user-SignUp.fxml", "Sign Up", null,950,650);
+        HelloApplication.showWindow(SignUPButton, "/user-SignUp.fxml", "Sign Up",
+                null, 950,650);
 
     }
 

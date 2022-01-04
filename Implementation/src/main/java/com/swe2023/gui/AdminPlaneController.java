@@ -48,7 +48,8 @@ public class AdminPlaneController {
 
     public void goToAdminHome() {
         adminSession.setPlaneToShowFlights(null);
-        HelloApplication.showWindow(updateButton, "/admin-home.fxml", "Administrator", null,950,650);
+        HelloApplication.showWindow(updateButton, "/admin-home.fxml", "Administrator",
+                null,950,650);
     }
 
     private Plane getCurrentPlane(){
@@ -126,6 +127,7 @@ public class AdminPlaneController {
 
     public void showFLights(){
         adminSession.setPlaneToShowFlights(plane);
-        HelloApplication.showWindow(showFlights, "/admin-flight.fxml","Flights Management", null,890,576);
+        HelloApplication.showWindow(showFlights, "/admin-flight.fxml","Flights Management",
+                null,890,576);
     }
 }
