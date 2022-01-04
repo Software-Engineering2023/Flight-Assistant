@@ -110,7 +110,7 @@
             </HBox>
          </children>
       </VBox>
-      <Button fx:id="signInButton" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="662.0" layoutY="220.0" mnemonicParsing="false" onAction="#signIn" opacity="0.57" prefHeight="63.0" prefWidth="225.0" style="-fx-background-color: LightSkyBlue; -fx-border-color: #0000cd;" text="Sign In" textAlignment="RIGHT" textFill="#1a0551" textOverrun="LEADING_WORD_ELLIPSIS">
+      <Button fx:id="signInButton" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="662.0" layoutY="220.0" mnemonicParsing="false" onAction="#signIn" prefHeight="63.0" prefWidth="225.0" style="-fx-background-color: LightSkyBlue; -fx-border-color: #0000cd;" text="Sign In" textAlignment="RIGHT" textFill="#1a0551" textOverrun="LEADING_WORD_ELLIPSIS">
          <font>
             <Font name="System Bold" size="40.0" />
          </font>
@@ -147,7 +147,7 @@
             </Label>
          </children>
       </GridPane>
-      <Button fx:id="SignUPButton" layoutX="443.0" layoutY="510.0" mnemonicParsing="false" onAction="#ButtonClicked" opacity="0.66" prefHeight="52.0" prefWidth="146.0" style="-fx-border-color: #000080; -fx-background-color: LightSeaGreen;" text="Sign Up Here" textFill="#0e3138">
+      <Button fx:id="SignUPButton" layoutX="443.0" layoutY="510.0" mnemonicParsing="false" onAction="#ButtonClicked" prefHeight="52.0" prefWidth="146.0" style="-fx-border-color: #000080; -fx-background-color: LightSeaGreen;" text="Sign Up Here" textFill="#0e3138">
          <font>
             <Font size="20.0" />
          </font>

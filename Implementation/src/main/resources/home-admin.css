@@ -1,23 +1,9 @@
-.button {
-
-    /*-fx-width: 100%;*/
-    /*-fx-height: 3em;*/
-    -fx-display: flex;
-    -fx-flex-direction: row;
-    -fx-justify-content: center;
-    -fx-align-items: center;
-    -fx-background: #000000;
+.button:pressed:hover {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
 }
 
 .button:hover {
-    -fx-width: 220px;
-    -fx-height: 50px;
-    -fx-border: none;
-    -fx-outline: none;
-    -fx-text-fill: #fff;
-    /*-fx-background-color: #ffffff;*/
-    -fx-cursor: pointer;
-    -fx-position: relative;
-    -fx-z-index: 0;
-    -fx-border-radius: 10px;
+    -fx-background-color: #383838;
+    -fx-scale-y: 1.1;
 }
