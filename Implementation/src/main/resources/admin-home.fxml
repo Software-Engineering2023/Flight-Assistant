@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="540.0" minWidth="950.0" prefHeight="540.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.swe2023.gui.AdminHomeController">
+   <children>
+      <ImageView fitHeight="816.0" fitWidth="1237.0" layoutX="-148.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@wp2508287.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="262.0" layoutY="5.0" prefHeight="72.0" prefWidth="500.0" text="Welcome Admin">
+         <font>
+            <Font size="48.0" />
+         </font>
+         <textFill>
+            <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="0.7878787589795662">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.16399219632148743" green="0.08233918249607086" blue="0.6947368383407593" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <VBox layoutX="3.0" layoutY="88.0" prefHeight="451.0" prefWidth="966.0">
+         <children>
+            <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#goToAirport" prefHeight="66.0" prefWidth="616.0" style="-fx-background-color: #000;" text="Manage Airports" textAlignment="CENTER" textFill="#1f88ff">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="50.0" left="100.0" right="250.0" top="50.0" />
+               </VBox.margin>
+            </Button>
+            <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#manageFlights" prefHeight="38.0" prefWidth="762.0" style="-fx-background-color: #000;" text="Manage Flights" textAlignment="CENTER" textFill="#1f88ff">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="50.0" left="100.0" right="250.0" top="50.0" />
+               </VBox.margin>
+            </Button>
+            <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#managePlanes" prefHeight="38.0" prefWidth="762.0" style="-fx-background-color: #000;" text="Manage Planes" textAlignment="CENTER" textFill="#1f88ff">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="50.0" left="100.0" right="250.0" top="50.0" />
+               </VBox.margin>
+            </Button>
+            <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="762.0" style="-fx-background-color: #000;" text="Manage Tickets" textAlignment="CENTER" textFill="#1f88ff">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="50.0" left="100.0" right="250.0" top="50.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <Button fx:id="signInButton" layoutX="37.0" layoutY="23.0" mnemonicParsing="false" onAction="#goToSignIn" prefHeight="24.0" prefWidth="93.0" style="-fx-background-color: black;" text="Back" textFill="#1f88ff" />
+   </children>
+</AnchorPane>
