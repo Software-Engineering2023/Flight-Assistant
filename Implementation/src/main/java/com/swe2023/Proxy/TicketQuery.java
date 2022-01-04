@@ -88,8 +88,8 @@ public class TicketQuery {
             for(Integer[] SN:seatNo) {
             	
             	for(int e:SN) {
-            		pStatementSeatNo.setInt(1,newTicketID);
-                    pStatementSeatNo.setInt(2,flights.get(flightCounter).getFlightID());
+            		pStatementSeatNo.setInt(1, newTicketID);
+                    pStatementSeatNo.setInt(2, flights.get(flightCounter).getFlightID());
                     pStatementSeatNo.setInt(3, e);
                     pStatementSeatNo.execute();
             	}

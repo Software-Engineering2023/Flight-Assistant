@@ -34,6 +34,8 @@ public class Flight {
         this.date = Date;
         this.plane = plane;
         this.availableSeats = plane.getNo_of_seats();
+        // edit...
+        this.tickets = new LinkedList<>();
     }
     public Flight(int flightID) {
     	this.flightID=flightID;

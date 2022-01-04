@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.text.Font?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="400.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/17"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.swe2023.gui.FinalWizardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.swe2023.gui.FinalWizardController">
    <children>
       <AnchorPane layoutX="20.0" layoutY="42.0" prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #323aa8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -65,7 +59,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="finish" layoutX="433.0" layoutY="343.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="32.0" prefWidth="112.0" style="-fx-background-color: #323aa8;" text="Finish" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="433.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="343.0">
+      <Button fx:id="finish" layoutX="433.0" layoutY="343.0" mnemonicParsing="false" onAction="#backToHome" prefHeight="32.0" prefWidth="112.0" style="-fx-background-color: #323aa8;" text="Finish" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="55.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

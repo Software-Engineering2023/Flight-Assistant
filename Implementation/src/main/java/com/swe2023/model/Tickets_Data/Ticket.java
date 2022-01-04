@@ -31,6 +31,7 @@ public class Ticket {
         // edit...
         this.flights = new LinkedList<>();
         this.extras = new LinkedList<>();
+        this.seatNo = new LinkedList<>();
     }
     public Ticket(String ticketID,Passenger user,float cost,int passengersNo){
         this.user = user;
@@ -40,6 +41,7 @@ public class Ticket {
         // edit...
         this.flights = new LinkedList<>();
         this.extras = new LinkedList<>();
+        this.seatNo = new LinkedList<>();
     }
 
     public float getCost() {

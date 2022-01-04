@@ -72,19 +72,9 @@ public class User {
 		this.password = password;
 	}
 
-
-
-
-
-
 	public Date getBirthDate() {
 		return birthDate;
 	}
-
-
-
-
-
 
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
@@ -99,9 +89,6 @@ public class User {
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-
-
-
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

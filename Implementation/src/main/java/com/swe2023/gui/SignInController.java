@@ -37,8 +37,15 @@ public class SignInController {
         if(user.getAdmin())
             HelloApplication.showWindow(signInButton, "/admin-home.fxml", "Administrator",
                     "/home-admin.css", 950,650);
-        else{
-            UserSession.getSession().setUser((Passenger) user);
+        else {
+            Passenger passenger = new Passenger(user.getEmail(), user.getPassword(), user.getBirthDate(),
+                    null, user.getGender());
+            passenger.setID(user.getID());
+            UserSession.getSession().setUser(passenger);
+            HelloApplication.showWindow(signInButton, "/wizard1.fxml","Wizard1",
+                    null, 700, 500);
+//            UserSession.getSession().setUser(user);
+
         }
     }
 
