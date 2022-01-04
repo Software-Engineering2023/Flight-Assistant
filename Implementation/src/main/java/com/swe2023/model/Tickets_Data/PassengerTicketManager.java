@@ -8,11 +8,11 @@ import com.swe2023.model.signUpAndLogin.Passenger;
 public class PassengerTicketManager {
     Ticket[] ticketsShown;
 
-    private TicketQuery tqb;
+//    private TicketQuery tqb;
     private FlightQueryBuilder fqb;
 
     public PassengerTicketManager (){
-        tqb = new TicketQuery();
+        //tqb = new TicketQuery();
         fqb = new FlightQueryBuilder();
     }
     public void cancelTicket(Ticket ticket){
@@ -23,8 +23,8 @@ public class PassengerTicketManager {
             flight.getTickets().remove(ticket);
             fqb.updateFlightSeats(flight);
         }
-        tqb.deleteTicket(ticket);
-        ticket = null;
+        TicketQuery.deleteTicket(ticket);
+     //   ticket = null;
     }
     public void modifyTicketExtra(Ticket ticket,Flight flight, String[] extra){
         int i = ticket.getFlights().indexOf(flight);
