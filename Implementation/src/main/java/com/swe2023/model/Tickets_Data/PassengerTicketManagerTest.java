@@ -35,5 +35,5 @@ public class PassengerTicketManagerTest {
         ArrayList<Ticket> allTickets = TicketQuery.getAll();
         assertFalse( allTickets.contains(ticket));
     }
-    
+
 }

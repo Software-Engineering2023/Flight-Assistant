@@ -24,10 +24,10 @@ public class TicketBuilder {
     public void TicketBuild(Passenger user, int passengersNo){
         ticket = new Ticket(user, passengersNo);
 
-        byte[] array = new byte[9];
-        new Random().nextBytes(array);
-        String generatedID = new String(array, StandardCharsets.UTF_8);
-        ticket.setTicketID(generatedID);
+//        byte[] array = new byte[9];
+//        new Random().nextBytes(array);
+//        String generatedID = new String(array, StandardCharsets.UTF_8);
+//        ticket.setTicketID(generatedID);
     }
 
     public void FLightBuild(Flight flight){
