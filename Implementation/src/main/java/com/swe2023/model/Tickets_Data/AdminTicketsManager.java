@@ -10,12 +10,12 @@ import java.util.LinkedList;
 
 public class AdminTicketsManager {
      Ticket[] ticketsShown;
-    private TicketQuery tqb;
+    //private TicketQuery tqb;
     private FlightQueryBuilder fqb;
 
     public AdminTicketsManager (){
         fqb = new FlightQueryBuilder();
-        tqb = new TicketQuery();
+       // tqb = new TicketQuery();
     }
 
     public void cancelTicket(Ticket ticket){
@@ -26,9 +26,9 @@ public class AdminTicketsManager {
              flight.setAvailableSeats(flight.getAvailableSeats()+ticket.getPassengersNo());
              fqb.updateFlightSeats(flight);
          }
-        tqb.deleteTicket(ticket);
+        TicketQuery.deleteTicket(ticket);
         
-        ticket = null;
+        //ticket = null;
         
      }
     
@@ -37,13 +37,13 @@ public class AdminTicketsManager {
      public void modifyTicketExtra(Ticket ticket,Flight flight,String extra[]){
          int i = ticket.getFlights().indexOf(flight);
          ticket.getExtras().set(i,extra);
-         tqb.deleteTicket(ticket);
-         tqb.addTicket(ticket);
+         TicketQuery.deleteTicket(ticket);
+         TicketQuery.addTicket(ticket);
      }
     public void modifyTicketUser(Ticket ticket, Passenger user){
         ticket.setUser(user);
-        tqb.deleteTicket(ticket);
-        tqb.addTicket(ticket);
+        TicketQuery.deleteTicket(ticket);
+        TicketQuery.addTicket(ticket);
     }
 
 //    public void loadTicketCertainDate(String date){
