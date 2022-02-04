@@ -21,6 +21,7 @@ import com.swe2023.model.Planes_Data.Plane;
 import com.swe2023.model.Planes_Data.Port;
 import com.swe2023.model.Tickets_Data.Ticket;
 import com.swe2023.model.signUpAndLogin.Passenger;
+import com.swe2023.Proxy.FlightQueryBuilder;
 
 public class TicketQuery {
 	public static boolean addTicket(Ticket ticket) {
@@ -121,15 +122,24 @@ public class TicketQuery {
 //        }
 //    }
 	
-	public static boolean deleteTicket(Ticket tiket) {
+	public static boolean deleteTicket(Ticket ticket) {
 		
        
-        String query = "delete from Ticket where Ticket_id = ?";
+        String query = "delete from Ticket where Ticket_id = "+ticket.getTicketID();
+        String queryForFlightInTickets ="delete from Flight_In_Tickets where Ticket_id = "+ticket.getTicketID();
+        String queryForFlightExtraInTickets ="delete from Flight_extra_In_Tickets where Ticket_id = "+ticket.getTicketID();
+        String queryForFlightSeatNo ="delete from seat_no_In_Tickets where Ticket_id = "+ticket.getTicketID();
         try {
             Connection connection = DB_Utils.getDataSource().getConnection();
             PreparedStatement pStatement = connection.prepareStatement(query);
-            pStatement.setInt(1, Integer.parseInt(tiket.getTicketID()));
             pStatement.execute();
+            pStatement = connection.prepareStatement(queryForFlightInTickets);
+            pStatement.execute();
+            pStatement = connection.prepareStatement(queryForFlightExtraInTickets);
+            pStatement.execute();
+            pStatement = connection.prepareStatement(queryForFlightSeatNo);
+            pStatement.execute();
+            
             pStatement.close();
             connection.close();
             return true;
@@ -139,11 +149,11 @@ public class TicketQuery {
     }
 	
 	public static ArrayList<Ticket> getAll() {
-        String query = "select * from User as u INNER JOIN Ticket as t on t.usderID=u.Id ";
+        String query = "select * from User as u INNER JOIN Ticket as t on t.usderID=u.Id where ";
         String queryForGetFlight="select * from  Flight_In_Tickets where Ticket_id=?";
         String queryForExtra="select * from  Flight_extra_In_Tickets where Ticket_id=? and flightID=?";
         String queryForSeats="select * from  seat_no_In_Tickets where Ticket_id=? and flightID=?";
-
+        String queryOfFlightDetail="select * from Flight where Flight_id= ?";
         ArrayList<Ticket> tickets = new ArrayList<>();
         try {
             Connection connection = DB_Utils.getDataSource().getConnection();
@@ -208,6 +218,18 @@ public class TicketQuery {
             	tickets.add(ticket);
             	
             }
+            PreparedStatement pStatementForFlightDetails = connection.prepareStatement(queryOfFlightDetail);
+            FlightQueryBuilder  flightQueryBuilder=new FlightQueryBuilder();
+            
+            int counter=0;
+            for(Ticket t:tickets) {
+            	LinkedList<Flight> flights=new LinkedList<>();
+            	for(Flight f:t.getFlights()) {
+            		flights.add(flightQueryBuilder.getFlightByID(f.getFlightID()));
+            	}
+            	tickets.get(counter++).setFlights(flights);
+            }
+            
             connection.close();
             statement.close();
             resultSet.close();
@@ -388,25 +410,25 @@ public class TicketQuery {
 		String dateInString = "7-Jun-2013";
 		Date date = formatter.parse(dateInString);
 		Passenger p=new Passenger("a","11",date,"123","m");
-		p.setID(2);
+		p.setID(1);
 		LinkedList<Integer []> seatNo=new LinkedList<Integer []>();
 		seatNo.add(y);
-		Ticket ticket =new Ticket(p,5);
-		ticket.setCost(1500);
+		Ticket ticket =new Ticket(p,6);
+		ticket.setCost(1000);
 		ticket.setExtras(extras);
 		ticket.setFlights(flights);
 		ticket.setSeatNo(seatNo);
-		//ticket.setTicketID("2");
+		//ticket.setTicketID("4");
 		//addTicket(ticket);
 		//deleteTicket(ticket);
-		//ArrayList<Ticket> t=getAll();
+		ArrayList<Ticket> t=getAll();
 		//System.out.println("size :"+t.size());
 		//Ticket t1=t.get(0);
 		//Ticket t2=t.get(1);
 		//System.out.println(t1.getCost());
 		//System.out.println(t2.getCost());
-		ArrayList<Ticket> t=getTicketOfUser(3);
-		System.out.println("size"+t.size());
+		//ArrayList<Ticket> t=getTicketOfUser(3);
+		//System.out.println("size"+t.size());
 	}
 	
 	
