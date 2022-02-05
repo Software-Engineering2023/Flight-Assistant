@@ -147,9 +147,16 @@ public class TicketQuery {
             return false;
         }
     }
-	
-	public static ArrayList<Ticket> getAll() {
-        String query = "select * from User as u INNER JOIN Ticket as t on t.usderID=u.Id where ";
+	///////fuction to get all ticket on the system if flightID=0 and ticket of flight if flightID has other numbeer
+	public static ArrayList<Ticket> getAll(int flightID) {
+		String query;
+		if(flightID==0) {
+			 query = "select * from User as u INNER JOIN Ticket as t on t.usderID=u.Id  ";
+		}else {
+			 query="select * from Flight_In_Tickets as f INNER JOIN Ticket as t on t.Ticket_id=f.Ticket_id  INNER JOIN User as u on t.usderID=u.Id  where  flightID= "+flightID;
+
+		}
+        
         String queryForGetFlight="select * from  Flight_In_Tickets where Ticket_id=?";
         String queryForExtra="select * from  Flight_extra_In_Tickets where Ticket_id=? and flightID=?";
         String queryForSeats="select * from  seat_no_In_Tickets where Ticket_id=? and flightID=?";
@@ -240,6 +247,23 @@ public class TicketQuery {
     }
 	
 	
+	public static ArrayList<Passenger> getTopTenUser() throws SQLException{
+		String query = "select * ,sum(cost) As Toatal_COst from User as u INNER JOIN Ticket as t on t.usderID=u.Id group by u.Id DESC limit 10 ";
+		ArrayList<Passenger> passengers=new ArrayList<>();
+		Connection connection = DB_Utils.getDataSource().getConnection();
+        Statement statement = connection.createStatement();
+
+        ResultSet resultSet = statement.executeQuery(query);
+        
+        while(resultSet.next()) {
+        	Passenger p=new Passenger(resultSet.getString("Email"),resultSet.getString("Password"),resultSet.getDate("Bdate"),resultSet.getString("PassportNumber"),resultSet.getString("Gender"));
+        	p.setTotalTicketCost(resultSet.getFloat("Toatal_COst"));
+        	passengers.add(p);
+        }
+		return null;
+	}
+	
+	
 	public static ArrayList<Ticket> getTicketOfUser(int id) throws SQLException{
 		String query="select * from Ticket ,User where "+
 				"User.Id=Ticket.usderID"+
@@ -320,6 +344,17 @@ public class TicketQuery {
         }
         return tickets;
 	}
+	
+//	public ArrayList<Ticket> getTicketOfFlight(int flightID) throws SQLException{
+//		String query="select * from Flight_In_Tickets as f INNER JOIN Ticket as t on t.Ticket_id=f.Ticket_id  INNER JOIN User as u on t.usderID=u.Id  where  flightID= "+flightID;
+//		Connection connection = DB_Utils.getDataSource().getConnection();
+//        Statement statement = connection.createStatement();
+//
+//        ResultSet resultSet = statement.executeQuery(query);
+//		return null;
+//		
+//	}
+	
 	
 	//String data 2022-11-11 
 	public ArrayList<Ticket> getTicketOnDay(String date) throws SQLException{
@@ -421,7 +456,7 @@ public class TicketQuery {
 		//ticket.setTicketID("4");
 		//addTicket(ticket);
 		//deleteTicket(ticket);
-		ArrayList<Ticket> t=getAll();
+		ArrayList<Ticket> t=getAll(0);
 		//System.out.println("size :"+t.size());
 		//Ticket t1=t.get(0);
 		//Ticket t2=t.get(1);
