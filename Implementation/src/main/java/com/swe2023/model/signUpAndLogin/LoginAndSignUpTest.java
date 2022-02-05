@@ -3,6 +3,8 @@ package com.swe2023.model.signUpAndLogin;
 import static org.junit.Assert.*;
 
 import com.swe2023.Proxy.DB_Utils;
+import com.swe2023.model.security.DataEncryption;
+import com.swe2023.model.security.Encryptor;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -12,8 +14,8 @@ import java.sql.Statement;
 import java.util.Date;
 
 public class LoginAndSignUpTest {
-
-	public static final LoginAndSignUp loginAndSignUp= new LoginAndSignUp();
+	public static Encryptor encryptor= new DataEncryption();
+	public static final LoginAndSignUp loginAndSignUp= new LoginAndSignUp(encryptor.getPublicKey());
 	public static final String email= "seif.com";
 	public static final String password1= "123456";
 	public static final String password2= "47895123";
@@ -22,7 +24,7 @@ public class LoginAndSignUpTest {
 	public static void deleteAllUsers() throws SQLException {
 		System.out.println("Called!");
 		Connection connection = DB_Utils.getDataSource().getConnection();
-		execute(connection, "DELETE FROM User");
+		execute(connection, "DELETE FROM User WHERE isAdmin='2'");
 		execute(connection, "INSERT INTO User(Name,Gender,Email,Password,isAdmin) VALUES ('admin', 'M', 'admin.com','12345', '1')");
 		connection.close();
 	}
@@ -50,8 +52,10 @@ public class LoginAndSignUpTest {
 //	}
 
 	public void signUp() throws Exception {
-		boolean passed1= loginAndSignUp.signUp(email, password1 , new Date() , null, "M");
-		boolean passed2= !loginAndSignUp.signUp(email, password2 , new Date(), null, "F");
+		String encrypted= encryptor.encrypt(password1, loginAndSignUp.getPublicKey());
+		boolean passed1= loginAndSignUp.signUp(email, encrypted , new Date() , null, "M");
+		encrypted= encryptor.encrypt(password2, loginAndSignUp.getPublicKey());
+		boolean passed2= !loginAndSignUp.signUp(email, encrypted , new Date(), null, "F");
 		assertTrue(passed1);
 		assertTrue(passed2);
 	}
@@ -60,16 +64,18 @@ public class LoginAndSignUpTest {
 	public void signIn() {
 		boolean passed1= true;
 		try {
-			User user=loginAndSignUp.signIn(email, password1);
+			User user=loginAndSignUp.signIn(email, encryptor.encrypt(password1, loginAndSignUp.getPublicKey()));
 			if(!user.getGender().equals("M"))
 				throw new RuntimeException("Data is not correct!");
+			if(!encryptor.decrypt(user.getPassword()).equals(password1))
+				throw new RuntimeException("Encryption is not correct!");
 		}catch (Exception e){
 			e.printStackTrace();
 			passed1= false;
 		}
 		boolean passed2= false;
 		try {
-			User user=loginAndSignUp.signIn(email, password2);
+			User user=loginAndSignUp.signIn(email, encryptor.encrypt(password2, loginAndSignUp.getPublicKey()));
 			if(user == null)throw new NullPointerException();
 		}catch (Exception e){
 			passed2= true;
