@@ -24,6 +24,7 @@ import com.swe2023.model.signUpAndLogin.Passenger;
 
 public class TicketQuery {
 	public static boolean addTicket(Ticket ticket) {
+		System.out.println(ticket.getUser().getID());
 		String queryForGetID="SELECT max(Ticket_id) AS Max_Id FROM Ticket";
         String queryForTiketTable = "insert into Ticket(Ticket_id,usderID,Cost,no_of_passenger) values(default, ?, ?, ?)";
         String queryForFlightInTickets ="insert into Flight_In_Tickets values(?, ?)";
@@ -100,6 +101,7 @@ public class TicketQuery {
             connection.close();
             return true;
         } catch (SQLException e) {
+			e.printStackTrace();
             return false;
         }
     }
