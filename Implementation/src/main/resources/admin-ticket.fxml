@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="568.0" prefWidth="890.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.swe2023.gui.AdminTicketController">
+   <children>
+      <Button fx:id="b1" layoutX="187.0" layoutY="38.0" mnemonicParsing="false" onAction="#b1_Clicked" prefHeight="36.0" prefWidth="177.0" text="Edit Tickets" />
+      <Button fx:id="b2" layoutX="430.0" layoutY="38.0" mnemonicParsing="false" onAction="#b2_Clicked" prefHeight="36.0" prefWidth="177.0" text="Ticket Flights" />
+      <Button fx:id="b3" layoutX="678.0" layoutY="38.0" mnemonicParsing="false" onAction="#b3_Clicked" prefHeight="36.0" prefWidth="177.0" text="Ticket Users" />
+      <ListView fx:id="listview1" layoutX="430.0" layoutY="80.0" onMouseClicked="#getViewItem" prefHeight="448.0" prefWidth="425.0" />
+      <Button fx:id="b4" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#b4_Clicked" prefHeight="36.0" prefWidth="120.0" text="Home Page" />
+      <Button fx:id="b5" layoutX="607.0" layoutY="230.0" mnemonicParsing="false" onAction="#editTicket" prefHeight="36.0" prefWidth="120.0" text="Confirm" />
+      <Label fx:id="l1" layoutX="203.0" layoutY="104.0" prefHeight="36.0" prefWidth="120.0" text="Ticket ID">
+         <font>
+            <Font name="System Italic" size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#ba1111ec" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label fx:id="l3" layoutX="39.0" layoutY="304.0" prefHeight="36.0" prefWidth="224.0" text="Passeneger Number">
+         <font>
+            <Font name="System Italic" size="24.0" />
+         </font>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#231ad6d6" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Label>
+      <Label fx:id="l2" layoutX="39.0" layoutY="230.0" prefHeight="36.0" prefWidth="120.0" text="Cost">
+         <font>
+            <Font name="System Italic" size="24.0" />
+         </font>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#231ad6d6" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Label>
+      <TextField fx:id="t1" editable="false" layoutX="159.0" layoutY="140.0" />
+      <TextField fx:id="t3" layoutX="292.0" layoutY="307.0" />
+      <TextField fx:id="t2" layoutX="292.0" layoutY="233.0" />
+      <Button fx:id="b6" layoutX="74.0" layoutY="492.0" mnemonicParsing="false" onAction="#b6_Clicked" prefHeight="36.0" prefWidth="158.0" text="Back" />
+   </children>
+</AnchorPane>
