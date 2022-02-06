@@ -67,8 +67,8 @@ public class SignInController {
     }
 
     private void checkValidityOfInputs(String username, String password){
-        boolean userCorrect=  (username != null) && username.matches("[A-Za-z0-9_@.]+");
-        boolean passwordCorrect=  (password != null) && password.length() > 4 ;
+        boolean userCorrect=(username != null) && username.matches("[A-Za-z0-9_@.]+");
+        boolean passwordCorrect= (password != null) && password.length() > 4 ;
         if(!userCorrect || !passwordCorrect){
             setErrorMessage("Username or Password are not valid inputs!");
             throw new RuntimeException();

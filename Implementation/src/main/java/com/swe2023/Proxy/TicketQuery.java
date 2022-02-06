@@ -21,10 +21,12 @@ import com.swe2023.model.Planes_Data.Plane;
 import com.swe2023.model.Planes_Data.Port;
 import com.swe2023.model.Tickets_Data.Ticket;
 import com.swe2023.model.signUpAndLogin.Passenger;
+import com.swe2023.model.signUpAndLogin.User;
 import com.swe2023.Proxy.FlightQueryBuilder;
 
 public class TicketQuery {
 	public static boolean addTicket(Ticket ticket) {
+		System.out.println("enter add ticket query ");
 		String queryForGetID="SELECT max(Ticket_id) AS Max_Id FROM Ticket";
         String queryForTiketTable = "insert into Ticket(Ticket_id,usderID,Cost,no_of_passenger) values(default, ?, ?, ?)";
         String queryForFlightInTickets ="insert into Flight_In_Tickets values(?, ?)";
@@ -52,6 +54,7 @@ public class TicketQuery {
 //            System.out.println((ticket.getUser()).getID());
 //            System.out.println(ticket.getCost());
 //            System.out.println(ticket.getPassengersNo());
+            Passenger u=ticket.getUser();
             pStatement.setInt(1, (ticket.getUser()).getID());
             pStatement.setDouble(2, ticket.getCost());
             pStatement.setInt(3, ticket.getPassengersNo());
@@ -170,9 +173,12 @@ public class TicketQuery {
            
             
             while (resultSet.next()) {
-            	Ticket ticket =new  Ticket( new Passenger(resultSet.getString("Email"),resultSet.getString("Password"),resultSet.getDate("Bdate"),resultSet.getString("PassportNumber"),resultSet.getString("Gender")),resultSet.getInt("no_of_passenger"));
+            	Passenger p=new Passenger(resultSet.getString("Email"),resultSet.getString("Password"),resultSet.getDate("Bdate"),resultSet.getString("PassportNumber"),resultSet.getString("Gender"));
+            	p.setID(resultSet.getInt("usderID"));
+            	Ticket ticket =new  Ticket( p,resultSet.getInt("no_of_passenger"));
             	ticket.setTicketID(Integer.toString(resultSet.getInt("Ticket_id")));
             	ticket.setCost(resultSet.getFloat("Cost"));
+            
             	PreparedStatement pStatementForFlights = connection.prepareStatement(queryForGetFlight);
             	pStatementForFlights.setInt(1, resultSet.getInt("Ticket_id"));
             	System.out.println(resultSet.getInt("Ticket_id"));
@@ -248,7 +254,7 @@ public class TicketQuery {
 	
 	
 	public static ArrayList<Passenger> getTopTenUser() throws SQLException{
-		String query = "select * ,sum(cost) As Toatal_COst from User as u INNER JOIN Ticket as t on t.usderID=u.Id group by u.Id DESC limit 10 ";
+		String query = "select * ,sum(cost) As Total_cost from User as u INNER JOIN Ticket as t on t.usderID=u.Id group by u.Id  ORDER BY Total_cost DESC limit 5;";
 		ArrayList<Passenger> passengers=new ArrayList<>();
 		Connection connection = DB_Utils.getDataSource().getConnection();
         Statement statement = connection.createStatement();
@@ -257,10 +263,10 @@ public class TicketQuery {
         
         while(resultSet.next()) {
         	Passenger p=new Passenger(resultSet.getString("Email"),resultSet.getString("Password"),resultSet.getDate("Bdate"),resultSet.getString("PassportNumber"),resultSet.getString("Gender"));
-        	p.setTotalTicketCost(resultSet.getFloat("Toatal_COst"));
+        	p.setTotalTicketCost((double)resultSet.getObject("Total_cost"));
         	passengers.add(p);
         }
-		return null;
+		return passengers;
 	}
 	
 	
@@ -456,7 +462,7 @@ public class TicketQuery {
 		//ticket.setTicketID("4");
 		//addTicket(ticket);
 		//deleteTicket(ticket);
-		ArrayList<Ticket> t=getAll(0);
+		//ArrayList<Ticket> t=getAll(0);
 		//System.out.println("size :"+t.size());
 		//Ticket t1=t.get(0);
 		//Ticket t2=t.get(1);
@@ -464,6 +470,7 @@ public class TicketQuery {
 		//System.out.println(t2.getCost());
 		//ArrayList<Ticket> t=getTicketOfUser(3);
 		//System.out.println("size"+t.size());
+		getTopTenUser();
 	}
 	
 	

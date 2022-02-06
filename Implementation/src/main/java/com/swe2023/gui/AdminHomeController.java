@@ -30,4 +30,8 @@ public class AdminHomeController {
                 null,890,576);
 
     }
+    public void manageTickets(){
+        HelloApplication.showWindow(signInButton, "/admin-ticket.fxml","Tickets Management",
+                null,890,576);
+    }
 }

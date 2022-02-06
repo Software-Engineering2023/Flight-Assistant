@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="540.0" minWidth="950.0" prefHeight="540.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.swe2023.gui.AdminHomeController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="540.0" minWidth="950.0" prefHeight="540.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.swe2023.gui.AdminHomeController">
    <children>
       <ImageView fitHeight="816.0" fitWidth="1237.0" layoutX="-148.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -66,7 +61,7 @@
                   <Insets bottom="50.0" left="100.0" right="250.0" top="50.0" />
                </VBox.margin>
             </Button>
-            <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="762.0" style="-fx-background-color: #000;" text="Manage Tickets" textAlignment="CENTER" textFill="#1f88ff">
+            <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#manageTickets" prefHeight="38.0" prefWidth="762.0" style="-fx-background-color: #000;" text="Manage Tickets" textAlignment="CENTER" textFill="#1f88ff">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
