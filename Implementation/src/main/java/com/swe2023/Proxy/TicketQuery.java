@@ -76,6 +76,7 @@ public class TicketQuery {
             		System.out.println(flights.get(flightCounter).getFlightID());
             		pStatementFlightExtra.setInt(2,flights.get(flightCounter).getFlightID());
             		pStatementFlightExtra.setString(3, e);
+					System.out.println(pStatementFlightExtra);
             		pStatementFlightExtra.execute();
             	}
             	flightCounter++;
