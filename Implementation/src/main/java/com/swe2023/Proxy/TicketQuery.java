@@ -17,15 +17,12 @@ import java.util.LinkedList;
 import java.util.Locale;
 
 import com.swe2023.model.Planes_Data.Flight;
-import com.swe2023.model.Planes_Data.Plane;
-import com.swe2023.model.Planes_Data.Port;
 import com.swe2023.model.Tickets_Data.Ticket;
 import com.swe2023.model.signUpAndLogin.Passenger;
-import com.swe2023.model.signUpAndLogin.User;
-import com.swe2023.Proxy.FlightQueryBuilder;
 
 public class TicketQuery {
 	public static boolean addTicket(Ticket ticket) {
+
 		System.out.println("enter add ticket query ");
 		String queryForGetID="SELECT max(Ticket_id) AS Max_Id FROM Ticket";
         String queryForTiketTable = "insert into Ticket(Ticket_id,usderID,Cost,no_of_passenger) values(default, ?, ?, ?)";
@@ -104,6 +101,7 @@ public class TicketQuery {
             connection.close();
             return true;
         } catch (SQLException e) {
+			e.printStackTrace();
             return false;
         }
     }
@@ -255,6 +253,7 @@ public class TicketQuery {
 	
 	public static ArrayList<Passenger> getTopTenUser() throws SQLException{
 		String query = "select * ,sum(cost) As Total_cost from User as u INNER JOIN Ticket as t on t.usderID=u.Id group by u.Id  ORDER BY Total_cost DESC limit 5;";
+
 		ArrayList<Passenger> passengers=new ArrayList<>();
 		Connection connection = DB_Utils.getDataSource().getConnection();
         Statement statement = connection.createStatement();
@@ -263,10 +262,11 @@ public class TicketQuery {
         
         while(resultSet.next()) {
         	Passenger p=new Passenger(resultSet.getString("Email"),resultSet.getString("Password"),resultSet.getDate("Bdate"),resultSet.getString("PassportNumber"),resultSet.getString("Gender"));
-        	p.setTotalTicketCost((double)resultSet.getObject("Total_cost"));
+        	p.setTotalTicketCost((double) resultSet.getObject("Total_cost"));
         	passengers.add(p);
         }
 		return passengers;
+
 	}
 	
 	
@@ -492,6 +492,7 @@ public class TicketQuery {
 		addTicket(ticket);
 		//deleteTicket(ticket);
 //		ArrayList<Ticket> t=getAll(1);
+
 		//System.out.println("size :"+t.size());
 		//Ticket t1=t.get(0);
 		//Ticket t2=t.get(1);
@@ -500,6 +501,7 @@ public class TicketQuery {
 		//ArrayList<Ticket> t=getTicketOfUser(3);
 		//System.out.println("size"+t.size());
 		//getTopTenUser();
+
 	}
 	
 	

@@ -128,3 +128,4 @@ insert into Flight values(default,"2022-11-11","140","140",10,100);
 select * ,sum(cost) As Toatal_COst from User as u INNER JOIN Ticket as t on t.usderID=u.Id group by u.Id;
 select * from Flight_In_Tickets as f INNER JOIN Ticket as t on t.Ticket_id=f.Ticket_id  INNER JOIN User as u on t.usderID=u.Id  where  flightID=1;
 select * ,sum(cost) As Total_cost from User as u INNER JOIN Ticket as t on t.usderID=u.Id group by u.Id  ORDER BY Total_cost DESC limit 5;
+

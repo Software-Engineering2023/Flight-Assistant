@@ -17,6 +17,7 @@ public class User {
 	private String password;
 	private Date birthDate;  
 	private String gender;
+	private float totalTicketCost;
 	protected double balance;
 	protected boolean admin;
 
@@ -91,7 +92,12 @@ public class User {
 	}
 	
 
-	
+	public float getTotalTicketCost() {
+		return totalTicketCost;
+	}
+	public void setTotalTicketCost(float totalTicketCost) {
+		this.totalTicketCost = totalTicketCost;
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

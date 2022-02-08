@@ -1,17 +1,16 @@
 package com.swe2023.gui;
 
+import com.swe2023.Admin.AdminSession;
 import com.swe2023.HelloApplication;
 import com.swe2023.model.Planes_Data.Flight;
-import com.swe2023.model.Tickets_Data.AdminTicketsManager;
 import com.swe2023.model.Tickets_Data.Ticket;
 import com.swe2023.model.signUpAndLogin.Passenger;
-import com.swe2023.model.signUpAndLogin.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Objects;
 
 
 public class AdminTicketController {
@@ -22,7 +21,7 @@ public class AdminTicketController {
     public Button b4;
     public Button b5;
     public Button b6;
-    public ListView listview1;
+    public ListView<String> listview1;
     public Label l1;
     public Label l2;
     public Label l3;
@@ -30,10 +29,10 @@ public class AdminTicketController {
     public TextField t2;
     public TextField t3;
 
-    AdminTicketsManager ticketManager=new AdminTicketsManager();
+    AdminSession adminSession= AdminSession.getSession();
     ArrayList<Ticket> tickets=new ArrayList<>();
     int index;
-    private String errorMessage;
+//    private String errorMessage;
 
     public void initialize() {
         //fil tickets here
@@ -88,13 +87,13 @@ public class AdminTicketController {
 
 
     }
-    public void b3_Clicked() throws SQLException{
+    public void b3_Clicked(){
         b1.setVisible(false);
         b2.setVisible(false);
         b3.setVisible(false);
         b6.setVisible(true);
         //fill users
-        ArrayList<Passenger> users =  ticketManager.getTopUsers();
+        ArrayList<Passenger> users =  adminSession.getTopUsers();
         topUsers(users);
 
 
@@ -109,7 +108,7 @@ public class AdminTicketController {
         initialize();
     }
     public void allTickets(){
-    	tickets=ticketManager.getAllTickets();
+    	tickets=adminSession.getAllTickets();
         listview1.getItems().clear();
         for(Ticket ticket : tickets)
             listview1.getItems().add("Ticket ID  : "+ticket.getTicketID()+" Passenger Numbers : "+ticket.getPassengersNo()+" Cost : "+ticket.getCost());
@@ -124,11 +123,11 @@ public class AdminTicketController {
         Ticket ticket =tickets.get(index);
         String ticketCost = t2.getText();
         String ticketPassenegerNo = t3.getText();
-        if (ticketCost!=""&&ticketPassenegerNo!="") {
+        if (!Objects.equals(ticketCost, "") && !Objects.equals(ticketPassenegerNo, "")) {
             System.out.println("cost : "+ticketCost);
             ticket.setCost(Float.parseFloat(ticketCost));
             ticket.setPassengersNo(Integer.parseInt(ticketPassenegerNo));
-            ticketManager.modifyTicketUser(ticket, ticket.getUser());
+            adminSession.modifyTicketUser(ticket, ticket.getUser());
             initialize();
         }
         else {

@@ -86,15 +86,23 @@ public class FlightManager {
      */
     private void fillFlights(List<List<Flight>> flights, Port source, Port destination) {
         List<Flight> correctDestinationFlights= fqb.searchFlight(null, destination);
-        for (int i =0 ;i<correctDestinationFlights.size();i++) {
-            Flight f= correctDestinationFlights.get(i);
-            if (source.getCode().equals(f.getSource().getCode())) { //Direct Trip
-                List<Flight> directFlight = new ArrayList<>();
-                directFlight.add(f);
-                flights.add(directFlight);
-                correctDestinationFlights.remove(f);
+        correctDestinationFlights.forEach(flight -> {
+            if (flight.getSource().getCode().equals(source.getCode())) {
+                List<Flight> temp = new ArrayList<>();
+                temp.add(flight);
+                flights.add(temp);
             }
-        }
+        });
+        correctDestinationFlights.removeIf((Flight i) -> i.getSource().getCode().equals(source.getCode()));
+
+//        for (int i =0 ;i<correctDestinationFlights.size();i++) {
+//            Flight f = correctDestinationFlights.get(i);
+//            if (source.getCode().equals(f.getSource().getCode())) { //Direct Trip
+//                List<Flight> directFlight = new ArrayList<>();
+//                directFlight.add(f);
+//                flights.add(directFlight);
+//            }
+//        }
         //The remaining trips have correct destination but wrong source.
         //We will search for flights having current flight source as destination and required source as source.
 
@@ -114,7 +122,6 @@ public class FlightManager {
             flights.add(transitFlights);
         }
     }
-
 
     private void filterFlights(List<Flight> flights, Port source, Port destination){
         for (Flight flight : flights) {

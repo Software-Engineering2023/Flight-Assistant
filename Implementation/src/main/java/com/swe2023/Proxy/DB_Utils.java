@@ -9,11 +9,16 @@ public class DB_Utils {
 
     // add your db main setup here.
     private static final String URL = "jdbc:mysql://localhost:3306/Airline";
+<<<<<<< HEAD
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "1111";
+=======
+//    private static final String DB_USERNAME = "root";
+//    private static final String DB_PASSWORD = "1111";
+>>>>>>> 6ce93c10302bc4d426f0f2acbc8c8c72bc4a1008
 
-//    private static final String DB_USERNAME = "airSystem";
-//    private static final String DB_PASSWORD = "Root$12345?";
+    private static final String DB_USERNAME = "airSystem";
+    private static final String DB_PASSWORD = "Root$12345?";
 
     private static BasicDataSource dataSource;
 

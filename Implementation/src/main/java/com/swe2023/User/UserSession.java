@@ -59,6 +59,7 @@ public class UserSession {
 
     public float getTotalCost() {
         if (selectedTrip != null) {
+            System.out.println(user.getID());
             ticketBuilder.TicketBuild(user, selectedTrip.getNoOfPassengers());
             String[] extras= new String[]{selectedTrip.getTicketClass()};
             for (Flight flight : selectedTrip.getFlights()) {

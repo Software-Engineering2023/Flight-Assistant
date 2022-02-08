@@ -2,6 +2,8 @@ package com.swe2023.Admin;
 
 import com.swe2023.model.Planes_Data.*;
 import com.swe2023.model.Tickets_Data.AdminTicketsManager;
+import com.swe2023.model.Tickets_Data.Ticket;
+import com.swe2023.model.signUpAndLogin.Passenger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,11 +12,12 @@ public class AdminSession {
 
     private static AdminSession session;
     private final Manager manager;
-    private AdminTicketsManager ticketManager;
+    private final AdminTicketsManager ticketManager;
 
     private AdminSession(){
         System.out.println("111111");
         manager= new Manager();
+        ticketManager= new AdminTicketsManager();
     }
 
     public static AdminSession getSession() {
@@ -60,5 +63,20 @@ public class AdminSession {
 
     public boolean deleteFlight(Flight flight){
         return manager.getFlightManager().deleteFlight(flight);
+    }
+
+    public ArrayList<Passenger> getTopUsers(){
+        try{
+            return ticketManager.getTopUsers();
+        }catch (Exception e){
+            return new ArrayList<>();
+        }
+    }
+    public ArrayList<Ticket> getAllTickets(){
+        return ticketManager.getAllTickets();
+    }
+
+    public void modifyTicketUser(Ticket ticket, Passenger ticketUser){
+        ticketManager.modifyTicketUser(ticket, ticketUser);
     }
 }
