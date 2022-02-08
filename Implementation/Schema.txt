@@ -47,7 +47,6 @@ create table Flight(
     foreign key (Destination) references Airport(Airport_code) on delete cascade,
     foreign key (Plane_id) references Plane (Plane_id) on delete cascade
 );
-insert into Flight values(default,"2022-11-11","140","140",10,100);
 select * from flight;
 create table Ticket(
 	Ticket_id int auto_increment not null,
@@ -70,7 +69,7 @@ create table Flight_extra_In_Tickets(
 	Ticket_id int  not null,
     flightID int not null,
     extra varchar(45) not null,
-    primary key (Ticket_id,flightID,extra),
+    primary key (Ticket_id,flightID),
     foreign key (Ticket_id) references Ticket (Ticket_id) on delete cascade,
     foreign key (Ticket_id) references Ticket (Ticket_id) on delete cascade,
     foreign key (flightID) references Flight (Flight_id) on delete cascade
@@ -90,7 +89,8 @@ select * from Flight;
 select * from seat_no_In_Tickets;
 select * from Flight_extra_In_Tickets;
 select * from Flight_In_Tickets;
-insert into User  (Id,name, gender, Email, Password, isAdmin, Bdate,PassportNumber)values(default,"sakr",'m',"sakr@","111","1",'1980-12-12',"2453");
+insert into User  (Id,name, gender, Email, Password, isAdmin, Bdate,PassportNumber)values(default,"sakr",'m',"seif@","111","0",'1980-12-12',"2453");
 select * from User;
-insert into Flight(usderID,Cost,no_of_passenger) values(default, 1, 2000, 20);
 select * from Ticket , User,Flight, Flight_In_Tickets,seat_no_In_Tickets,Flight_extra_In_Tickets,seat_no_In_Tickets where User.Id=Ticket.usderID and Flight.Flight_id=Flight_In_Tickets.flightID and seat_no_In_Tickets.Ticket_id=Ticket.Ticket_id  and   Flight_extra_In_Tickets.Ticket_id=Ticket.Ticket_id      and User.Id=1;
+insert into Flight values(default,"2022-11-11","140","140",10,100);
+select * from User as u INNER JOIN Ticket as t on t.usderID=u.Id;

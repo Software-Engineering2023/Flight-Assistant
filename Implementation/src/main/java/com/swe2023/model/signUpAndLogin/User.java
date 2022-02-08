@@ -89,7 +89,9 @@ public class User {
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
+	
 
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

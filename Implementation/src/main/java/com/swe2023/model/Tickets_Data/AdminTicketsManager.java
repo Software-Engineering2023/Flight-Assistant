@@ -6,6 +6,8 @@ import com.swe2023.model.Planes_Data.Flight;
 import com.swe2023.model.signUpAndLogin.Passenger;
 import com.swe2023.Proxy.TicketQuery;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class AdminTicketsManager {
@@ -43,8 +45,18 @@ public class AdminTicketsManager {
     public void modifyTicketUser(Ticket ticket, Passenger user){
         ticket.setUser(user);
         TicketQuery.deleteTicket(ticket);
+        System.out.println("line 48 admin ticket");
         TicketQuery.addTicket(ticket);
     }
+    
+    public  ArrayList<Ticket> getAllTickets(){
+    	return TicketQuery.getAll(0);
+    }
+    
+    public  ArrayList<Passenger> getTopUsers() throws SQLException{
+    	return TicketQuery.getTopTenUser();
+    }
+    
 
 //    public void loadTicketCertainDate(String date){
 //

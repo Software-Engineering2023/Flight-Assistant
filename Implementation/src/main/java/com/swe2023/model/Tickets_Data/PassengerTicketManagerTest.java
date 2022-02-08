@@ -32,7 +32,7 @@ public class PassengerTicketManagerTest {
     }
     public void deleteTicket(Ticket ticket){
         manager.cancelTicket(ticket);
-        ArrayList<Ticket> allTickets = TicketQuery.getAll();
+        ArrayList<Ticket> allTickets = TicketQuery.getAll(0);
         assertFalse( allTickets.contains(ticket));
     }
 

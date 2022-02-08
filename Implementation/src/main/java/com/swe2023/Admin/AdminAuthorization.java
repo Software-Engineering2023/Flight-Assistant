@@ -8,6 +8,8 @@ public class AdminAuthorization {
 
 	public static User signIn(String Email,String password,String truePassword) throws Exception {
 		if(password.equals(truePassword)) {
+			System.out.println(truePassword);
+			System.out.println(password);
 			return Auth.getUser(Email);
 		}else
 			return null;
