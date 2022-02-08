@@ -34,10 +34,6 @@ public class TicketQueryTest {
         execute(connection, "insert into Flight values(21,'2022-11-11','140','140',10,100)");
         execute(connection, "insert into Ticket(Ticket_id,usderID,Cost,no_of_passenger) values(default, 1, 1500.0, 5)");
 
-
-
-//        execute(connection, "Delete FROM Flight_extra_In_Tickets");
-//        execute(connection, "Delete FROM Flight_extra_In_Tickets");
         connection.close();
     }
 
@@ -46,9 +42,7 @@ public class TicketQueryTest {
             Statement x = connection.createStatement();
             x.execute(Query);
             x.close();
-        }catch (Exception ignored){
-            ignored.printStackTrace();
-        }
+        }catch (Exception ignored){}
     }
 
 
