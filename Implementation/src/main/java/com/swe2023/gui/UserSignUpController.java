@@ -1,6 +1,8 @@
 package com.swe2023.gui;
 
 import com.swe2023.HelloApplication;
+import com.swe2023.model.security.DataEncryption;
+import com.swe2023.model.security.Encryptor;
 import com.swe2023.model.signUpAndLogin.LoginAndSignUp;
 
 import javafx.event.ActionEvent;
@@ -34,6 +36,8 @@ public class UserSignUpController {
     String password;
     String passportNumber;
     Date date;
+
+    private final Encryptor encryptor= new DataEncryption();
     public boolean signUp() throws Exception {
          Email= email.getText();
          password= password1.getText();
@@ -47,9 +51,10 @@ public class UserSignUpController {
             return false;
         }
         date = Date.from(birthdate.getValue().atStartOfDay(defaultZoneId).toInstant());
-        LoginAndSignUp LoginAndSignUp= new LoginAndSignUp();
+        LoginAndSignUp log= new LoginAndSignUp(encryptor.getPublicKey());
+        password= encryptor.encrypt(password,log.getPublicKey());
         System.out.println("Email "+Email+" password :"+ password + " date "+date+" passportNumber "+passportNumber+" gender "+gender);
-        LoginAndSignUp.signUp(Email,password,date,passportNumber,gender);
+        log.signUp(Email,password,date,passportNumber,gender);
         return true;
     }
     public void SignUpButtonClicked() throws Exception {

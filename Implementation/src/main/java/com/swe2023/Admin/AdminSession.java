@@ -12,11 +12,12 @@ public class AdminSession {
 
     private static AdminSession session;
     private final Manager manager;
-    private AdminTicketsManager ticketManager;
+    private final AdminTicketsManager ticketManager;
 
     private AdminSession(){
         System.out.println("111111");
         manager= new Manager();
+        ticketManager= new AdminTicketsManager();
     }
 
     public static AdminSession getSession() {

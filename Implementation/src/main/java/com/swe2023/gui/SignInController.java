@@ -2,6 +2,8 @@ package com.swe2023.gui;
 
 import com.swe2023.HelloApplication;
 import com.swe2023.User.UserSession;
+import com.swe2023.model.security.DataEncryption;
+import com.swe2023.model.security.Encryptor;
 import com.swe2023.model.signUpAndLogin.LoginAndSignUp;
 import com.swe2023.model.signUpAndLogin.Passenger;
 import com.swe2023.model.signUpAndLogin.User;
@@ -12,6 +14,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+
+import java.security.PublicKey;
 
 public class SignInController {
     @FXML
@@ -25,6 +29,7 @@ public class SignInController {
 
 
     private String errorMessage;
+    private final Encryptor encryptor= new DataEncryption();
 
     public void h1_Clicked() throws URISyntaxException, IOException {
         System.out.println("h1 clicked");
@@ -84,13 +89,23 @@ public class SignInController {
 
     private User checkUserIsAdmin(String username, String password){
         try {
-            User user= new LoginAndSignUp().signIn(username, password);
+            LoginAndSignUp log= new LoginAndSignUp(encryptor.getPublicKey());
+            String encryptedPassword = encrypt(password, log.getPublicKey());
+            User user= log.signIn(username, encryptedPassword);
             if(user ==null)throw new RuntimeException();
+            user.setPassword(decrypt(user.getPassword()));
             return user;
         }catch (Exception e){
             setErrorMessage("Incorrect Username or Password!");
             throw new RuntimeException();
         }
+    }
+
+    private String encrypt(String data, PublicKey publicKey) {
+        return encryptor.encrypt(data,publicKey);
+    }
+    private String decrypt(String data){
+        return encryptor.decrypt(data);
     }
 
     private void checkValidityOfInputs(String username, String password){
@@ -105,7 +120,6 @@ public class SignInController {
     public String getErrorMessage() {
         return errorMessage;
     }
-
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
