@@ -84,13 +84,47 @@ create table seat_no_In_Tickets(
     foreign key (flightID) references Flight (Flight_id) on delete cascade
 );
 
+
+DELIMITER |
+CREATE TRIGGER  Check_Tickets  BEFORE update ON Flight 
+FOR EACH ROW
+BEGIN
+
+
+IF (new.no_of_available_seats)<=0 THEN
+SIGNAL SQLSTATE '45000'
+SET MESSAGE_TEXT = 'ERROR:  negative number of copies';
+END IF;
+END
+|
+DELIMITER ;
+
+
+DELIMITER |
+CREATE TRIGGER  decreament_ticket  before insert ON Flight_In_Tickets 
+FOR EACH ROW
+Begin
+DECLARE available_seats INT; 
+DECLARE no_oF_passengers INT;
+set available_seats= (select no_of_available_seats from Flight where  Flight_id=new.flightID) ;
+set no_oF_passengers= (select no_of_passenger from Ticket where  Ticket_id=new.Ticket_id) ;
+update Flight set 
+no_of_available_seats=  available_seats-no_oF_passengers where  Flight_id=new.flightID; 
+End
+|
+DELIMITER ;
+
+
+
 select * from Ticket;
 select * from Flight;
 select * from seat_no_In_Tickets;
 select * from Flight_extra_In_Tickets;
 select * from Flight_In_Tickets;
-insert into User  (Id,name, gender, Email, Password, isAdmin, Bdate,PassportNumber)values(default,"sakr",'m',"seif@","111","0",'1980-12-12',"2453");
+insert into User  (Id,name, gender, Email, Password, isAdmin, Bdate,PassportNumber)values(default,"sakr",'m',"ziad@","11111","1",'1980-12-12',"2453");
 select * from User;
 select * from Ticket , User,Flight, Flight_In_Tickets,seat_no_In_Tickets,Flight_extra_In_Tickets,seat_no_In_Tickets where User.Id=Ticket.usderID and Flight.Flight_id=Flight_In_Tickets.flightID and seat_no_In_Tickets.Ticket_id=Ticket.Ticket_id  and   Flight_extra_In_Tickets.Ticket_id=Ticket.Ticket_id      and User.Id=1;
 insert into Flight values(default,"2022-11-11","140","140",10,100);
-select * from User as u INNER JOIN Ticket as t on t.usderID=u.Id;
+select * ,sum(cost) As Toatal_COst from User as u INNER JOIN Ticket as t on t.usderID=u.Id group by u.Id;
+select * from Flight_In_Tickets as f INNER JOIN Ticket as t on t.Ticket_id=f.Ticket_id  INNER JOIN User as u on t.usderID=u.Id  where  flightID=1;
+select * ,sum(cost) As Total_cost from User as u INNER JOIN Ticket as t on t.usderID=u.Id group by u.Id  ORDER BY Total_cost DESC limit 5;
