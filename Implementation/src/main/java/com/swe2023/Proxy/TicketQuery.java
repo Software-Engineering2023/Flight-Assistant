@@ -375,6 +375,21 @@ public class TicketQuery {
 //		
 //	}
 	
+	public boolean seachTicket(String id) throws SQLException {
+		String query="SELECT *  FROM Ticket where Ticket_id ="+id;
+		Connection connection = DB_Utils.getDataSource().getConnection();
+        Statement statement = connection.createStatement();
+
+        ResultSet resultSet = statement.executeQuery(query);
+        while (resultSet.next()) {
+        	connection.close();
+        	statement.close();
+        	resultSet.close();
+        	return true;
+        }
+		return false;
+	}
+	
 	
 	//String data 2022-11-11 
 	public ArrayList<Ticket> getTicketOnDay(String date) throws SQLException{

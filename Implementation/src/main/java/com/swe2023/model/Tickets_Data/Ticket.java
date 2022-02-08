@@ -44,7 +44,14 @@ public class Ticket {
         this.seatNo = new LinkedList<>();
     }
 
-    public float getCost() {
+    
+    
+    
+    public Ticket(String ticketID) {
+		super();
+		this.ticketID = ticketID;
+	}
+	public float getCost() {
         return cost;
     }
     
