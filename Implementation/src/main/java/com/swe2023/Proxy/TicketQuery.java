@@ -277,6 +277,7 @@ public class TicketQuery {
 		String queryForGetFlight="select * from  Flight_In_Tickets where Ticket_id=?";
         String queryForExtra="select * from  Flight_extra_In_Tickets where Ticket_id=? and flightID=?";
         String queryForSeats="select * from  seat_no_In_Tickets where Ticket_id=? and flightID=?";
+        String queryOfFlightDetail="select * from Flight where Flight_id= ?";
 		Connection connection = DB_Utils.getDataSource().getConnection();
         Statement statement = connection.createStatement();
 
@@ -342,6 +343,19 @@ public class TicketQuery {
             	tickets.add(ticket);
             	
             }
+            
+            PreparedStatement pStatementForFlightDetails = connection.prepareStatement(queryOfFlightDetail);
+            FlightQueryBuilder  flightQueryBuilder=new FlightQueryBuilder();
+            
+            int counter=0;
+            for(Ticket t:tickets) {
+            	LinkedList<Flight> flights=new LinkedList<>();
+            	for(Flight f:t.getFlights()) {
+            		flights.add(flightQueryBuilder.getFlightByID(f.getFlightID()));
+            	}
+            	tickets.get(counter++).setFlights(flights);
+            }
+            
             connection.close();
             statement.close();
             resultSet.close();
@@ -462,7 +476,7 @@ public class TicketQuery {
 		//ticket.setTicketID("4");
 		//addTicket(ticket);
 		//deleteTicket(ticket);
-		//ArrayList<Ticket> t=getAll(0);
+		ArrayList<Ticket> t=getAll(1);
 		//System.out.println("size :"+t.size());
 		//Ticket t1=t.get(0);
 		//Ticket t2=t.get(1);
@@ -470,7 +484,7 @@ public class TicketQuery {
 		//System.out.println(t2.getCost());
 		//ArrayList<Ticket> t=getTicketOfUser(3);
 		//System.out.println("size"+t.size());
-		getTopTenUser();
+		//getTopTenUser();
 	}
 	
 	
