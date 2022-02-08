@@ -37,7 +37,7 @@
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Label fx:id="l1" layoutX="203.0" layoutY="104.0" prefHeight="36.0" prefWidth="120.0" text="Ticket ID" textFill="#1e1c1c">
+      <Label fx:id="l1" layoutX="370.0" layoutY="99.0" prefHeight="36.0" prefWidth="120.0" text="Ticket ID" textFill="#1e1c1c">
          <font>
             <Font name="System Bold Italic" size="27.0" />
          </font>
@@ -74,7 +74,7 @@
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Label fx:id="l4" alignment="CENTER" layoutX="159.0" layoutY="145.0" prefHeight="21.0" prefWidth="187.0" textAlignment="CENTER" wrapText="true">
+      <Label fx:id="l4" alignment="CENTER" layoutX="332.0" layoutY="138.0" prefHeight="21.0" prefWidth="187.0" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="System Bold Italic" size="30.0" />
          </font>

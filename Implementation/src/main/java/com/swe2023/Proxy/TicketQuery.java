@@ -474,9 +474,9 @@ public class TicketQuery {
 		ticket.setFlights(flights);
 		ticket.setSeatNo(seatNo);
 		//ticket.setTicketID("4");
-		//addTicket(ticket);
+		addTicket(ticket);
 		//deleteTicket(ticket);
-		ArrayList<Ticket> t=getAll(1);
+//		ArrayList<Ticket> t=getAll(1);
 		//System.out.println("size :"+t.size());
 		//Ticket t1=t.get(0);
 		//Ticket t2=t.get(1);
