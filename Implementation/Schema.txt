@@ -69,7 +69,7 @@ create table Flight_extra_In_Tickets(
 	Ticket_id int  not null,
     flightID int not null,
     extra varchar(45) not null,
-    primary key (Ticket_id,flightID),
+    primary key (Ticket_id,flightID,extra),
     foreign key (Ticket_id) references Ticket (Ticket_id) on delete cascade,
     foreign key (Ticket_id) references Ticket (Ticket_id) on delete cascade,
     foreign key (flightID) references Flight (Flight_id) on delete cascade

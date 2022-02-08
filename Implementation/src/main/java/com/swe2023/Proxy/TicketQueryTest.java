@@ -2,14 +2,15 @@ package com.swe2023.Proxy;
 
 import com.swe2023.model.Planes_Data.Flight;
 import com.swe2023.model.Tickets_Data.Ticket;
-import com.swe2023.model.signUpAndLogin.LoginAndSignUp;
 import com.swe2023.model.signUpAndLogin.Passenger;
+import org.junit.Before;
 import org.junit.Test;
 
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Locale;
@@ -17,8 +18,6 @@ import java.util.Locale;
 import static org.junit.Assert.*;
 
 public class TicketQueryTest {
-
-
 
     @Test
     public void addTicket() throws Exception {
