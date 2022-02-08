@@ -6,9 +6,12 @@ import com.swe2023.model.signUpAndLogin.LoginAndSignUp;
 import com.swe2023.model.signUpAndLogin.Passenger;
 import com.swe2023.model.signUpAndLogin.User;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 
 public class SignInController {
     @FXML
@@ -20,7 +23,31 @@ public class SignInController {
     @FXML
     public Button SignUPButton;
 
+
     private String errorMessage;
+
+    public void h1_Clicked() throws URISyntaxException, IOException {
+        System.out.println("h1 clicked");
+        java.awt.Desktop.getDesktop().browse(new URI("https://www.facebook.com/EGYPTAIR/"));
+    }
+    public void h2_Clicked() throws URISyntaxException, IOException {
+        System.out.println("h2 clicked");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Call Us");
+        alert.setHeaderText("Call Us On : ");
+        alert.setContentText("Land line: 090070000 \n" + "Mobile: 1717 ");
+        alert.showAndWait();
+    }
+
+    public void h3_Clicked() throws URISyntaxException, IOException {
+        System.out.println("h3 clicked");
+        java.awt.Desktop.getDesktop().browse(new URI("https://www.google.com/gmail/about/"));
+    }
+    public void h4_Clicked() throws URISyntaxException, IOException {
+        System.out.println("h4 clicked");
+        java.awt.Desktop.getDesktop().browse(new URI("https://www.google.com/maps/place/Alexandria,+Alexandria+Governorate/@31.2240349,29.8148008,11z/data=!3m1!4b1!4m5!3m4!1s0x14f5c49126710fd3:0xb4e0cda629ee6bb9!8m2!3d31.2000924!4d29.9187387"));
+    }
+
 
 
     public void signIn() {

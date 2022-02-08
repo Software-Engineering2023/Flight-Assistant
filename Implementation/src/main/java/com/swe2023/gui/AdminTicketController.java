@@ -29,7 +29,7 @@ public class AdminTicketController {
     public Label l1;
     public Label l2;
     public Label l3;
-    public TextField t1;
+    public Label l4 ;
     public TextField t2;
     public TextField t3;
 
@@ -49,7 +49,7 @@ public class AdminTicketController {
         l1.setVisible(false);
         l2.setVisible(false);
         l3.setVisible(false);
-        t1.setVisible(false);
+        l4.setVisible(false);
         t2.setVisible(false);
         t3.setVisible(false);
         listview1.setVisible(true);
@@ -57,18 +57,20 @@ public class AdminTicketController {
     }
 
     public void b1_Clicked(){
+        System.out.println("index is :"+index);
         b1.setVisible(false);
         b2.setVisible(false);
         b3.setVisible(false);
         b5.setVisible(true);
-        b6.setVisible(false);
+        b6.setVisible(true);
         l1.setVisible(true);
         l2.setVisible(true);
         l3.setVisible(true);
-        t1.setVisible(true);
+        l4.setVisible(true);
         t2.setVisible(true);
         t3.setVisible(true);
-        t1.setPromptText("Old Value : "+tickets.get(index).getTicketID());
+        listview1.setVisible(false);
+        l4.setText(tickets.get(index).getTicketID());
         t2.setPromptText("Old Value : "+tickets.get(index).getCost());
         t3.setPromptText("Old Value : "+tickets.get(index).getPassengersNo());
         listview1.setVisible(false);
@@ -78,7 +80,7 @@ public class AdminTicketController {
         b1.setVisible(false);
         b2.setVisible(false);
         b3.setVisible(false);
-        b6.setVisible(false);
+        b6.setVisible(true);
         System.out.println("ticket size"+tickets.size());
         Ticket t=tickets.get(2);   
         System.out.println(t.getFlights().size());
@@ -90,6 +92,7 @@ public class AdminTicketController {
         b1.setVisible(false);
         b2.setVisible(false);
         b3.setVisible(false);
+        b6.setVisible(true);
         //fill users
         ArrayList<Passenger> users =  ticketManager.getTopUsers();
         topUsers(users);
