@@ -56,12 +56,14 @@ public class TicketQuery {
             pStatement.setDouble(2, ticket.getCost());
             pStatement.setInt(3, ticket.getPassengersNo());
             pStatement.execute();
+			System.out.println(pStatement);
             pStatement.close();
             ///////////////////////for queryForFlightInTickets///////////////
             LinkedList<Flight> flights=ticket.getFlights();
             for(Flight f:flights) {
             	pStatementForFlights.setInt(1,newTicketID);
             	pStatementForFlights.setInt(2, f.getFlightID());
+				System.out.println(pStatementForFlights);
             	pStatementForFlights.execute();
             }
             pStatementForFlights.close();
