@@ -2,29 +2,18 @@ package com.swe2023.gui;
 
 import com.swe2023.HelloApplication;
 import com.swe2023.User.UserSession;
-import com.swe2023.model.Planes_Data.Flight;
-import com.swe2023.model.Planes_Data.Plane;
-import com.swe2023.model.Planes_Data.Port;
 import com.swe2023.model.Planes_Data.Trip;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class Wizard2Controller {
 
     @FXML
     public ListView<Trip> listView;
     public Button showDetails, back;
+    public Button logout;
 
     private UserSession userSession;
 //    public ArrayList<Trip> trips;
@@ -32,7 +21,7 @@ public class Wizard2Controller {
 
     @FXML
     public void initialize() {
-        listView.setCellFactory(new ItemFactory());
+        listView.setCellFactory(new TripItemFactory());
         userSession = UserSession.getSession();
         userSession.getTrips().forEach(trip -> listView.getItems().add(trip));
     }
@@ -62,4 +51,8 @@ public class Wizard2Controller {
                 null, 620, 500);
     }
 
+    public void signOut(ActionEvent actionEvent) {
+        HelloApplication.showWindow(logout, "/signIn.fxml", "Welcome",
+                "/signINCSS.css", 950, 650);
+    }
 }

@@ -30,7 +30,7 @@ public class TripCell extends ListCell<Trip> {
 
     private void loadFXML() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/item.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/trip-item.fxml"));
             loader.setController(this);
             loader.setRoot(this);
             loader.load();

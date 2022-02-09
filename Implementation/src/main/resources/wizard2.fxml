@@ -8,10 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="500.0" prefWidth="620.0"
-            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.swe2023.gui.Wizard2Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.swe2023.gui.Wizard2Controller">
    <children>
       <AnchorPane layoutX="51.0" layoutY="11.0" prefHeight="70.0" prefWidth="627.0" style="-fx-background-color: #323aa8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -40,8 +37,7 @@
 
       <ListView fx:id="listView" layoutX="141.0" layoutY="117.0" prefHeight="306.0" prefWidth="620.0" style="-fx-background-color: #f3f3f3;" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="117.0" />
 
-      <Button fx:id="showDetails" layoutX="505.0" layoutY="447.0" mnemonicParsing="false"
-              onAction="#showFlightDetails" prefHeight="32.0" prefWidth="81.0" text="Show">
+      <Button fx:id="showDetails" layoutX="505.0" layoutY="447.0" mnemonicParsing="false" onAction="#showFlightDetails" prefHeight="32.0" prefWidth="81.0" text="Show">
          <font>
             <Font size="14.0" />
          </font>
@@ -52,5 +48,15 @@
             <Font size="14.0" />
          </font>
       </Button>
+      <AnchorPane layoutX="451.0" layoutY="10.0" prefHeight="70.0" prefWidth="129.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="logout" onAction="#signOut" layoutX="10.0" layoutY="12.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="113.0" style="-fx-background-color: #323aa8;" text="logout" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" layoutX="14.0" layoutY="39.0" rotate="180.0" size="20" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

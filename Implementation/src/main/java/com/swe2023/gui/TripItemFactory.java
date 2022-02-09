@@ -6,7 +6,7 @@ import javafx.scene.control.ListView;
 
 import javafx.util.Callback;
 
-public class ItemFactory implements Callback<ListView<Trip>, ListCell<Trip>> {
+public class TripItemFactory implements Callback<ListView<Trip>, ListCell<Trip>> {
 
     @Override
     public ListCell<Trip> call(ListView<Trip> param) {

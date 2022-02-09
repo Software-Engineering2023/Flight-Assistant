@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListCell?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="113.0" prefWidth="600.0" type="javafx.scene.control.ListCell" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <graphic>
+        <HBox alignment="CENTER" layoutX="165.0" layoutY="100.0" prefHeight="115.0" prefWidth="592.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="source" alignment="CENTER" layoutX="17.0" layoutY="37.0" prefHeight="43.0" prefWidth="165.0" text="Airport" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane layoutX="-18.0" layoutY="29.0" prefHeight="40.0" prefWidth="182.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <FontAwesomeIconView fill="#0c8b37" glyphName="PLANE" layoutX="14.0" layoutY="26.0" size="18" wrappingWidth="14.142857551574707" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="10.571428298950195" />
+                        <Label layoutX="37.0" prefHeight="38.0" prefWidth="93.0" text="Source" textFill="#0c8b37" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="System Bold Italic" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="destination" alignment="CENTER" layoutX="17.0" layoutY="37.0" prefHeight="43.0" prefWidth="165.0" text="Airport" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane layoutX="-18.0" layoutY="29.0" prefHeight="40.0" prefWidth="182.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <FontAwesomeIconView fill="#eb4d31" glyphName="PLANE" layoutX="15.0" layoutY="26.0" rotate="180.0" size="18" text="" wrappingWidth="14.142857551574707" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="102.19047578175864" AnchorPane.topAnchor="9.0" />
+                        <Label layoutX="36.0" layoutY="6.0" prefHeight="39.0" prefWidth="94.0" text="Destination" textFill="#eb4d31" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="System Bold Italic" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="status" alignment="CENTER" layoutX="17.0" layoutY="37.0" prefHeight="43.0" prefWidth="165.0" text="Status" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane layoutX="68.0" layoutY="29.0" prefHeight="40.0" prefWidth="81.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <FontAwesomeIconView fill="#4a52ed" glyphName="CALENDAR" layoutX="28.0" layoutY="25.0" size="18" wrappingWidth="14.142857551574707" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="89.19047578175864" AnchorPane.topAnchor="9.571428298950195" />
+                        <Label layoutX="50.0" prefHeight="40.0" prefWidth="81.0" text="Status" textFill="#4a52ed" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="System Bold Italic" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="cost" alignment="CENTER" layoutX="17.0" layoutY="37.0" prefHeight="43.0" prefWidth="165.0" text="Cost" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane layoutX="-18.0" layoutY="29.0" prefHeight="40.0" prefWidth="182.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <FontAwesomeIconView fill="#0c8b37" glyphName="DOLLAR" layoutX="27.0" layoutY="25.0" size="18" wrappingWidth="14.142857551574707" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="90.19047578175864" />
+                        <Label layoutX="50.0" prefHeight="38.0" prefWidth="81.0" text="Price" textFill="#0c8b37" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="System Bold Italic" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+        </HBox>
+    </graphic>
+</fx:root>

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -13,10 +14,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-         prefHeight="536.0" prefWidth="599.0" tabClosingPolicy="UNAVAILABLE"
-         xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-         fx:controller="com.swe2023.gui.Wizard1Controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="599.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.swe2023.gui.Wizard1Controller">
   <tabs>
       <Tab text="Pick Trip">
         <content>
@@ -59,12 +57,22 @@
                   </Button>
                   <AnchorPane layoutX="41.0" layoutY="1.0" prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #323aa8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label layoutX="56.0" layoutY="11.0" text="Flight Assistant" textFill="WHITE">
+                        <Label layoutX="54.0" layoutY="11.0" text="Flight Assistant" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="32.0" />
                            </font>
                         </Label>
-                        <FontAwesomeIconView fill="WHITE" glyphName="PLANE" layoutX="22.0" layoutY="45.0" size="25" text="" />
+                        <FontAwesomeIconView fill="WHITE" glyphName="PLANE" layoutX="21.0" layoutY="45.0" size="25" text="" />
+                        <AnchorPane layoutX="441.0" prefHeight="70.0" prefWidth="129.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Button fx:id="logout" onAction="#signOut" layoutX="10.0" layoutY="12.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="113.0" style="-fx-background-color: #323aa8;" text="logout" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Button>
+                              <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" layoutX="14.0" layoutY="39.0" rotate="180.0" size="20" />
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                   <Separator layoutY="166.0" prefHeight="3.3333333333333335" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="166.0" />
@@ -78,7 +86,31 @@
       </Tab>
     <Tab text="Your Tickets">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <AnchorPane layoutX="131.0" layoutY="32.0" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #323aa8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label layoutX="54.0" layoutY="11.0" text="Flight Assistant" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="32.0" />
+                           </font>
+                        </Label>
+                        <FontAwesomeIconView fill="WHITE" glyphName="PLANE" layoutX="21.0" layoutY="45.0" size="25" text="" />
+                     </children>
+                  </AnchorPane>
+                  <ListView fx:id="tickets" layoutX="148.0" layoutY="99.0" prefHeight="335.0" prefWidth="599.0" style="-fx-background-color: #f3f3f3;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+                  <Separator layoutY="404.0" prefHeight="5.0" prefWidth="599.0" AnchorPane.bottomAnchor="98.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="404.0" />
+                  <Button fx:id="cancelTicket" layoutX="349.0" layoutY="444.0" mnemonicParsing="false" onAction="#cancel" prefHeight="32.0" prefWidth="108.0" text="Cancel Ticket" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="143.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="showDetails" layoutX="484.0" layoutY="444.0" mnemonicParsing="false" onAction="#showTicket" prefHeight="32.0" prefWidth="81.0" text="Show" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="34.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children></AnchorPane>
       </content>
     </Tab>
   </tabs>

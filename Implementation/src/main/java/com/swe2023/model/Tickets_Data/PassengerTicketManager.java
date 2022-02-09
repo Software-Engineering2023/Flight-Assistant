@@ -5,6 +5,9 @@ import com.swe2023.Proxy.TicketQuery;
 import com.swe2023.model.Planes_Data.Flight;
 import com.swe2023.model.signUpAndLogin.Passenger;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 public class PassengerTicketManager {
     Ticket[] ticketsShown;
 
@@ -15,7 +18,8 @@ public class PassengerTicketManager {
         //tqb = new TicketQuery();
         fqb = new FlightQueryBuilder();
     }
-    public void cancelTicket(Ticket ticket){
+
+    public boolean cancelTicket(Ticket ticket){
         // call dataBase
         for(Flight flight: ticket.getFlights()){
             //increase free seats by Passengers number
@@ -23,14 +27,21 @@ public class PassengerTicketManager {
             flight.getTickets().remove(ticket);
             fqb.updateFlightSeats(flight);
         }
-        TicketQuery.deleteTicket(ticket);
+        return TicketQuery.deleteTicket(ticket);
      //   ticket = null;
     }
+
+    public ArrayList<Ticket> loadUserTickets(int userId){
+        try {
+            return TicketQuery.getTicketOfUser(userId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void modifyTicketExtra(Ticket ticket,Flight flight, String[] extra){
         int i = ticket.getFlights().indexOf(flight);
         ticket.getExtras().set(i,extra);
-    }
-    public void loadUserTickets(){
-
     }
 }

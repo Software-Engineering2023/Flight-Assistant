@@ -7,10 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="394.0" prefWidth="627.0"
-            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.swe2023.gui.FlightDetailsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="394.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.swe2023.gui.FlightDetailsController">
    <children>
       <AnchorPane layoutX="61.0" layoutY="21.0" prefHeight="70.0" prefWidth="600.0" style="-fx-background-color: #323aa8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -24,7 +21,7 @@
       </AnchorPane>
       <AnchorPane layoutX="135.0" layoutY="79.0" prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: #b3a6c9;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
          <children>
-            <Label layoutX="55.0" layoutY="8.0" text="Details" textFill="WHITE">
+            <Label layoutX="55.0" layoutY="8.0" text="Flight Details" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
@@ -61,12 +58,12 @@
          </children>
       </AnchorPane>
       <ListView fx:id="flights" layoutX="182.0" layoutY="160.0" prefHeight="129.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="160.0" />
-      <Button fx:id="back" onAction="#backToPrevious" layoutX="376.0" layoutY="341.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="81.0" text="Back" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="170.0">
+      <Button fx:id="back" layoutX="376.0" layoutY="341.0" mnemonicParsing="false" onAction="#backToPrevious" prefHeight="32.0" prefWidth="81.0" text="Back" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="170.0">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="select" onAction="#selectFlight" layoutX="492.0" layoutY="341.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="88.0" text="Select" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="47.0">
+      <Button fx:id="select" layoutX="492.0" layoutY="341.0" mnemonicParsing="false" onAction="#selectFlight" prefHeight="32.0" prefWidth="88.0" text="Select" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="47.0">
          <font>
             <Font size="14.0" />
          </font>

@@ -21,6 +21,7 @@ import com.swe2023.model.Tickets_Data.Ticket;
 import com.swe2023.model.signUpAndLogin.Passenger;
 
 public class TicketQuery {
+
 	public static boolean addTicket(Ticket ticket) {
 
 		System.out.println("enter add ticket query ");

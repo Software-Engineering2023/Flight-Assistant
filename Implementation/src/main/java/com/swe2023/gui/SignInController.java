@@ -62,7 +62,7 @@ public class SignInController {
         try{
             checkValidityOfInputs(username, password);
             user=checkUserIsAdmin(username, password);
-        }catch (Exception e){
+        } catch (Exception e){
             HelloApplication.showErrorMessage(getErrorMessage());
             return;
         }

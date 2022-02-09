@@ -36,8 +36,7 @@ public class HelloApplication extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(newWindow));
             Scene scene = new Scene(fxmlLoader.load(), v, v1);
             if(cssPath!=null)
-                scene.getStylesheets().add(
-                        HelloApplication.class.getResource(cssPath).toExternalForm());
+                scene.getStylesheets().add(HelloApplication.class.getResource(cssPath).toExternalForm());
 //            // Edit to pass data to another controller....
 //            if (data != null) {
 //                Controller controller = fxmlLoader.getController();

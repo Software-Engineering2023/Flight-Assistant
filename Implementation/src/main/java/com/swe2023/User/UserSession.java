@@ -1,9 +1,13 @@
 package com.swe2023.User;
 
+import com.swe2023.Proxy.TicketQuery;
 import com.swe2023.model.Planes_Data.*;
+import com.swe2023.model.Tickets_Data.PassengerTicketManager;
+import com.swe2023.model.Tickets_Data.Ticket;
 import com.swe2023.model.Tickets_Data.TicketBuilder;
 import com.swe2023.model.signUpAndLogin.Passenger;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +18,8 @@ import java.util.List;
  */
 public class UserSession {
 
+    private PassengerTicketManager passengerTicketManager;
+
     private static UserSession session;
     private final PlanesInformation planesInformation;
     private final TicketBuilder ticketBuilder;
@@ -21,12 +27,17 @@ public class UserSession {
     private ArrayList<Trip> trips;
 
     private Trip selectedTrip;
+
+    private Ticket selectedTicket;
+
     /* We need to add a ticket manager */
     private Passenger user; /* Used to book tickets directly and to save current user's progress */
 
     private UserSession(){
         planesInformation= new Manager();
         ticketBuilder= new TicketBuilder();
+
+        passengerTicketManager = new PassengerTicketManager();
     }
 
     public ArrayList<Trip> getTrips() {
@@ -82,10 +93,20 @@ public class UserSession {
         return session;
     }
 
+    public ArrayList<Ticket> loadTickets() {
+        return passengerTicketManager.loadUserTickets(user.getID());
+    }
+
+    public boolean cancelTicket() {
+        return passengerTicketManager.cancelTicket(selectedTicket);
+    }
 
 
+    public Ticket getSelectedTicket() {
+        return selectedTicket;
+    }
 
-
-
-
+    public void setSelectedTicket(Ticket selectedTicket) {
+        this.selectedTicket = selectedTicket;
+    }
 }
